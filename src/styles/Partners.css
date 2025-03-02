@@ -1,0 +1,40 @@
+.partners {
+  padding: 40px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.partners h2 {
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 2rem;
+}
+
+.partners-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px; 
+  flex-wrap: wrap; 
+}
+
+.partner-item {
+  max-width: 200px;
+  text-align: center;
+}
+
+.partner-item img {
+  max-width: 80px;
+  margin-bottom: 10px;
+}
+
+.partner-item h3 {
+  margin: 10px 0 5px 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.partner-item p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.4;
+}
