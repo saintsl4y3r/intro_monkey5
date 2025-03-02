@@ -1,0 +1,33 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Build output
+dist/
+build/
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Cache files
+.cache/
+coverage/
+
+# GitHub Codespaces and JetBrains IDEs
+.workspaces/
+*.iml
+
+# Linter and formatter files
+.eslintcache/
+stylelint.cache
