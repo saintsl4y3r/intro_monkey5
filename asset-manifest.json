@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/intro_monkey5/static/css/main.bdbd7356.css",
-    "main.js": "/intro_monkey5/static/js/main.b5e0890e.js",
+    "main.css": "/intro_monkey5/static/css/main.8afaf072.css",
+    "main.js": "/intro_monkey5/static/js/main.29cb9574.js",
     "static/media/about4.png": "/intro_monkey5/static/media/about4.b7a6148609dc24bee02d.png",
     "static/media/about2.png": "/intro_monkey5/static/media/about2.023d6a9c81bf97d698a5.png",
     "static/media/about6.png": "/intro_monkey5/static/media/about6.6cb0da80c51478a342f0.png",
+    "static/media/core-value-1.jpg": "/intro_monkey5/static/media/core-value-1.dfe3948ddd8a7497bcf7.jpg",
     "static/media/hero.jpg": "/intro_monkey5/static/media/hero.fc00e521d2da123937e0.jpg",
     "static/media/logo-monkey5.png": "/intro_monkey5/static/media/logo-monkey5.2d19fa4424bf18b80024.png",
     "static/media/about3.png": "/intro_monkey5/static/media/about3.09309c8415ac2657655e.png",
     "static/media/about5.png": "/intro_monkey5/static/media/about5.d1a1aa9afbbdc9b4fc28.png",
     "static/media/partner-zalopay.png": "/intro_monkey5/static/media/partner-zalopay.080d1ffbd5da8f2ab9a6.png",
     "index.html": "/intro_monkey5/index.html",
-    "main.bdbd7356.css.map": "/intro_monkey5/static/css/main.bdbd7356.css.map",
-    "main.b5e0890e.js.map": "/intro_monkey5/static/js/main.b5e0890e.js.map"
+    "main.8afaf072.css.map": "/intro_monkey5/static/css/main.8afaf072.css.map",
+    "main.29cb9574.js.map": "/intro_monkey5/static/js/main.29cb9574.js.map"
   },
   "entrypoints": [
-    "static/css/main.bdbd7356.css",
-    "static/js/main.b5e0890e.js"
+    "static/css/main.8afaf072.css",
+    "static/js/main.29cb9574.js"
   ]
 }
