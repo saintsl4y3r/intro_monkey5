@@ -12,7 +12,8 @@ import coreValueImage from "../assets/core-value-1.jpg";
 const About = () => {
   return (
     <section id="about" className="about">
-      <div className="about-section section-left">
+      
+      <div className="about-section">
         <div className="about-text">
           <h2>Chúng tôi là MONKEY5</h2>
           <p>
@@ -39,7 +40,7 @@ const About = () => {
             Tên gọi MONKEY5 lấy cảm hứng từ hình ảnh những chú khỉ dễ thương để nói về các cộng tác viên giúp việc luôn hoàn thành
             tốt công việc (Task) được giao. Họ (mTasker) - những chú khỉ siêng năng, chăm chỉ
             và cần mẫn - sẽ cung cấp cho khách hàng những dịch vụ chất lượng cao một cách
-            tiện lợi và nhanh chóng. 
+            tiện lợi và nhanh chóng.
           </p>
         </div>
         <div className="about-image">
@@ -109,13 +110,12 @@ const About = () => {
           <img src={about6} alt="Sứ mệnh" />
         </div>
       </div>
+      
       <div className="core-values">
         <h2>Giá trị cốt lõi</h2>
-
         <div className="core-value-image">
           <img src={coreValueImage} alt="Core Value" />
         </div>
-
         <div className="core-values-items">
           <div className="value-item">
             <h3>Chất lượng</h3>
