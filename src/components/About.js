@@ -1,3 +1,4 @@
+// src/components/About.js
 import React from "react";
 import "../styles/About.css";
 
@@ -12,137 +13,132 @@ import coreValueImage from "../assets/core-value-1.jpg";
 const About = () => {
   return (
     <section id="about" className="about">
-      
       <div className="about-section">
         <div className="about-text">
-          <h2>Chúng tôi là MONKEY5</h2>
+          <h2>We are MONKEY5</h2>
           <p>
-            Công ty TNHH MONKEY5 được thành lập vào ngày 14 tháng 01 năm 2025
-            bởi CEO – Founder Hoàng Anh.
+            MONKEY5 Co., Ltd was founded on January 14, 2025 by CEO – Founder Hoàng Anh.
           </p>
           <p>
-            MONKEY5 là doanh nghiệp tiên phong trong việc ứng dụng công nghệ vào ngành giúp
-            việc nhà ở Việt Nam. Chúng tôi cung cấp đa dịch vụ tiện ích như: dọn dẹp nhà,
-            vệ sinh máy lạnh, đi chợ, … tại Đông Nam Á. Thông qua ứng dụng đặt lịch dành cho
-            khách hàng MONKEY5 và ứng dụng nhận việc của cộng tác viên MONKEY5 Partner,
-            khách hàng và cộng tác viên có thể chủ động đăng và nhận việc trực tiếp trên ứng dụng.
+            MONKEY5 is a pioneering company applying technology to the home service industry 
+            in Vietnam. We provide multiple convenient services such as house cleaning, 
+            air-conditioner cleaning, grocery shopping, and more across Southeast Asia. 
+            Through the MONKEY5 booking app for customers and the MONKEY5 Partner app for collaborators, 
+            both customers and partners can actively post and accept tasks directly on the app.
           </p>
         </div>
         <div className="about-image">
-          <img src={about1} alt="Chúng tôi là MONKEY5" />
+          <img src={about1} alt="We are MONKEY5" />
         </div>
       </div>
 
       <div className="about-section section-right">
         <div className="about-text">
-          <h2>Ý nghĩa của MONKEY5</h2>
+          <h2>The meaning of MONKEY5</h2>
           <p>
-            Tên gọi MONKEY5 lấy cảm hứng từ hình ảnh những chú khỉ dễ thương để nói về các cộng tác viên giúp việc luôn hoàn thành
-            tốt công việc (Task) được giao. Họ (mTasker) - những chú khỉ siêng năng, chăm chỉ
-            và cần mẫn - sẽ cung cấp cho khách hàng những dịch vụ chất lượng cao một cách
-            tiện lợi và nhanh chóng.
+            The name MONKEY5 is inspired by the image of cute monkeys, referring to the diligent collaborators 
+            who always complete their assigned tasks. They (mTaskers) — these hardworking, industrious, 
+            and dedicated “monkeys” — provide high-quality services to customers in a convenient and efficient manner.
           </p>
         </div>
         <div className="about-image">
-          <img src={about2} alt="Ý nghĩa của MONKEY5" />
+          <img src={about2} alt="The meaning of MONKEY5" />
         </div>
       </div>
 
       <div className="about-section section-left">
         <div className="about-text">
-          <h2>Khu vực hoạt động</h2>
+          <h2>Areas of operation</h2>
           <p>
-            Hiện tại, MONKEY5 cung cấp các dịch vụ tiện ích cho nhiều hộ gia đình ở khắp
-            hơn 20 tỉnh thành phố lớn tại Việt Nam: Hà Nội, Hải Phòng, Đà Nẵng, Hội An,
-            Nha Trang, Đà Lạt, Bình Dương, Biên Hòa, TP.HCM, Cần Thơ và hơn 10 tỉnh thành khác.
-            Ngoài ra, MONKEY5 đang mở rộng ra thị trường nước ngoài với dịch vụ chính là
-            giúp việc nhà theo giờ tại Thái Lan và Indonesia.
+            Currently, MONKEY5 provides convenient services for numerous households across 
+            more than 20 major cities and provinces in Vietnam, including Hanoi, Hai Phong, Da Nang, Hoi An, 
+            Nha Trang, Da Lat, Binh Duong, Bien Hoa, Ho Chi Minh City, Can Tho, and over 10 other provinces. 
+            Additionally, MONKEY5 is expanding overseas with its main service being hourly home cleaning 
+            in Thailand and Indonesia.
           </p>
         </div>
         <div className="about-image">
-          <img src={about3} alt="Khu vực hoạt động" />
+          <img src={about3} alt="Areas of operation" />
         </div>
       </div>
 
       <div className="about-section section-right">
         <div className="about-text">
-          <h2>Phát triển nhiều hơn nữa</h2>
+          <h2>Further development</h2>
           <p>
-            Tại Việt Nam, tính đến nay, MONKEY5 đã giúp hơn 1,000,000 người giúp việc
-            có thu nhập ổn định và đáp ứng nhu cầu chăm sóc nhà cửa cho hơn 10,000,000
-            khách hàng. Với mục tiêu mang đến cho khách hàng những trải nghiệm dịch vụ tốt nhất,
-            MONKEY5 không ngừng cải thiện chất lượng dịch vụ, ứng dụng.
+            In Vietnam, to date, MONKEY5 has helped over 1,000,000 domestic workers earn a stable income 
+            and meet the home care needs of more than 10,000,000 customers. With the goal of providing 
+            the best service experience to our customers, MONKEY5 continuously improves its service quality 
+            and the app.
           </p>
         </div>
         <div className="about-image">
-          <img src={about4} alt="Phát triển nhiều hơn nữa" />
+          <img src={about4} alt="Further development" />
         </div>
       </div>
 
       <div className="about-section section-left">
         <div className="about-text">
-          <h2>Tầm nhìn</h2>
+          <h2>Vision</h2>
           <p>
-            Không chỉ muốn giúp bạn chăm sóc gia đình từ những dịch vụ 
-            <strong> dọn dẹp nhà, vệ sinh máy lạnh, nấu ăn gia đình, giặt ủi...</strong> 
-            iTasker đang không ngừng mở rộng sang nhiều dịch vụ khác nhau ở khu vực Đông Nam Á,
-            cung cấp nhiều hơn nữa dịch vụ tiện ích gia đình tích hợp trên ứng dụng di động.
+            Not only aiming to help you take care of your home with services like 
+            <strong> house cleaning, air-conditioner cleaning, family meal cooking, laundry...</strong> 
+            iTasker is continuously expanding into various other services in Southeast Asia, 
+            providing even more integrated home convenience services via a mobile app.
           </p>
         </div>
         <div className="about-image">
-          <img src={about5} alt="Tầm nhìn" />
+          <img src={about5} alt="Vision" />
         </div>
       </div>
 
       <div className="about-section section-right">
         <div className="about-text">
-          <h2>Sứ mệnh</h2>
+          <h2>Mission</h2>
           <p>
-            MONKEY5 ra đời với sứ mệnh đem đến cho bạn giải quyết việc nhà
-            của người dân đô thị và nâng cao chất lượng cuộc sống nhờ cách áp dụng
-            nguồn nhân lực giúp việc bài bản, chuyên nghiệp và tận tâm. Đồng thời,
-            MONKEY5 còn tạo cơ hội kiếm thêm thu nhập cho các chị em giúp việc,
-            giúp khách hàng và cộng tác viên dễ dàng kết nối lao động chính thức
-            và bán thời gian.
+            MONKEY5 was born with the mission to help solve household tasks for urban residents 
+            and improve their quality of life by applying a systematic, professional, and dedicated workforce. 
+            At the same time, MONKEY5 also creates opportunities for domestic workers to earn additional income, 
+            enabling both customers and collaborators to easily connect for full-time or part-time labor.
           </p>
         </div>
         <div className="about-image">
-          <img src={about6} alt="Sứ mệnh" />
+          <img src={about6} alt="Mission" />
         </div>
       </div>
-      
+
       <div className="core-values">
-        <h2>Giá trị cốt lõi</h2>
+        <h2>Core Values</h2>
         <div className="core-value-image">
           <img src={coreValueImage} alt="Core Value" />
         </div>
         <div className="core-values-items">
           <div className="value-item">
-            <h3>Chất lượng</h3>
+            <h3>Quality</h3>
             <p>
-              Đảm bảo chất lượng dịch vụ cho khách hàng. iTasker chúng tôi đầu tư
-              vào quy trình tuyển chọn, đào tạo, kiểm tra, nhằm nâng cao trải nghiệm.
+              Ensure service quality for customers. At iTasker, we invest in a thorough 
+              recruitment, training, and inspection process to enhance the overall experience.
             </p>
           </div>
           <div className="value-item">
-            <h3>Tận tâm</h3>
+            <h3>Dedication</h3>
             <p>
-              Luôn đặt sự hài lòng và lợi ích của khách hàng lên trên hết. Mỗi công việc
-              đều được thực hiện với sự chăm chút và nhiệt huyết.
+              Always put customer satisfaction and benefits first. Each task is carried out 
+              with utmost care and passion.
             </p>
           </div>
           <div className="value-item">
-            <h3>Tiện lợi</h3>
+            <h3>Convenience</h3>
             <p>
-              Ứng dụng nhanh chóng, tiện lợi giúp khách hàng tiết kiệm thời gian.
-              Chỉ với vài thao tác, việc nhà được giải quyết gọn gàng.
+              A fast, convenient app that helps customers save time. With just a few taps, 
+              household tasks are neatly resolved.
             </p>
           </div>
           <div className="value-item">
-            <h3>Cải tiến</h3>
+            <h3>Innovation</h3>
             <p>
-              Không ngừng đổi mới để mang đến trải nghiệm tốt nhất cho khách hàng.
-              Luôn lắng nghe ý kiến và phản hồi để phát triển mỗi ngày.
+              Continuously innovate to deliver the best experience for customers. 
+              Always listen to feedback and suggestions to grow day by day.
             </p>
           </div>
         </div>
