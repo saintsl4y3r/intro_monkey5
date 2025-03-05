@@ -8,10 +8,10 @@ const Header = () => {
       <img src={logo} alt="MONKEY5 Logo" className="logo" />
       <nav>
         <ul>
-          <li><a href="#about">Về Chúng Tôi</a></li>
-          <li><a href="#services">Dịch Vụ</a></li>
-          <li><a href="#partners">Đối Tác</a></li>
-          <li><a href="#support">Hỗ Trợ</a></li>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#support">Supports</a></li>
         </ul>
       </nav>
     </header>

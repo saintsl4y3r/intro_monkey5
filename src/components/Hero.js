@@ -9,8 +9,8 @@ const Hero = () => {
       style={{ backgroundImage: `url(${heroImage})` }}
     >
       <div className="hero-overlay">
-        <h1>Chào mừng đến với MONKEY5</h1>
-        <p>Dịch vụ tiện ích gia đình tích hợp trên ứng dụng di động</p>
+        <h1>Welcome to MONKEY5</h1>
+        <p>Integrated home utility services on mobile application</p>
       </div>
     </section>
   );

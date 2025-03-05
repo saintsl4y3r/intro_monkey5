@@ -4,12 +4,12 @@ import "../styles/Support.css";
 const Support = () => {
   return (
     <section id="support" className="support">
-      <h2>Hỗ trợ khách hàng</h2>
-      <p>Nếu bạn cần trợ giúp, vui lòng liên hệ với chúng tôi.</p>
+      <h2>Customers support</h2>
+      <p>If you need help, please contact us.</p>
       <div className="contact-info">
         <p>📞 Hotline: 1900 1234</p>
         <p>📧 Email: sayhoang.work@gmail.com</p>
-        <p>📍 Địa chỉ: Đ. 60 - CL P, Khu đô thị, Thủ Đức, Hồ Chí Minh</p>
+        <p>📍 Address: Đ. 60 - CL P, Khu đô thị, Thủ Đức, Hồ Chí Minh</p>
       </div>
     </section>
   );
