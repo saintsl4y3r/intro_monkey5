@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/intro_monkey5/static/css/main.4bae880d.css",
-    "main.js": "/intro_monkey5/static/js/main.2c489aeb.js",
+    "main.css": "/intro_monkey5/static/css/main.e3b83c68.css",
+    "main.js": "/intro_monkey5/static/js/main.7014ce9e.js",
     "static/media/about4.png": "/intro_monkey5/static/media/about4.b7a6148609dc24bee02d.png",
     "static/media/about2.png": "/intro_monkey5/static/media/about2.023d6a9c81bf97d698a5.png",
     "static/media/about6.png": "/intro_monkey5/static/media/about6.bad015d34aaf438e1bdc.png",
@@ -12,11 +12,11 @@
     "static/media/about5.png": "/intro_monkey5/static/media/about5.d1a1aa9afbbdc9b4fc28.png",
     "static/media/partner-zalopay.png": "/intro_monkey5/static/media/partner-zalopay.080d1ffbd5da8f2ab9a6.png",
     "index.html": "/intro_monkey5/index.html",
-    "main.4bae880d.css.map": "/intro_monkey5/static/css/main.4bae880d.css.map",
-    "main.2c489aeb.js.map": "/intro_monkey5/static/js/main.2c489aeb.js.map"
+    "main.e3b83c68.css.map": "/intro_monkey5/static/css/main.e3b83c68.css.map",
+    "main.7014ce9e.js.map": "/intro_monkey5/static/js/main.7014ce9e.js.map"
   },
   "entrypoints": [
-    "static/css/main.4bae880d.css",
-    "static/js/main.2c489aeb.js"
+    "static/css/main.e3b83c68.css",
+    "static/js/main.7014ce9e.js"
   ]
 }
