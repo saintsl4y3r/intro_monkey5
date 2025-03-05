@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Services.css";
 
-const Services = () => {
+function Services() {
   return (
     <section id="services" className="services">
       <h2>Dịch vụ của chúng tôi</h2>

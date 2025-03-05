@@ -10,7 +10,7 @@ import about5 from "../assets/about5.png";
 import about6 from "../assets/about6.png";
 import coreValueImage from "../assets/core-value-1.jpg";
 
-const About = () => {
+function About() {
   return (
     <section id="about" className="about">
       <div className="about-section">

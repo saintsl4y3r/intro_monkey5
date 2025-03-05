@@ -4,7 +4,7 @@ import zalo from "../assets/partner-zalopay.png";
 import momo from "../assets/partner-momo.png";
 import hoozing from "../assets/partner-hoozing.png";
 
-const Partners = () => {
+function Partners() {
   return (
     <section id="partners" className="partners">
       <h2>Đối tác của MONKEY5</h2>
