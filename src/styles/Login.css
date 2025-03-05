@@ -1,0 +1,34 @@
+.login-page {
+    text-align: center;
+    padding: 40px;
+  }
+  .login-header {
+    margin-bottom: 20px;
+  }
+  .login-logo {
+    width: 100px;
+    margin-bottom: 10px;
+  }
+  .role-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .role-card {
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 150px;
+    margin-top: 20px;
+  }
+  .role-card button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  

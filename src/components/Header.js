@@ -5,6 +5,7 @@ import logo from "../assets/logo-monkey5.png";
 const Header = () => {
   return (
     <header className="header">
+      <div className="header-left">
       <img src={logo} alt="MONKEY5 Logo" className="logo" />
       <nav>
         <ul>
@@ -14,8 +15,15 @@ const Header = () => {
           <li><a href="#support">Supports</a></li>
         </ul>
       </nav>
+      </div>
+
+      <div className="header-right">
+        <Link to="/login" className="login-button">
+          Log In
+        </Link>
+      </div>
     </header>
   );
-};
+}
 
 export default Header;
