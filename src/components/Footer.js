@@ -4,7 +4,7 @@ import "../styles/Footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>© 2025 MONKEY5 - Tất cả quyền được bảo lưu.</p>
+      <p>© 2025 MONKEY5 - All rights reserved.</p>
     </footer>
   );
 };

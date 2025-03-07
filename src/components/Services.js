@@ -4,19 +4,23 @@ import "../styles/Services.css";
 function Services() {
   return (
     <section id="services" className="services">
-      <h2>Dịch vụ của chúng tôi</h2>
+      <h2>Our Services</h2>
       <div className="service-list">
         <div className="service-item">
-          <h3>🏠 Dọn dẹp nhà cửa</h3>
-          <p>Dịch vụ dọn dẹp toàn diện, giúp bạn có không gian sống sạch sẽ, thoải mái.</p>
+          <h3>🏠 House cleaning</h3>
+          <p>Comprehensive cleaning service, helping you have a clean and comfortable living space.</p>
         </div>
         <div className="service-item">
-          <h3>🧺 Giặt ủi</h3>
-          <p>Nhận và giao quần áo tận nhà, giúp bạn tiết kiệm thời gian.</p>
+          <h3>🧺 Laundry</h3>
+          <p>Pick up and deliver clothes to your home, saving you time.</p>
         </div>
         <div className="service-item">
-          <h3>👶 Chăm sóc trẻ</h3>
-          <p>Giúp bạn chăm sóc bé yêu với đội ngũ bảo mẫu chuyên nghiệp.</p>
+          <h3>👶 Child care</h3>
+          <p>Help you take care of your baby with a team of professional nannies.</p>
+        </div>
+        <div className="service-item">
+          <h3>🛒 Market </h3>
+          <p> Super fast grocery shopping assistants save time, ensure product quality with transparent prices.</p>
         </div>
       </div>
     </section>
