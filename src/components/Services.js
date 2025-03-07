@@ -18,10 +18,6 @@ function Services() {
           <h3>👶 Child care</h3>
           <p>Help you take care of your baby with a team of professional nannies.</p>
         </div>
-        <div className="service-item">
-          <h3>🛒 Market </h3>
-          <p> Super fast grocery shopping assistants save time, ensure product quality with transparent prices.</p>
-        </div>
       </div>
     </section>
   );

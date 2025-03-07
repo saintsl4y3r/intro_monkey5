@@ -7,22 +7,22 @@ import hoozing from "../assets/partner-hoozing.png";
 function Partners() {
   return (
     <section id="partners" className="partners">
-      <h2>Đối tác của MONKEY5</h2>
+      <h2>MONKEY5's Partners</h2>
       <div className="partners-container">
         <div className="partner-item">
           <img src={zalo} alt="ZaloPay" />
           <h3>ZALOPAY</h3>
-          <p>Ứng dụng thanh toán di động nhanh trong 2 giây</p>
+          <p>Fast mobile payment application in 2 seconds</p>
         </div>
         <div className="partner-item">
           <img src={momo} alt="MoMo" />
           <h3>MOMO</h3>
-          <p>Siêu ứng dụng thanh toán số 1 Việt Nam</p>
+          <p>Vietnam's No. 1 payment super app</p>
         </div>
         <div className="partner-item">
           <img src={hoozing} alt="Hoozing" />
           <h3>HOOZING</h3>
-          <p>Ứng dụng mua và thuê nhà</p>
+          <p>Home buying and renting app</p>
         </div>
       </div>
     </section>
