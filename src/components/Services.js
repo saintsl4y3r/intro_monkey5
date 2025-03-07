@@ -11,8 +11,8 @@ function Services() {
           <p>Comprehensive cleaning service, helping you have a clean and comfortable living space.</p>
         </div>
         <div className="service-item">
-          <h3>🧺 Laundry</h3>
-          <p>Pick up and deliver clothes to your home, saving you time.</p>
+          <h3>🧑‍🍳 Cooking</h3>
+          <p>Cooking delicious meals for your family just like a mother</p>
         </div>
         <div className="service-item">
           <h3>👶 Child care</h3>
