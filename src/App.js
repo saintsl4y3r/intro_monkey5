@@ -23,7 +23,6 @@ function App() {
             <>
               <Hero />
               <About />
-              <Services />
               <Partners />
               <Support />
               <Footer />
