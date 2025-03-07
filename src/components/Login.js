@@ -12,12 +12,6 @@ function Login() {
 
       <div className="role-container">
         <div className="role-card">
-          <h3>Customer</h3>
-          <p>Log in as a customer</p>
-          <button>Login</button>
-        </div>
-
-        <div className="role-card">
           <h3>Staff</h3>
           <p>Log in as staff</p>
           <button>Login</button>
