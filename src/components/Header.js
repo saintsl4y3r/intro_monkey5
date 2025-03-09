@@ -17,11 +17,6 @@ const Header = () => {
               </HashLink>
             </li>
             <li>
-              <HashLink smooth to="/#services">
-                Services
-              </HashLink>
-            </li>
-            <li>
               <HashLink smooth to="/#partners">
                 Partners
               </HashLink>
