@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import "../styles/Hero.css";
 import heroImage from "../assets/hero.jpg";
 import { useEffect } from "react";
+import 'src/react-refresh-runtime.js';
 
 const Hero = () => {
   const controls = useAnimation();

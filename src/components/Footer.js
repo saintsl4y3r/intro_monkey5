@@ -3,6 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import "../styles/Footer.css";
 import { useEffect } from "react";
+import 'src/react-refresh-runtime.js';
 
 const Footer = () => {
   const variants = {

@@ -3,7 +3,7 @@ import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import "../styles/About.css";
-
+import 'src/react-refresh-runtime.js';
 import about1 from "../assets/logo-monkey5.png";
 import about2 from "../assets/about2.png";
 import about3 from "../assets/about3.png";

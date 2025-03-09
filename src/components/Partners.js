@@ -2,6 +2,7 @@ import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import "../styles/Partners.css";
+import 'src/react-refresh-runtime.js';
 import zalo from "../assets/partner-zalopay.png";
 import momo from "../assets/partner-momo.png";
 import hoozing from "../assets/partner-hoozing.png";

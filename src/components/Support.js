@@ -2,6 +2,7 @@ import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import "../styles/Support.css";
+import 'src/react-refresh-runtime.js';
 import { useEffect } from "react";
 
 const Support = () => {

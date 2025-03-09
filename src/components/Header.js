@@ -3,6 +3,7 @@ import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
 import "../styles/Header.css";
 import logo from "../assets/logo-monkey5.png";
+import 'src/react-refresh-runtime.js';
 
 const Header = () => {
   return (
