@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import "../styles/Footer.css";
-import { useEffect } from "react";
-import 'src/react-refresh-runtime.js';
 
-const Footer = () => {
+function Footer() {
   const variants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
@@ -13,7 +11,7 @@ const Footer = () => {
 
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0,
   });
   const controls = useAnimation();
 
@@ -24,8 +22,9 @@ const Footer = () => {
   }, [controls, inView]);
 
   return (
-    <footer className="footer" ref={ref}>
+    <footer className="footer bg-gray-800 text-white text-center p-4" ref={ref}>
       <motion.p
+        className="text-sm"
         variants={variants}
         initial="hidden"
         animate={controls}
@@ -35,6 +34,6 @@ const Footer = () => {
       </motion.p>
     </footer>
   );
-};
+}
 
 export default Footer;

@@ -1,7 +1,9 @@
 import React from "react";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import 'src/react-refresh-runtime.js';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -12,9 +14,8 @@ import Login from "./components/Login";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/intro_monkey5">
       <Header />
-
       <Routes>
         <Route
           path="/"
@@ -28,7 +29,6 @@ function App() {
             </>
           }
         />
-
         <Route path="/login" element={<Login />} />
       </Routes>
     </Router>

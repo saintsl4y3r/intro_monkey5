@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import "../styles/Support.css";
-import 'src/react-refresh-runtime.js';
-import { useEffect } from "react";
 
-const Support = () => {
+function Support() {
   const variants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
@@ -13,7 +11,7 @@ const Support = () => {
 
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0,
   });
   const controls = useAnimation();
 
@@ -24,16 +22,18 @@ const Support = () => {
   }, [controls, inView]);
 
   return (
-    <section id="support" className="support" ref={ref}>
+    <section id="support" className="support py-12 px-4 bg-gray-100" ref={ref}>
       <motion.h2
+        className="text-3xl font-bold text-center text-orange-500 mb-4"
         variants={variants}
         initial="hidden"
         animate={controls}
         transition={{ duration: 0.5 }}
       >
-        Customers support
+        Customers Support
       </motion.h2>
       <motion.p
+        className="text-center text-gray-700 mb-6"
         variants={variants}
         initial="hidden"
         animate={controls}
@@ -41,7 +41,7 @@ const Support = () => {
       >
         If you need help, please contact us.
       </motion.p>
-      <div className="contact-info">
+      <div className="contact-info text-center space-y-4">
         <motion.p
           variants={variants}
           initial="hidden"
@@ -64,11 +64,11 @@ const Support = () => {
           animate={controls}
           transition={{ duration: 1.3 }}
         >
-          📍 Address: Đ. 60 - CL P, Khu đô thị, Thủ Đức, Hồ Chí Minh
+          📍 Address: 60 D, CL P, Urban Area, Thu Duc, Ho Chi Minh City
         </motion.p>
       </div>
     </section>
   );
-};
+}
 
 export default Support;

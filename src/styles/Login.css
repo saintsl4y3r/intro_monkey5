@@ -1,34 +1,31 @@
 .login-page {
-    text-align: center;
-    padding: 40px;
-  }
-  .login-header {
-    margin-bottom: 20px;
-  }
-  .login-logo {
-    width: 100px;
-    margin-bottom: 10px;
-  }
-  .role-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-  }
-  .role-card {
-    background: #fafafa;
-    padding: 20px;
-    border-radius: 8px;
-    min-width: 150px;
-    margin-top: 20px;
-  }
-  .role-card button {
-    margin-top: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
+  @apply flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4;
+}
+
+.login-header {
+  @apply text-center mb-8;
+}
+
+.login-logo {
+  @apply w-24 mb-4;
+}
+
+.role-container {
+  @apply flex flex-wrap justify-center gap-8;
+}
+
+.role-card {
+  @apply bg-white shadow rounded p-6 min-w-[150px] text-center;
+}
+
+.role-card h3 {
+  @apply text-xl font-bold mb-2;
+}
+
+.role-card p {
+  @apply text-gray-600 mb-4;
+}
+
+.role-card button {
+  @apply bg-blue-500 text-white py-2 px-4 rounded;
+}

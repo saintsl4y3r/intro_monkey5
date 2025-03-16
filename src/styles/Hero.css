@@ -1,66 +1,19 @@
 .hero {
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 20px;
+  @apply relative w-full h-[80vh] overflow-hidden;
 }
 
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.447);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  text-align: center;
-  padding: 0 20px;
+.hero-image {
+  @apply w-full h-full object-cover;
 }
 
-.hero-overlay h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+.hero-content {
+  @apply absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-40;
 }
 
-.hero-overlay p {
-  font-size: 1.5rem;
-  margin-bottom: 30px;
+.hero-content h1 {
+  @apply text-4xl font-bold mb-4;
 }
 
-.hero-title {
-  animation: fadeIn 1s ease-in-out;
-}
-
-.hero-subtitle {
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.btn {
-  background-color: #007bff;
-  color: #fff;
-  padding: 12px 25px;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.btn:hover {
-  background-color: #0056b3;
+.hero-content p {
+  @apply text-xl;
 }

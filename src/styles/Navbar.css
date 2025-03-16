@@ -1,33 +1,11 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  
-  .navbar-logo img {
-    width: 120px;
-  }
-  
-  .navbar-menu {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .navbar-menu li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
-  
-  .navbar-menu li a:hover {
-    color: #007bff;
-  }
-  
+  @apply bg-gray-200 p-4;
+}
+
+.navbar-list {
+  @apply flex gap-4 list-none m-0 p-0;
+}
+
+.navbar-list li a {
+  @apply text-gray-800 hover:underline;
+}

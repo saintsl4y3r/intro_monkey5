@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import "../styles/Hero.css";
 import heroImage from "../assets/hero.jpg";
-import { useEffect } from "react";
-import 'src/react-refresh-runtime.js';
 
 const Hero = () => {
   const controls = useAnimation();
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0,
+  });
 
   useEffect(() => {
     if (inView) {
@@ -23,13 +23,17 @@ const Hero = () => {
 
   return (
     <section
-      className="hero"
-      style={{ backgroundImage: `url(${heroImage})` }}
       ref={ref}
+      className="relative w-full h-[80vh] overflow-hidden"
+      style={{
+        backgroundImage: `url(${heroImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-      <div className="hero-overlay">
+      <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white px-4">
         <motion.h1
-          className="hero-title"
+          className="text-4xl font-bold mb-4"
           variants={variants}
           initial="hidden"
           animate={controls}
@@ -38,7 +42,7 @@ const Hero = () => {
           Welcome to MONKEY5
         </motion.h1>
         <motion.p
-          className="hero-subtitle"
+          className="text-xl"
           variants={variants}
           initial="hidden"
           animate={controls}
