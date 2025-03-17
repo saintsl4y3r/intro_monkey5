@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import "../styles/Footer.css";
+import "../styles/Services.css";
 
-const Footer = () => {
+const Services = () => {
   const variants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
@@ -17,18 +17,27 @@ const Footer = () => {
   }, [controls, inView]);
 
   return (
-    <footer className="footer bg-gray-800 text-white text-center p-4" ref={ref}>
-      <motion.p
-        className="text-sm"
+    <section id="services" ref={ref} className="services py-8">
+      <motion.h2
+        className="text-3xl font-bold text-center text-orange-500 mb-6"
         variants={variants}
         initial="hidden"
         animate={controls}
         transition={{ duration: 0.5 }}
       >
-        © 2025 MONKEY5 - All rights reserved.
+        Our Services
+      </motion.h2>
+      <motion.p
+        className="text-center text-gray-700 mx-auto max-w-2xl"
+        variants={variants}
+        initial="hidden"
+        animate={controls}
+        transition={{ duration: 0.7 }}
+      >
+        We offer a wide range of home services tailored to your needs, ensuring convenience and quality.
       </motion.p>
-    </footer>
+    </section>
   );
 };
 
-export default Footer;
+export default Services;

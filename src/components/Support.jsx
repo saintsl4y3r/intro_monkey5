@@ -3,26 +3,21 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import "../styles/Support.css";
 
-function Support() {
+const Support = () => {
   const variants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
   };
 
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0,
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0 });
   const controls = useAnimation();
 
   useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
+    if (inView) controls.start("visible");
   }, [controls, inView]);
 
   return (
-    <section id="support" className="support py-12 px-4 bg-gray-100" ref={ref}>
+    <section id="support" ref={ref} className="support py-12 px-4 bg-gray-100">
       <motion.h2
         className="text-3xl font-bold text-center text-orange-500 mb-4"
         variants={variants}
@@ -69,6 +64,6 @@ function Support() {
       </div>
     </section>
   );
-}
+};
 
 export default Support;

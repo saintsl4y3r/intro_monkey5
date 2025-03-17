@@ -1,0 +1,12 @@
+.services {
+    @apply py-8;
+  }
+  
+  .services h2 {
+    @apply text-3xl font-bold text-center text-orange-500 mb-6;
+  }
+  
+  .services p {
+    @apply text-center text-gray-700 mx-auto max-w-2xl;
+  }
+  

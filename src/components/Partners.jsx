@@ -6,22 +6,17 @@ import zalo from "../assets/partner-zalopay.png";
 import momo from "../assets/partner-momo.png";
 import hoozing from "../assets/partner-hoozing.png";
 
-function Partners() {
+const Partners = () => {
   const variants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
   };
 
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0,
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0 });
   const controls = useAnimation();
 
   useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
+    if (inView) controls.start("visible");
   }, [controls, inView]);
 
   return (
@@ -45,21 +40,27 @@ function Partners() {
         <div className="flex flex-col items-center max-w-[200px] text-center">
           <img src={zalo} alt="ZaloPay" className="w-20 h-auto mb-2" />
           <h3 className="font-bold mb-1">ZALOPAY</h3>
-          <p className="text-sm text-gray-700">Fast mobile payment application in 2 seconds</p>
+          <p className="text-sm text-gray-700">
+            Fast mobile payment application in 2 seconds
+          </p>
         </div>
         <div className="flex flex-col items-center max-w-[200px] text-center">
           <img src={momo} alt="MoMo" className="w-20 h-auto mb-2" />
           <h3 className="font-bold mb-1">MOMO</h3>
-          <p className="text-sm text-gray-700">Vietnam's No. 1 payment super app</p>
+          <p className="text-sm text-gray-700">
+            Vietnam's No. 1 payment super app
+          </p>
         </div>
         <div className="flex flex-col items-center max-w-[200px] text-center">
           <img src={hoozing} alt="Hoozing" className="w-20 h-auto mb-2" />
           <h3 className="font-bold mb-1">HOOZING</h3>
-          <p className="text-sm text-gray-700">Home buying and renting app</p>
+          <p className="text-sm text-gray-700">
+            Home buying and renting app
+          </p>
         </div>
       </motion.div>
     </section>
   );
-}
+};
 
 export default Partners;
