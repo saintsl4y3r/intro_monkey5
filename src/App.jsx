@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Login from "./components/Login";
 import ChildCareServiceScreen from "./screens/ChildCareServiceScreen";
+import CookingServiceScreen from "./screens/CookingServiceScreen";
 
 function App() {
   return (
@@ -25,23 +26,7 @@ function App() {
           path="/services/childcare"
           element={<ChildCareServiceScreen />}
         />
-        {/* Add placeholder routes for the other services */}
-        <Route
-          path="/services/cooking"
-          element={
-            <>
-              <Header />
-              <div className="py-20 text-center">
-                <h1 className="text-4xl font-bold text-orange-500 mb-4">
-                  Cooking Service
-                </h1>
-                <p className="text-xl">
-                  This page is under construction. Check back soon!
-                </p>
-              </div>
-            </>
-          }
-        />
+        <Route path="/services/cooking" element={<CookingServiceScreen />} />
         <Route
           path="/services/housekeeping"
           element={
