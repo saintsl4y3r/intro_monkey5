@@ -1,11 +1,8 @@
-.support {
-  @apply max-w-4xl mx-auto p-8 text-center;
+/* Remove the max-width constraint */
+.contact-info {
+  @apply space-y-4 text-center;
 }
 
-.support h2 {
-  @apply text-3xl font-bold mb-4;
-}
-
-.support p {
+.contact-info p {
   @apply text-gray-700;
 }
