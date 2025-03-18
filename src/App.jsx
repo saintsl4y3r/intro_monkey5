@@ -6,6 +6,7 @@ import About from "./components/About";
 import Login from "./components/Login";
 import ChildCareServiceScreen from "./screens/ChildCareServiceScreen";
 import CookingServiceScreen from "./screens/CookingServiceScreen";
+import HousekeepingServiceScreen from "./screens/HousekeepingServiceScreen";
 
 function App() {
   return (
@@ -29,19 +30,7 @@ function App() {
         <Route path="/services/cooking" element={<CookingServiceScreen />} />
         <Route
           path="/services/housekeeping"
-          element={
-            <>
-              <Header />
-              <div className="py-20 text-center">
-                <h1 className="text-4xl font-bold text-orange-500 mb-4">
-                  Housekeeping Service
-                </h1>
-                <p className="text-xl">
-                  This page is under construction. Check back soon!
-                </p>
-              </div>
-            </>
-          }
+          element={<HousekeepingServiceScreen />}
         />
       </Routes>
     </Router>
