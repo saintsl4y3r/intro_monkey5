@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 import heroImage from "../assets/hero.jpg";
 import about1 from "../assets/logo-monkey5.png";
 import about2 from "../assets/about2.png";
@@ -10,105 +11,128 @@ import about6 from "../assets/about6.png";
 import coreValueImage from "../assets/core-value-1.jpg";
 import Partners from "./Partners";
 import Support from "./Support";
-import AboutHeader from "./AboutHeader";
 
-function About() {
-  // Animation variants
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
+const AnimatedSection = ({ children, variants, id, className }) => {
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false, amount: 0.3 });
 
-  const fadeInLeft = {
-    hidden: { opacity: 0, x: -60 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const fadeInRight = {
-    hidden: { opacity: 0, x: 60 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const imageAnimation = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  // Custom hook for section animations
-  const AnimatedSection = ({ children, variants, className, id }) => {
-    const controls = useAnimation();
-    const ref = useRef(null);
-    const inView = useInView(ref, { once: false, amount: 0.3 });
-
-    useEffect(() => {
-      if (inView) {
-        controls.start("visible");
-      } else {
-        controls.start("hidden");
-      }
-    }, [controls, inView]);
-
-    return (
-      <motion.section
-        ref={ref}
-        variants={variants || fadeInUp}
-        initial="hidden"
-        animate={controls}
-        className={className}
-        id={id}
-      >
-        {children}
-      </motion.section>
-    );
-  };
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
 
   return (
-    <div className="text-gray-800">
-      {/* Header riêng cho About */}
-      <AboutHeader />
+    <motion.section
+      ref={ref}
+      id={id}
+      variants={variants}
+      initial="hidden"
+      animate={controls}
+      className={className}
+    >
+      {children}
+    </motion.section>
+  );
+};
 
-      {/* Hero About */}
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const imageAnimation = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+};
+
+function About() {
+  return (
+    <div className="text-gray-800">
+      <motion.header
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="bg-orange-500 p-4 flex items-center justify-between"
+      >
+        <div className="flex items-center gap-4">
+          {/* Logo: khi nhấn chuyển về Home */}
+          <Link to="/" className="flex items-center">
+            <img src={about1} alt="MONKEY5 Logo" className="h-10 w-auto" />
+          </Link>
+          <nav>
+            <ul className="flex gap-4 list-none m-0 p-0">
+              <li>
+                <a href="#meaning" className="text-white font-bold">
+                  Meaning
+                </a>
+              </li>
+              <li>
+                <a href="#areas" className="text-white font-bold">
+                  Areas
+                </a>
+              </li>
+              <li>
+                <a href="#development" className="text-white font-bold">
+                  Development
+                </a>
+              </li>
+              <li>
+                <a href="#vision" className="text-white font-bold">
+                  Vision
+                </a>
+              </li>
+              <li>
+                <a href="#mission" className="text-white font-bold">
+                  Mission
+                </a>
+              </li>
+              <li>
+                <a href="#corevalues" className="text-white font-bold">
+                  Core Values
+                </a>
+              </li>
+              <li>
+                <a href="#partners" className="text-white font-bold">
+                  Partners
+                </a>
+              </li>
+              <li>
+                <a href="#support" className="text-white font-bold">
+                  Support
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div>
+          <Link to="/login" className="bg-blue-500 text-white py-2 px-4 rounded font-bold">
+            Login
+          </Link>
+        </div>
+      </motion.header>
+
       <section
         id="hero"
-        className="relative w-full h-[60vh] overflow-hidden"
+        className="relative w-full h-[60vh] overflow-hidden scroll-mt-24"
         style={{
           backgroundImage: `url(${heroImage})`,
           backgroundSize: "cover",
@@ -135,288 +159,142 @@ function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
           >
-            Learn more about our mission, vision, and the story behind our
-            services.
+            Learn more about our mission, vision, and the story behind our services.
           </motion.p>
         </motion.div>
       </section>
 
-      {/* Nội dung */}
-      <div className="max-w-5xl mx-auto p-8 space-y-12">
-        {/* We are MONKEY5 */}
-        <AnimatedSection
-          className="flex flex-col md:flex-row items-center justify-between gap-4"
-          variants={fadeInUp}
-        >
+      {/* Nội dung About */}
+      <div className="max-w-5xl mx-auto p-8 space-y-12 scroll-mt-24">
+        <AnimatedSection className="flex flex-col md:flex-row items-center justify-between gap-4" id="meaning" variants={fadeInUp}>
           <div className="flex-1">
-            <motion.h2
-              className="text-3xl text-orange-500 mb-4"
-              variants={fadeInUp}
-            >
+            <motion.h2 className="text-3xl text-orange-500 mb-4" variants={fadeInUp}>
               We are MONKEY5
             </motion.h2>
             <motion.p className="mb-2" variants={fadeInUp}>
-              MONKEY5 Co., Ltd was founded on January 14, 2025 by CEO – Founder
-              Hoàng Anh.
+              MONKEY5 Co., Ltd was founded on January 14, 2025 by CEO – Founder Hoàng Anh.
             </motion.p>
             <motion.p variants={fadeInUp}>
-              We are pioneers in leveraging technology to revolutionize the home
-              service industry in Vietnam.
+              We are pioneers in leveraging technology to revolutionize the home service industry in Vietnam.
             </motion.p>
           </div>
-          <motion.div
-            className="flex-1"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img
-              src={about1}
-              alt="We are MONKEY5"
-              className="max-w-md w-full rounded"
-            />
+          <motion.div className="flex-1" variants={imageAnimation} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <img src={about1} alt="We are MONKEY5" className="max-w-md w-full rounded" />
           </motion.div>
         </AnimatedSection>
 
-        {/* The Meaning */}
-        <AnimatedSection
-          className="flex flex-col md:flex-row-reverse items-center justify-between gap-4"
-          variants={fadeInUp}
-        >
+        <AnimatedSection className="flex flex-col md:flex-row-reverse items-center justify-between gap-4" id="meaning" variants={fadeInUp}>
           <div className="flex-1">
-            <motion.h2
-              className="text-3xl text-orange-500 mb-4"
-              variants={fadeInRight}
-            >
+            <motion.h2 className="text-3xl text-orange-500 mb-4" variants={fadeInRight}>
               The Meaning of MONKEY5
             </motion.h2>
             <motion.p variants={fadeInRight}>
-              Our name is inspired by agile, playful monkeys that symbolize our
-              hardworking, innovative team.
+              Our name is inspired by agile, playful monkeys that symbolize our hardworking, innovative team.
             </motion.p>
           </div>
-          <motion.div
-            className="flex-1"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img
-              src={about2}
-              alt="Meaning of MONKEY5"
-              className="max-w-md w-full rounded"
-            />
+          <motion.div className="flex-1" variants={imageAnimation} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <img src={about2} alt="The Meaning of MONKEY5" className="max-w-md w-full rounded" />
           </motion.div>
         </AnimatedSection>
 
-        {/* Areas */}
-        <AnimatedSection
-          className="flex flex-col md:flex-row items-center justify-between gap-4"
-          variants={fadeInUp}
-        >
+        <AnimatedSection className="flex flex-col md:flex-row items-center justify-between gap-4" id="areas" variants={fadeInUp}>
           <div className="flex-1">
-            <motion.h2
-              className="text-3xl text-orange-500 mb-4"
-              variants={fadeInLeft}
-            >
+            <motion.h2 className="text-3xl text-orange-500 mb-4" variants={fadeInLeft}>
               Areas of Operation
             </motion.h2>
             <motion.p variants={fadeInLeft}>
-              We serve households in over 20 major cities and provinces across
-              Vietnam.
+              We serve households in over 20 major cities and provinces across Vietnam.
             </motion.p>
           </div>
-          <motion.div
-            className="flex-1"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img src={about3} alt="Areas" className="max-w-md w-full rounded" />
+          <motion.div className="flex-1" variants={imageAnimation} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <img src={about3} alt="Areas of Operation" className="max-w-md w-full rounded" />
           </motion.div>
         </AnimatedSection>
 
-        {/* Development */}
-        <AnimatedSection
-          className="flex flex-col md:flex-row-reverse items-center justify-between gap-4"
-          variants={fadeInUp}
-        >
+        <AnimatedSection className="flex flex-col md:flex-row-reverse items-center justify-between gap-4" id="development" variants={fadeInUp}>
           <div className="flex-1">
-            <motion.h2
-              className="text-3xl text-orange-500 mb-4"
-              variants={fadeInRight}
-            >
+            <motion.h2 className="text-3xl text-orange-500 mb-4" variants={fadeInRight}>
               Further Development
             </motion.h2>
             <motion.p variants={fadeInRight}>
-              With a commitment to excellence, MONKEY5 continuously improves
-              service quality and empowers over 1,000,000 domestic workers.
+              With a commitment to excellence, MONKEY5 continuously improves service quality and empowers over 1,000,000 domestic workers.
             </motion.p>
           </div>
-          <motion.div
-            className="flex-1"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img
-              src={about4}
-              alt="Development"
-              className="max-w-md w-full rounded"
-            />
+          <motion.div className="flex-1" variants={imageAnimation} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <img src={about4} alt="Further Development" className="max-w-md w-full rounded" />
           </motion.div>
         </AnimatedSection>
 
-        {/* Vision */}
-        <AnimatedSection
-          className="flex flex-col md:flex-row items-center justify-between gap-4"
-          variants={fadeInUp}
-        >
+        <AnimatedSection className="flex flex-col md:flex-row items-center justify-between gap-4" id="vision" variants={fadeInUp}>
           <div className="flex-1">
-            <motion.h2
-              className="text-3xl text-orange-500 mb-4"
-              variants={fadeInLeft}
-            >
+            <motion.h2 className="text-3xl text-orange-500 mb-4" variants={fadeInLeft}>
               Vision
             </motion.h2>
             <motion.p variants={fadeInLeft}>
-              We aim to integrate innovative solutions for home convenience
-              services.
+              We aim to integrate innovative solutions for home convenience services, ensuring modern and reliable support for every household.
             </motion.p>
           </div>
-          <motion.div
-            className="flex-1"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img
-              src={about5}
-              alt="Vision"
-              className="max-w-md w-full rounded"
-            />
+          <motion.div className="flex-1" variants={imageAnimation} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <img src={about5} alt="Vision" className="max-w-md w-full rounded" />
           </motion.div>
         </AnimatedSection>
 
-        {/* Mission */}
-        <AnimatedSection
-          className="flex flex-col md:flex-row-reverse items-center justify-between gap-4"
-          variants={fadeInUp}
-        >
+        <AnimatedSection className="flex flex-col md:flex-row-reverse items-center justify-between gap-4" id="mission" variants={fadeInUp}>
           <div className="flex-1">
-            <motion.h2
-              className="text-3xl text-orange-500 mb-4"
-              variants={fadeInRight}
-            >
+            <motion.h2 className="text-3xl text-orange-500 mb-4" variants={fadeInRight}>
               Mission
             </motion.h2>
             <motion.p variants={fadeInRight}>
-              Our mission is to simplify home management by delivering
-              efficient, professional, and technology-driven services.
+              Our mission is to simplify home management by delivering efficient, professional, and technology-driven services.
             </motion.p>
           </div>
-          <motion.div
-            className="flex-1"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img
-              src={about6}
-              alt="Mission"
-              className="max-w-md w-full rounded"
-            />
+          <motion.div className="flex-1" variants={imageAnimation} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <img src={about6} alt="Mission" className="max-w-md w-full rounded" />
           </motion.div>
         </AnimatedSection>
 
-        {/* Core Values */}
-        <AnimatedSection className="mt-8" variants={staggerContainer}>
-          <motion.h2
-            className="text-3xl text-center text-orange-500 mb-6"
-            variants={fadeInUp}
-          >
+        <AnimatedSection id="corevalues" className="mt-8" variants={staggerContainer}>
+          <motion.h2 className="text-3xl text-center text-orange-500 mb-6" variants={fadeInUp}>
             Core Values
           </motion.h2>
-          <motion.div
-            className="text-center mb-6"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img
-              src={coreValueImage}
-              alt="Core Value"
-              className="mx-auto max-w-lg w-full rounded"
-            />
+          <motion.div className="text-center mb-6" variants={imageAnimation} whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+            <img src={coreValueImage} alt="Core Values" className="mx-auto max-w-lg w-full rounded" />
           </motion.div>
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-            variants={staggerContainer}
-          >
-            <motion.div
-              className="text-center"
-              variants={fadeInUp}
-              whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
-              transition={{ duration: 0.3 }}
-            >
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8" variants={staggerContainer}>
+            <motion.div className="text-center p-4 border rounded-lg shadow-lg" variants={fadeInUp} whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
               <h3 className="text-xl font-bold mb-2">Quality</h3>
               <p>
-                We ensure the highest service quality by investing in
-                recruitment, training, and quality assurance.
+                We ensure the highest service quality by investing in recruitment, training, and quality assurance.
               </p>
             </motion.div>
-            <motion.div
-              className="text-center"
-              variants={fadeInUp}
-              whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
-              transition={{ duration: 0.3 }}
-            >
+            <motion.div className="text-center p-4 border rounded-lg shadow-lg" variants={fadeInUp} whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
               <h3 className="text-xl font-bold mb-2">Dedication</h3>
               <p>
-                Our dedicated team puts customer satisfaction first, ensuring
-                every task is completed with care.
+                Our dedicated team puts customer satisfaction first, ensuring every task is completed with care.
               </p>
             </motion.div>
-            <motion.div
-              className="text-center"
-              variants={fadeInUp}
-              whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
-              transition={{ duration: 0.3 }}
-            >
+            <motion.div className="text-center p-4 border rounded-lg shadow-lg" variants={fadeInUp} whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
               <h3 className="text-xl font-bold mb-2">Convenience</h3>
               <p>
-                Our user-friendly app enables quick and efficient booking of
-                home services, saving you time.
+                Our user-friendly app enables quick and efficient booking of home services, saving you time.
               </p>
             </motion.div>
-            <motion.div
-              className="text-center"
-              variants={fadeInUp}
-              whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
-              transition={{ duration: 0.3 }}
-            >
+            <motion.div className="text-center p-4 border rounded-lg shadow-lg" variants={fadeInUp} whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
               <h3 className="text-xl font-bold mb-2">Innovation</h3>
               <p>
-                We continuously innovate by listening to feedback and adapting
-                to meet evolving needs.
+                We continuously innovate by listening to feedback and adapting to meet the evolving needs of our customers.
               </p>
             </motion.div>
           </motion.div>
         </AnimatedSection>
       </div>
 
-      {/* Partners & Support */}
-      <AnimatedSection id="partners" variants={fadeInUp}>
+      <section id="partners">
         <Partners />
-      </AnimatedSection>
-      <AnimatedSection
-        id="support"
-        variants={fadeInUp}
-        className="w-full"
-        style={{ overflow: "hidden" }}
-      >
+      </section>
+      <section id="support">
         <Support />
-      </AnimatedSection>
+      </section>
     </div>
   );
 }
