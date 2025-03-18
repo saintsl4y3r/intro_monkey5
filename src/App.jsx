@@ -6,7 +6,7 @@ import LoginScreen from "./screens/LoginScreen";
 
 function App() {
   return (
-    <Router basename="/intro_monkey5">
+    <Router basename="/intro_monkey5/">
       <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/about" element={<AboutUsScreen />} />
