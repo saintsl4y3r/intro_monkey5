@@ -1,5 +1,7 @@
 .header {
   @apply flex items-center justify-between bg-[#9e6532] p-4;
+  position: relative;
+  z-index: 1000;
 }
 
 .header-left {
@@ -20,4 +22,9 @@
 
 .header-right .login-button {
   @apply bg-blue-500 text-white py-2 px-4 rounded font-bold;
+}
+
+.services-dropdown {
+  position: absolute;
+  z-index: 1000;
 }
