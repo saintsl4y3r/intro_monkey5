@@ -13,8 +13,8 @@ function Login() {
 
       <div className="flex flex-col md:flex-row gap-8">
         <div className="bg-white p-6 rounded shadow text-center">
-          <h2 className="text-xl font-bold mb-2">Customer</h2>
-          <p className="mb-4">Log in as a customer</p>
+          <h2 className="text-xl font-bold mb-2">Staff</h2>
+          <p className="mb-4">Log in as a staff</p>
           <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded font-bold">
             Login
           </button>
