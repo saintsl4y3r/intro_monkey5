@@ -1,7 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import BookingPopup from "./BookingPopup";
 
 function Home() {
+  const [showBookingPopup, setShowBookingPopup] = useState(false);
+
   // Animation variants
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -62,6 +65,7 @@ function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.5 }}
+          onClick={() => setShowBookingPopup(true)}
         >
           Book a Service
         </motion.button>
@@ -279,6 +283,7 @@ function Home() {
         </div>
       </Section>
 
+      {/* CTA Section */}
       <Section className="py-16 text-center bg-blue-600 text-white" id="cta">
         <motion.h2
           className="text-4xl font-bold mb-4"
@@ -306,10 +311,18 @@ function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
           viewport={{ once: false, amount: 0.5 }}
+          onClick={() => setShowBookingPopup(true)}
         >
           Get Started Now
         </motion.button>
       </Section>
+
+      {/* Booking Popup */}
+      <BookingPopup
+        isOpen={showBookingPopup}
+        onClose={() => setShowBookingPopup(false)}
+        service="Home Service"
+      />
     </div>
   );
 }

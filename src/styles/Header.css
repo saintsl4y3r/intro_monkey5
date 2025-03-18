@@ -28,3 +28,7 @@
   position: absolute;
   z-index: 1000;
 }
+
+body.header-is-fixed {
+  padding-top: 72px; /* Adjust this value to match your header height */
+}

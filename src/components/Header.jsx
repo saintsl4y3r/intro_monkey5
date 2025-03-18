@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Header.css";
 import logo from "../assets/logo-monkey5.png";
@@ -6,6 +6,27 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function Header() {
   const [showServicesDropdown, setShowServicesDropdown] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Add scroll event listener to detect when user scrolls
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+        document.body.classList.add("header-is-fixed");
+      } else {
+        setIsScrolled(false);
+        document.body.classList.remove("header-is-fixed");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.body.classList.remove("header-is-fixed");
+    };
+  }, []);
 
   const toggleServicesDropdown = () => {
     setShowServicesDropdown(!showServicesDropdown);
@@ -13,8 +34,14 @@ function Header() {
 
   return (
     <motion.header
-      className="bg-orange-500 p-4 flex items-center justify-between"
-      style={{ position: "relative", zIndex: 1000 }}
+      className={`bg-orange-500 p-4 flex items-center justify-between ${
+        isScrolled ? "fixed top-0 left-0 right-0 shadow-md" : ""
+      }`}
+      style={{
+        position: isScrolled ? "fixed" : "relative",
+        zIndex: 1000,
+        transition: "all 0.3s ease-in-out",
+      }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{
@@ -105,26 +132,6 @@ function Header() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.li>
-            <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <a href="#how-it-works" className="text-white font-bold">
-                How It Works
-              </a>
-            </motion.li>
-            <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <a href="#testimonials" className="text-white font-bold">
-                Testimonials
-              </a>
-            </motion.li>
-            <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <a href="#contact" className="text-white font-bold">
-                Contact
-              </a>
-            </motion.li>
-            <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <a href="#benefits" className="text-white font-bold">
-                Benefits
-              </a>
             </motion.li>
           </ul>
         </nav>

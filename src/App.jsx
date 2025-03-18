@@ -1,16 +1,34 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
-import About from "./components/About";
+import AboutUsScreen from "./screens/AboutUsScreen";
 import Login from "./components/Login";
 import ChildCareServiceScreen from "./screens/ChildCareServiceScreen";
 import CookingServiceScreen from "./screens/CookingServiceScreen";
 import HousekeepingServiceScreen from "./screens/HousekeepingServiceScreen";
 
+// ScrollToTop component to handle scroll restoration
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // When the route changes, scroll to the top
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <Router basename="/intro_monkey5">
+      <ScrollToTop />
       <Routes>
         <Route
           path="/"
@@ -21,7 +39,7 @@ function App() {
             </>
           }
         />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<AboutUsScreen />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/services/childcare"

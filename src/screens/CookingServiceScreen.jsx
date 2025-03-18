@@ -1,12 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Header from "../components/Header";
 import { motion, useInView } from "framer-motion";
+import BookingPopup from "../components/BookingPopup";
+import AppDownloadCTA from "../components/AppDownloadCTA";
 import cookingHero from "../assets/cooking-hero.jpg"; // You'll need to add this image
 import chef1 from "../assets/chef1.jpg"; // You'll need to add this image
 import chef2 from "../assets/chef2.jpg"; // You'll need to add this image
 import cookingIcon from "../assets/cooking-icon.png"; // You'll need to add this image
 
 function CookingServiceScreen() {
+  const [showBookingPopup, setShowBookingPopup] = useState(false);
+
   // Animation variants
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -94,6 +98,7 @@ function CookingServiceScreen() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.7 }}
+            onClick={() => setShowBookingPopup(true)}
           >
             Book Now
           </motion.button>
@@ -476,6 +481,7 @@ function CookingServiceScreen() {
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setShowBookingPopup(true)}
               >
                 Book Now
               </motion.button>
@@ -556,6 +562,7 @@ function CookingServiceScreen() {
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setShowBookingPopup(true)}
               >
                 Book Now
               </motion.button>
@@ -633,6 +640,7 @@ function CookingServiceScreen() {
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setShowBookingPopup(true)}
               >
                 Book Now
               </motion.button>
@@ -742,6 +750,7 @@ function CookingServiceScreen() {
               className="bg-white text-orange-500 hover:bg-gray-100 font-bold py-3 px-8 rounded-full text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => setShowBookingPopup(true)}
             >
               Book Now
             </motion.button>
@@ -755,6 +764,16 @@ function CookingServiceScreen() {
           </div>
         </div>
       </AnimatedSection>
+
+      {/* App Download CTA */}
+      <AppDownloadCTA />
+
+      {/* Booking Popup */}
+      <BookingPopup
+        isOpen={showBookingPopup}
+        onClose={() => setShowBookingPopup(false)}
+        service="Child Care"
+      />
     </motion.div>
   );
 }

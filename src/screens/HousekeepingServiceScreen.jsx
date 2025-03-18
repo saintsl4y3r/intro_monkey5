@@ -1,12 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Header from "../components/Header";
 import { motion, useInView } from "framer-motion";
+import BookingPopup from "../components/BookingPopup";
+import AppDownloadCTA from "../components/AppDownloadCTA";
 import housekeepingHero from "../assets/housekeeping-hero.jpg"; // You'll need to add this image
 import housekeeper1 from "../assets/housekeeper1.jpg"; // You'll need to add this image
 import housekeeper2 from "../assets/housekeeper2.jpg"; // You'll need to add this image
 import housekeepingIcon from "../assets/housekeeping-icon.svg"; // You'll need to add this image
 
 function HousekeepingServiceScreen() {
+  const [showBookingPopup, setShowBookingPopup] = useState(false);
+
   // Animation variants
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -94,6 +98,7 @@ function HousekeepingServiceScreen() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.7 }}
+            onClick={() => setShowBookingPopup(true)}
           >
             Book Now
           </motion.button>
@@ -483,6 +488,7 @@ function HousekeepingServiceScreen() {
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setShowBookingPopup(true)}
               >
                 Book Now
               </motion.button>
@@ -563,6 +569,7 @@ function HousekeepingServiceScreen() {
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setShowBookingPopup(true)}
               >
                 Book Now
               </motion.button>
@@ -640,6 +647,7 @@ function HousekeepingServiceScreen() {
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setShowBookingPopup(true)}
               >
                 Book Now
               </motion.button>
@@ -747,6 +755,7 @@ function HousekeepingServiceScreen() {
               className="bg-white text-orange-500 hover:bg-gray-100 font-bold py-3 px-8 rounded-full text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => setShowBookingPopup(true)}
             >
               Book Now
             </motion.button>
@@ -760,6 +769,16 @@ function HousekeepingServiceScreen() {
           </div>
         </div>
       </AnimatedSection>
+
+      {/* App Download CTA */}
+      <AppDownloadCTA />
+
+      {/* Booking Popup */}
+      <BookingPopup
+        isOpen={showBookingPopup}
+        onClose={() => setShowBookingPopup(false)}
+        service="Child Care"
+      />
     </motion.div>
   );
 }
