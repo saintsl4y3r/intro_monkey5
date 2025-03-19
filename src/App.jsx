@@ -12,13 +12,12 @@ import Login from "./components/Login";
 import ChildCareServiceScreen from "./screens/ChildCareServiceScreen";
 import CookingServiceScreen from "./screens/CookingServiceScreen";
 import HousekeepingServiceScreen from "./screens/HousekeepingServiceScreen";
+import ForgotPassword from "./components/ForgotPassword";
 
-// ScrollToTop component to handle scroll restoration
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // When the route changes, scroll to the top
     window.scrollTo(0, 0);
   }, [pathname]);
 
@@ -41,6 +40,7 @@ function App() {
         />
         <Route path="/about" element={<AboutUsScreen />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route
           path="/services/childcare"
           element={<ChildCareServiceScreen />}
