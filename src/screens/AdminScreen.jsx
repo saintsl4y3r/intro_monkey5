@@ -1,49 +1,80 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 import Dashboard from "./admin/Dashboard";
-import ServiceManagement from "./admin/ServiceManagement";
 import EmployeeManagement from "./admin/EmployeeManagement";
 import FeedbackManagement from "./admin/FeedbackManagement";
-import WorkManagement from "./admin/WorkManagement";
 import Reports from "./admin/Reports";
+import ServiceManagement from "./admin/ServiceManagement";
 import TaskManagement from "./admin/TaskManagement";
+import WorkManagement from "./admin/WorkManagement";
+import logo from "../assets/logo-monkey5.png";
 
 function AdminScreen() {
   return (
-    <div className="min-h-screen p-4">
-      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
-      <nav className="mb-4">
-        <Link to="dashboard" className="mr-4 text-blue-500 hover:underline">
-          Dashboard
-        </Link>
-        <Link to="services" className="mr-4 text-blue-500 hover:underline">
-          Quản lý dịch vụ
-        </Link>
-        <Link to="employees" className="mr-4 text-blue-500 hover:underline">
-          Quản lý nhân viên
-        </Link>
-        <Link to="feedback" className="mr-4 text-blue-500 hover:underline">
-          Quản lý phản hồi
-        </Link>
-        <Link to="work" className="mr-4 text-blue-500 hover:underline">
-          Quản lý công việc
-        </Link>
-        <Link to="reports" className="mr-4 text-blue-500 hover:underline">
-          Báo cáo
-        </Link>
-        <Link to="tasks" className="text-blue-500 hover:underline">
-          Task Management
-        </Link>
-      </nav>
-      <Routes>
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="services" element={<ServiceManagement />} />
-        <Route path="employees" element={<EmployeeManagement />} />
-        <Route path="feedback" element={<FeedbackManagement />} />
-        <Route path="work" element={<WorkManagement />} />
-        <Route path="reports" element={<Reports />} />
-        <Route path="tasks" element={<TaskManagement />} />
-      </Routes>
+    <div className="min-h-screen flex flex-col">
+      <header className="bg-orange-500 px-6 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-6">
+          <div className="flex items-center">
+            <img src={logo} alt="MONKEY5 Logo" className="h-10 w-auto" />
+          </div>
+          <nav>
+            <ul className="flex gap-6 list-none m-0 p-0">
+              <li>
+                <Link to="dashboard" className="text-white font-semibold hover:underline">
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link to="employees" className="text-white font-semibold hover:underline">
+                  Employee
+                </Link>
+              </li>
+              <li>
+                <Link to="services" className="text-white font-semibold hover:underline">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link to="tasks" className="text-white font-semibold hover:underline">
+                  Tasks
+                </Link>
+              </li>
+              <li>
+                <Link to="work" className="text-white font-semibold hover:underline">
+                  Work
+                </Link>
+              </li>
+              <li>
+                <Link to="feedback" className="text-white font-semibold hover:underline">
+                  Feedback
+                </Link>
+              </li>
+              <li>
+                <Link to="reports" className="text-white font-semibold hover:underline">
+                  Reports
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div className="flex items-center gap-2">
+          <FaUserCircle size={28} className="text-white" />
+          <span className="text-white font-bold">Admin 1</span>
+        </div>
+      </header>
+
+      <main className="bg-gray-100 flex-1 p-4">
+        <Routes>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="employees" element={<EmployeeManagement />} />
+          <Route path="feedback" element={<FeedbackManagement />} />
+          <Route path="reports" element={<Reports />} />
+          <Route path="services" element={<ServiceManagement />} />
+          <Route path="tasks" element={<TaskManagement />} />
+          <Route path="work" element={<WorkManagement />} />
+        </Routes>
+      </main>
     </div>
   );
 }
