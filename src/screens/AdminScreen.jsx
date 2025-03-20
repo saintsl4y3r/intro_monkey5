@@ -1,19 +1,30 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import React, { useState } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { FaUserCircle, FaChevronDown } from "react-icons/fa";
 import Dashboard from "./admin/Dashboard";
+import ServiceManagement from "./admin/ServiceManagement";
 import EmployeeManagement from "./admin/EmployeeManagement";
 import FeedbackManagement from "./admin/FeedbackManagement";
-import Reports from "./admin/Reports";
-import ServiceManagement from "./admin/ServiceManagement";
-import TaskManagement from "./admin/TaskManagement";
 import WorkManagement from "./admin/WorkManagement";
+import Reports from "./admin/Reports";
+import TaskManagement from "./admin/TaskManagement";
 import logo from "../assets/logo-monkey5.png";
 
 function AdminScreen() {
+  const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleToggleDropdown = () => {
+    setDropdownOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    navigate("/");
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="bg-orange-500 px-6 py-3 flex items-center justify-between">
+      <header className="bg-orange-500 px-6 py-3 flex items-center justify-between relative">
         <div className="flex items-center gap-6">
           <div className="flex items-center">
             <img src={logo} alt="MONKEY5 Logo" className="h-10 w-auto" />
@@ -58,9 +69,35 @@ function AdminScreen() {
             </ul>
           </nav>
         </div>
-        <div className="flex items-center gap-2">
-          <FaUserCircle size={28} className="text-white" />
-          <span className="text-white font-bold">Admin 1</span>
+
+        <div className="relative">
+          <button
+            onClick={handleToggleDropdown}
+            className="flex items-center gap-2 focus:outline-none"
+          >
+            <FaUserCircle size={28} className="text-white" />
+            <span className="text-white font-bold">Admin 1</span>
+            <FaChevronDown className="text-white" />
+          </button>
+
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-2 w-40 bg-white shadow-md rounded z-10">
+              <button
+                onClick={() => {
+                  alert("Edit Profile clicked!");
+                }}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                Edit Profile
+              </button>
+              <button
+                onClick={handleLogout}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       </header>
 
@@ -68,11 +105,11 @@ function AdminScreen() {
         <Routes>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="employees" element={<EmployeeManagement />} />
-          <Route path="feedback" element={<FeedbackManagement />} />
-          <Route path="reports" element={<Reports />} />
           <Route path="services" element={<ServiceManagement />} />
           <Route path="tasks" element={<TaskManagement />} />
           <Route path="work" element={<WorkManagement />} />
+          <Route path="feedback" element={<FeedbackManagement />} />
+          <Route path="reports" element={<Reports />} />
         </Routes>
       </main>
     </div>
