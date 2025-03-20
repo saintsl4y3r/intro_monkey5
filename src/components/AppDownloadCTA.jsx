@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import googlePlayIcon from "../assets/google-play.svg"; // You'll need to add this image
-import mobileAppImage from "../assets/mobile-app.png"; // You'll need to add this image
+import googlePlayIcon from "../assets/google-play.svg"; 
+import mobileAppImage from "../assets/mobile-app.png"; 
 
 function AppDownloadCTA() {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +56,6 @@ function AppDownloadCTA() {
   );
 }
 
-// App Download Popup Component
 function AppDownloadPopup({ isOpen, onClose }) {
   return (
     <AnimatePresence>

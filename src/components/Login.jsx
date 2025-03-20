@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "../assets/logo-monkey5.png";
 import googleLogo from "../assets/google-logo.png";
@@ -7,10 +7,20 @@ import facebookLogo from "../assets/facebook-logo.png";
 
 function Login() {
   const [role, setRole] = useState(null);
+  const navigate = useNavigate();
 
   const fadeIn = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.8 } },
+  };
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    if (role === "staff") {
+      navigate("/staff");
+    } else if (role === "admin") {
+      navigate("/admin");
+    }
   };
 
   return (
@@ -52,7 +62,7 @@ function Login() {
           <h1 className="text-2xl font-bold mb-4">
             {role === "staff" ? "Staff Login" : "Admin Login"}
           </h1>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleLogin}>
             <div>
               <label className="block text-left mb-1" htmlFor="username">
                 Username
