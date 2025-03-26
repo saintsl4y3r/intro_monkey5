@@ -4,15 +4,16 @@ import {
   FaUserCircle,
   FaChevronDown,
   FaBars,
-  FaTachometerAlt, // Dashboard
-  FaUserFriends,    // Employee
-  FaServicestack,   // Services
-  FaTasks,          // Tasks
-  FaBriefcase,      // Work
-  FaCommentDots,    // Feedback
-  FaChartBar        // Reports
+  FaTachometerAlt,
+  FaUserFriends,
+  FaServicestack,
+  FaTasks,
+  FaBriefcase,
+  FaCommentDots,
+  FaChartBar
 } from "react-icons/fa";
 
+// Import các màn hình
 import Dashboard from "./admin/Dashboard";
 import EmployeeManagement from "./admin/EmployeeManagement";
 import ServiceManagement from "./admin/ServiceManagement";
@@ -20,9 +21,9 @@ import TaskManagement from "./admin/TaskManagement";
 import WorkManagement from "./admin/WorkManagement";
 import FeedbackManagement from "./admin/FeedbackManagement";
 import Reports from "./admin/Reports";
-
+import EditProfile from "./admin/EditProfile"; 
 import logo from "../assets/logo-monkey5.png";
-import "../styles/AdminScreen.css";
+import "../styles/AdminLayout.css";
 
 function AdminScreen() {
   const navigate = useNavigate();
@@ -31,6 +32,10 @@ function AdminScreen() {
 
   const handleLogout = () => {
     navigate("/");
+  };
+
+  const handleEditProfile = () => {
+    navigate("/admin/profile");
   };
 
   return (
@@ -102,7 +107,7 @@ function AdminScreen() {
             </div>
             {dropdownOpen && (
               <div className="dropdown-menu">
-                <button>Edit Profile</button>
+                <button onClick={handleEditProfile}>Edit Profile</button>
                 <button onClick={handleLogout}>Logout</button>
               </div>
             )}
@@ -111,6 +116,7 @@ function AdminScreen() {
 
         <main className="content">
           <Routes>
+            <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="employees" element={<EmployeeManagement />} />
             <Route path="services" element={<ServiceManagement />} />
@@ -118,6 +124,7 @@ function AdminScreen() {
             <Route path="work" element={<WorkManagement />} />
             <Route path="feedback" element={<FeedbackManagement />} />
             <Route path="reports" element={<Reports />} />
+            <Route path="profile" element={<EditProfile />} />
           </Routes>
         </main>
 

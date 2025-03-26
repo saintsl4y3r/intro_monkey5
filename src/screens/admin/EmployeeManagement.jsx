@@ -4,46 +4,58 @@ function EmployeeManagement() {
   const employees = [
     {
       id: 1,
-      title: "John Doe",
-      description:
-        "Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.",
+      employeeId: "100231423",
+      employeeName: "Hoàng Anh",
+      serviceName: "Cleaning",
+      startTime: "16:00, 26/01/2025",
+      location: "3, Tô Vĩnh Diện, Thủ Đức",
     },
     {
       id: 2,
-      title: "Jane Smith",
-      description:
-        "Another body text for demonstration. You can replace this with real data from your API or database.",
+      employeeId: "100231424",
+      employeeName: "Ngọc Anh",
+      serviceName: "Cleaning",
+      startTime: "18:00, 27/01/2025",
+      location: "12, Phan Văn Trị, Gò Vấp",
     },
     {
       id: 3,
-      title: "David Johnson",
-      description:
-        "You can continue adding more employees here. Each employee will appear as a card in the list view.",
+      employeeId: "100231425",
+      employeeName: "Mai Dương",
+      serviceName: "Cooking",
+      startTime: "09:00, 28/01/2025",
+      location: "2, Lê Văn Sỹ, Quận 3",
     },
   ];
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Employee</h2>
-
-      <div className="space-y-4">
-        {employees.map((emp) => (
-          <div
-            key={emp.id}
-            className="bg-white rounded shadow p-4 flex items-start gap-4"
-          >
-            <div className="w-16 h-16 bg-gray-200 flex-shrink-0 rounded">
-            </div>
-            <div className="flex-1">
-              <h3 className="text-xl font-bold">{emp.title}</h3>
-              <p className="text-gray-700 mt-2">{emp.description}</p>
-
-              <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded font-bold hover:bg-blue-600">
-                Button
-              </button>
-            </div>
-          </div>
-        ))}
+      <h2 className="text-xl font-bold mb-4">Employee Management</h2>
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-collapse">
+          <thead>
+            <tr className="bg-orange-500 text-white">
+              <th className="p-2 text-left w-12">#</th>
+              <th className="p-2 text-left">EmployeeID</th>
+              <th className="p-2 text-left">Employee Name</th>
+              <th className="p-2 text-left">Service Name</th>
+              <th className="p-2 text-left">Start Time</th>
+              <th className="p-2 text-left">Location</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white">
+            {employees.map((emp, index) => (
+              <tr key={emp.id} className="border-b hover:bg-gray-100">
+                <td className="p-2">{index + 1}</td>
+                <td className="p-2">{emp.employeeId}</td>
+                <td className="p-2">{emp.employeeName}</td>
+                <td className="p-2">{emp.serviceName}</td>
+                <td className="p-2">{emp.startTime}</td>
+                <td className="p-2">{emp.location}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

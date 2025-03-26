@@ -4,14 +4,16 @@ import {
   FaUserCircle,
   FaChevronDown,
   FaBars,
+  FaTachometerAlt,
   FaTasks,
-  FaRegCalendarCheck
+  FaRegCalendarCheck,
 } from "react-icons/fa";
-
+import StaffDashboard from "./staff/StaffDashboard";
 import TaskManagement from "./staff/TaskManagement";
 import LeaveRequest from "./staff/LeaveRequest";
+import EditProfile from "./staff/EditProfile"; 
 import logo from "../assets/logo-monkey5.png";
-import "../styles/StaffScreen.css"; 
+import "../styles/StaffLayout.css";
 
 function StaffScreen() {
   const navigate = useNavigate();
@@ -20,6 +22,10 @@ function StaffScreen() {
 
   const handleLogout = () => {
     navigate("/");
+  };
+
+  const handleEditProfile = () => {
+    navigate("/staff/profile");
   };
 
   return (
@@ -35,6 +41,12 @@ function StaffScreen() {
         </div>
         <nav className="menu">
           <ul>
+            <li>
+              <Link to="/staff/dashboard">
+                <FaTachometerAlt className="menu-icon" />
+                {sidebarOpen && <span className="menu-text">Dashboard</span>}
+              </Link>
+            </li>
             <li>
               <Link to="/staff/tasks">
                 <FaTasks className="menu-icon" />
@@ -56,23 +68,28 @@ function StaffScreen() {
           <div className="right-section">
             <div className="profile" onClick={() => setDropdownOpen(!dropdownOpen)}>
               <FaUserCircle className="profile-icon" />
-              <span className="profile-name">Staff</span>
+              <span className="profile-name">Staff 1</span>
               <FaChevronDown className="dropdown-icon" />
             </div>
             {dropdownOpen && (
               <div className="dropdown-menu">
-                <button>Edit Profile</button>
+                <button onClick={handleEditProfile}>Edit Profile</button>
                 <button onClick={handleLogout}>Logout</button>
               </div>
             )}
           </div>
         </header>
+
         <main className="content">
           <Routes>
+            <Route index element={<StaffDashboard />} />
+            <Route path="dashboard" element={<StaffDashboard />} />
             <Route path="tasks" element={<TaskManagement />} />
             <Route path="leave" element={<LeaveRequest />} />
+            <Route path="profile" element={<EditProfile />} />
           </Routes>
         </main>
+
         <footer className="footer">
           © 2025 MONKEY5 - All rights reserved.
         </footer>
