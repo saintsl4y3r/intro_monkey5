@@ -9,69 +9,41 @@ function StaffScreen() {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const handleToggleDropdown = () => {
-    setDropdownOpen((prev) => !prev);
-  };
-
-  const handleLogout = () => {
-    navigate("/");
-  };
+  const handleToggleDropdown = () => setDropdownOpen((prev) => !prev);
+  const handleLogout = () => navigate("/");
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="bg-orange-500 px-6 py-3 flex items-center justify-between relative">
-        <div className="flex items-center gap-6">
-          <div className="flex items-center">
-            <img src={logo} alt="MONKEY5 Logo" className="h-10 w-auto" />
-          </div>
-          <nav>
-            <ul className="flex gap-6 list-none m-0 p-0">
-              <li>
-                <Link to="tasks" className="text-white font-semibold hover:underline">
-                  Task Management
-                </Link>
-              </li>
-              <li>
-                <Link to="leave-request" className="text-white font-semibold hover:underline">
-                  Leave Request
-                </Link>
-              </li>
-            </ul>
-          </nav>
+    <div className="flex min-h-screen">
+      <aside className="w-64 bg-orange-500 text-white flex flex-col">
+        <div className="p-4 flex items-center gap-2">
+          <img src={logo} alt="Logo" className="h-10" />
+          <span className="font-bold text-lg">MONKEY5</span>
         </div>
 
-        <div className="relative">
-          <button
-            onClick={handleToggleDropdown}
-            className="flex items-center gap-2 focus:outline-none"
-          >
-            <FaUserCircle size={28} className="text-white" />
-            <span className="text-white font-bold">Staff</span>
-            <FaChevronDown className="text-white" />
+        <nav className="flex-1">
+          <ul className="space-y-2 px-4">
+            <li><Link to="tasks" className="block p-2 hover:bg-orange-600 rounded">Task Management</Link></li>
+            <li><Link to="leave-request" className="block p-2 hover:bg-orange-600 rounded">Leave Request</Link></li>
+          </ul>
+        </nav>
+
+        <div className="p-4 border-t border-orange-400 relative">
+          <button onClick={handleToggleDropdown} className="flex items-center gap-2 w-full text-left">
+            <FaUserCircle size={24} />
+            <span className="font-bold">Staff</span>
+            <FaChevronDown />
           </button>
 
           {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-40 bg-white shadow-md rounded z-10">
-              <button
-                onClick={() => {
-                  alert("Edit Profile clicked!");
-                }}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-              >
-                Edit Profile
-              </button>
-              <button
-                onClick={handleLogout}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-              >
-                Logout
-              </button>
+            <div className="absolute bottom-12 left-4 w-40 bg-white text-black shadow-md rounded z-10">
+              <button className="block w-full px-4 py-2 hover:bg-gray-100">Edit Profile</button>
+              <button onClick={handleLogout} className="block w-full px-4 py-2 hover:bg-gray-100">Logout</button>
             </div>
           )}
         </div>
-      </header>
+      </aside>
 
-      <main className="bg-gray-100 flex-1 p-4">
+      <main className="flex-1 bg-gray-100 p-6">
         <Routes>
           <Route path="tasks" element={<TaskManagement />} />
           <Route path="leave-request" element={<LeaveRequest />} />
