@@ -4,7 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 function EditProfile() {
   const [adminId, setAdminId] = useState("100231423");
   const [name, setName] = useState("Hoàng Anh");
-  const [birthday, setBirthday] = useState("2004-04-26"); // format yyyy-mm-dd
+  const [birthday, setBirthday] = useState("2004-04-26"); 
   const [phoneNumber, setPhoneNumber] = useState("0939939993");
   const [address, setAddress] = useState("3, Tô Vĩnh Diện, Thủ Đức, Hồ Chí Minh");
   const [email, setEmail] = useState("sayhoang.work@gmail.com");
