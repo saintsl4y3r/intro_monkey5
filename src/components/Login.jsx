@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "../assets/logo-monkey5.png";
 import googleLogo from "../assets/google-logo.png";
-import facebookLogo from "../assets/facebook-logo.png";
 
 function Login() {
   const [role, setRole] = useState(null);
@@ -106,10 +105,6 @@ function Login() {
             <button className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded font-bold">
               <img src={googleLogo} alt="Google" className="w-5 h-5" />
               Google
-            </button>
-            <button className="flex items-center gap-2 bg-blue-800 hover:bg-blue-900 text-white px-4 py-2 rounded font-bold">
-              <img src={facebookLogo} alt="Facebook" className="w-5 h-5" />
-              Facebook
             </button>
           </div>
 
