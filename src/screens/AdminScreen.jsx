@@ -7,21 +7,19 @@ import {
   FaTachometerAlt,
   FaUserFriends,
   FaServicestack,
-  FaTasks,
   FaBriefcase,
   FaCommentDots,
-  FaChartBar
+  FaChartBar,
 } from "react-icons/fa";
 
-// Import các màn hình
 import Dashboard from "./admin/Dashboard";
 import EmployeeManagement from "./admin/EmployeeManagement";
 import ServiceManagement from "./admin/ServiceManagement";
-import TaskManagement from "./admin/TaskManagement";
 import WorkManagement from "./admin/WorkManagement";
 import FeedbackManagement from "./admin/FeedbackManagement";
 import Reports from "./admin/Reports";
-import EditProfile from "./admin/EditProfile"; 
+import EditProfile from "./admin/EditProfile";
+
 import logo from "../assets/logo-monkey5.png";
 import "../styles/AdminLayout.css";
 
@@ -58,21 +56,15 @@ function AdminScreen() {
               </Link>
             </li>
             <li>
+              <Link to="/admin/services">
+                <FaServicestack className="menu-icon" />
+                {sidebarOpen && <span className="menu-text">Service Management</span>}
+              </Link>
+            </li>
+            <li>
               <Link to="/admin/employees">
                 <FaUserFriends className="menu-icon" />
                 {sidebarOpen && <span className="menu-text">Employee Management</span>}
-              </Link>
-            </li>
-            <li>
-              <Link to="/admin/services">
-                <FaServicestack className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Services Management</span>}
-              </Link>
-            </li>
-            <li>
-              <Link to="/admin/tasks">
-                <FaTasks className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Tasks Management</span>}
               </Link>
             </li>
             <li>
@@ -118,9 +110,8 @@ function AdminScreen() {
           <Routes>
             <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="employees" element={<EmployeeManagement />} />
             <Route path="services" element={<ServiceManagement />} />
-            <Route path="tasks" element={<TaskManagement />} />
+            <Route path="employees" element={<EmployeeManagement />} />
             <Route path="work" element={<WorkManagement />} />
             <Route path="feedback" element={<FeedbackManagement />} />
             <Route path="reports" element={<Reports />} />
