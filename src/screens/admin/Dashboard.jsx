@@ -23,7 +23,7 @@ function Dashboard() {
       id: 3,
       color: "bg-yellow-500",
       icon: <FaShoppingCart size={40} className="text-white" />,
-      title: "3 New Service Orders!",
+      title: "Service Management",
       route: "/admin/services",
     },
     {
