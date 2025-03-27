@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FaComments,     
-  FaClipboardList,
   FaShoppingCart, 
   FaChartBar,     
   FaUserFriends,  
@@ -19,13 +18,6 @@ function Dashboard() {
       icon: <FaComments size={40} className="text-white" />,
       title: "10 New Feedbacks!",
       route: "/admin/feedback",
-    },
-    {
-      id: 2,
-      color: "bg-green-500",
-      icon: <FaClipboardList size={40} className="text-white" />,
-      title: "2 New Tasks!",
-      route: "/admin/tasks",
     },
     {
       id: 3,
@@ -64,8 +56,7 @@ function Dashboard() {
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">Hello, Admin 1!</h2>
-
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         {cards.map((card) => (
           <div
             key={card.id}
