@@ -60,31 +60,31 @@ function AdminScreen() {
             <li>
               <Link to="/admin/employees">
                 <FaUserFriends className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Employee</span>}
+                {sidebarOpen && <span className="menu-text">Employee Management</span>}
               </Link>
             </li>
             <li>
               <Link to="/admin/services">
                 <FaServicestack className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Services</span>}
+                {sidebarOpen && <span className="menu-text">Services Management</span>}
               </Link>
             </li>
             <li>
               <Link to="/admin/tasks">
                 <FaTasks className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Tasks</span>}
+                {sidebarOpen && <span className="menu-text">Tasks Management</span>}
               </Link>
             </li>
             <li>
               <Link to="/admin/work">
                 <FaBriefcase className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Work</span>}
+                {sidebarOpen && <span className="menu-text">Work Management</span>}
               </Link>
             </li>
             <li>
               <Link to="/admin/feedback">
                 <FaCommentDots className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Feedback</span>}
+                {sidebarOpen && <span className="menu-text">Feedback Management</span>}
               </Link>
             </li>
             <li>
