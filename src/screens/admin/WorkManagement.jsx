@@ -94,7 +94,7 @@ function WorkManagement() {
                 </td>
                 <td className="p-2">
                   <select
-                    className="border p-1 rounded"
+                    className="border p-1 rounded font-medium"
                     value={task.assignedEmployee}
                     onChange={(e) => handleAssign(task.id, e.target.value)}
                   >

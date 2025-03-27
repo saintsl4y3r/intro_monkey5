@@ -32,7 +32,7 @@ function ServiceManagement() {
       <div className="mb-4 flex justify-end">
         <button
           onClick={() => setShowPopup(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mb-4"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded font-bold"
         >
           Add Service
         </button>
