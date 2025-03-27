@@ -25,21 +25,32 @@ function EmployeeManagement() {
     },
   ]);
 
+  const [showPopup, setShowPopup] = useState(false);
+  const [newEmployee, setNewEmployee] = useState({
+    id: "",
+    fullName: "",
+    phone: "",
+    email: "",
+    availability: "Available",
+  });
+
   const getStatusColor = (status) => {
     switch (status) {
       case "Available":
-        return "bg-green-100 text-green-800 border border-green-300";
+        return "bg-green-500";
       case "Busy":
-        return "bg-red-100 text-red-800 border border-red-300";
+        return "bg-red-500";
       case "Onbreak":
-        return "bg-yellow-100 text-yellow-800 border border-yellow-300";
+        return "bg-yellow-500";
       default:
-        return "bg-gray-100 text-gray-800 border border-gray-300";
+        return "bg-gray-500";
     }
   };
 
   const handleAddEmployee = () => {
-    alert("Add Employee clicked!");
+    setEmployees([...employees, newEmployee]);
+    setShowPopup(false);
+    setNewEmployee({ id: "", fullName: "", phone: "", email: "", availability: "Available" });
   };
 
   const handleDeleteEmployee = (id) => {
@@ -54,11 +65,11 @@ function EmployeeManagement() {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Employee Management</h2>
+      <h2 className="text-xl font-bold mb-4">Employee Management</h2>
+      <div className="mb-4 flex justify-end">
         <button
-          onClick={handleAddEmployee}
-          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded font-bold"
+          onClick={() => setShowPopup(true)}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded font-bold"
         >
           Add Employee
         </button>
@@ -86,9 +97,7 @@ function EmployeeManagement() {
                 <td className="p-2">{emp.email}</td>
                 <td className="p-2">
                   <span
-                    className={`inline-flex items-center px-2 py-1 rounded-full text-sm font-medium ${getStatusColor(
-                      emp.availability
-                    )}`}
+                    className={`inline-block px-2 py-1 rounded-full text-white ${getStatusColor(emp.availability)}`}
                   >
                     {emp.availability}
                   </span>
@@ -112,6 +121,56 @@ function EmployeeManagement() {
           </tbody>
         </table>
       </div>
+
+      {showPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
+          <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
+            <h2 className="text-xl font-bold mb-4">Add Employee</h2>
+            <input
+              type="text"
+              placeholder="Staff ID"
+              value={newEmployee.id}
+              onChange={(e) => setNewEmployee({ ...newEmployee, id: e.target.value })}
+              className="border p-2 w-full mb-2"
+            />
+            <input
+              type="text"
+              placeholder="Full Name"
+              value={newEmployee.fullName}
+              onChange={(e) => setNewEmployee({ ...newEmployee, fullName: e.target.value })}
+              className="border p-2 w-full mb-2"
+            />
+            <input
+              type="text"
+              placeholder="Phone"
+              value={newEmployee.phone}
+              onChange={(e) => setNewEmployee({ ...newEmployee, phone: e.target.value })}
+              className="border p-2 w-full mb-2"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={newEmployee.email}
+              onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
+              className="border p-2 w-full mb-2"
+            />
+            <div className="flex justify-end">
+              <button
+                onClick={handleAddEmployee}
+                className="bg-green-500 text-white px-4 py-2 rounded mr-2"
+              >
+                Save
+              </button>
+              <button
+                onClick={() => setShowPopup(false)}
+                className="bg-gray-500 text-white px-4 py-2 rounded"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
