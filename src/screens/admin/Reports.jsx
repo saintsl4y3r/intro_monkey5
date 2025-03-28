@@ -1,10 +1,11 @@
 import React from "react";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
@@ -12,14 +13,22 @@ import {
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 function Reports() {
   const revenueData = [
-    { service: "Cleaning", revenue: 1000, users: 250 },
-    { service: "Cooking", revenue: 1500, users: 180 },
-    { service: "Laundry", revenue: 800, users: 300 },
-    { service: "Window Cleaning", revenue: 1200, users: 240 },
+    { service: "Cleaning", revenue: 1000, users: 50 },
+    { service: "Cooking", revenue: 1500, users: 80 },
+    { service: "Laundry", revenue: 800, users: 30 },
+    { service: "Window Cleaning", revenue: 1200, users: 40 },
   ];
 
   const chartData = {
@@ -28,12 +37,18 @@ function Reports() {
       {
         label: "Revenue ($)",
         data: revenueData.map((item) => item.revenue),
-        backgroundColor: "rgba(54, 162, 235, 0.6)",
+        borderColor: "rgba(54, 162, 235, 1)",
+        backgroundColor: "rgba(54, 162, 235, 0.4)",
+        tension: 0.4,
+        fill: true,
       },
       {
         label: "Users",
         data: revenueData.map((item) => item.users),
-        backgroundColor: "rgba(255, 159, 64, 0.6)",
+        borderColor: "rgba(255, 159, 64, 1)",
+        backgroundColor: "rgba(255, 159, 64, 0.4)",
+        tension: 0.4,
+        fill: true,
       },
     ],
   };
@@ -45,7 +60,7 @@ function Reports() {
         position: "top",
         labels: {
           font: {
-            weight: "bold", 
+            weight: "bold",
           },
         },
       },
@@ -61,12 +76,16 @@ function Reports() {
     scales: {
       x: {
         ticks: {
-          font: { weight: "bold" }, 
+          font: {
+            weight: "bold",
+          },
         },
       },
       y: {
         ticks: {
-          font: { weight: "bold" }, 
+          font: {
+            weight: "bold",
+          },
         },
       },
     },
@@ -78,25 +97,24 @@ function Reports() {
     doc.setFontSize(16);
     doc.text("Report", 14, 20);
     doc.setFontSize(12);
+
     const tableColumn = ["Service", "Revenue ($)", "Users"];
-    const tableRows = revenueData.map((item) => [
-      item.service,
-      item.revenue,
-      item.users,
-    ]);
+    const tableRows = revenueData.map((item) => [item.service, item.revenue, item.users]);
+
     doc.autoTable({
       head: [tableColumn],
       body: tableRows,
       startY: 30,
     });
+
     doc.save("report.pdf");
   };
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Reports</h2>
+      <h2 className="text-2xl font-bold mb-4">Report</h2>
       <div className="mb-4">
-        <Bar data={chartData} options={options} />
+        <Line data={chartData} options={options} />
       </div>
       <div className="flex justify-center">
         <button
