@@ -54,14 +54,6 @@ function BookingPopup({ isOpen, onClose, service }) {
                 >
                   Download Our App
                 </motion.button>
-
-                <motion.button
-                  className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-bold"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Continue on Website
-                </motion.button>
               </div>
 
               <div className="text-center text-gray-500 text-sm">

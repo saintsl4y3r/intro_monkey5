@@ -1,11 +1,12 @@
 import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import BookingPopup from "./BookingPopup";
 
 function Home() {
   const [showBookingPopup, setShowBookingPopup] = useState(false);
+  const navigate = useNavigate();
 
-  // Animation variants
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -18,7 +19,6 @@ function Home() {
     },
   };
 
-  // Custom hook for section animations
   const Section = ({ children, className, id }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: false, amount: 0.3 });
@@ -55,8 +55,7 @@ function Home() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          Book trusted professionals for all your home needs in just a few
-          clicks
+          Book trusted professionals for all your home needs in just a few clicks
         </motion.p>
         <motion.button
           className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded"
@@ -71,7 +70,6 @@ function Home() {
         </motion.button>
       </Section>
 
-      {/* BENEFITS */}
       <Section className="py-16 text-center" id="benefits">
         <h2 className="text-4xl font-bold text-orange-500 mb-8">
           Benefits of Using MONKEY5
@@ -100,8 +98,7 @@ function Home() {
             <div className="text-6xl mb-4">👨‍🔧</div>
             <h3 className="text-xl font-bold mb-2">Trusted Professionals</h3>
             <p>
-              We carefully vet all of our service providers to ensure quality
-              and reliability.
+              We carefully vet all of our service providers to ensure quality and reliability.
             </p>
           </motion.div>
           <motion.div
@@ -120,12 +117,12 @@ function Home() {
         </div>
       </Section>
 
-      {/* OUR SERVICES */}
       <Section className="py-16 text-center bg-gray-100" id="services">
         <h2 className="text-4xl font-bold text-orange-500 mb-8">
           Our Services
         </h2>
         <div className="flex flex-col md:flex-row justify-center items-start gap-8 max-w-5xl mx-auto">
+          {/* General Cleaning Card */}
           <motion.div
             className="flex-1 bg-white p-6 rounded shadow"
             whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
@@ -143,10 +140,12 @@ function Home() {
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate("/services/housekeeping")}
             >
               Learn More →
             </motion.button>
           </motion.div>
+          {/* Home Cooking Card */}
           <motion.div
             className="flex-1 bg-white p-6 rounded shadow"
             whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
@@ -164,10 +163,12 @@ function Home() {
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate("/services/cooking")}
             >
               Learn More →
             </motion.button>
           </motion.div>
+          {/* Babysitting Card */}
           <motion.div
             className="flex-1 bg-white p-6 rounded shadow"
             whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
@@ -185,6 +186,7 @@ function Home() {
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate("/services/childcare")}
             >
               Learn More →
             </motion.button>
@@ -247,10 +249,9 @@ function Home() {
           >
             <div className="text-yellow-500 text-xl mb-2">★★★★★</div>
             <p className="mb-2">
-              "The cleaning service was exceptional! My home has never been
-              cleaner."
+              "The cleaning service was exceptional! My home has never been cleaner."
             </p>
-            <p className="text-sm font-bold">- Sarah T.</p>
+            <p className="text-sm font-bold">- Lionel C. Hoang Phuc.</p>
           </motion.div>
           <motion.div
             className="flex-1 bg-white p-6 rounded shadow"
@@ -261,10 +262,9 @@ function Home() {
           >
             <div className="text-yellow-500 text-xl mb-2">★★★★★</div>
             <p className="mb-2">
-              "The chef prepared an amazing meal for our anniversary. Highly
-              recommend!"
+              "The chef prepared an amazing meal for our anniversary. Highly recommend!"
             </p>
-            <p className="text-sm font-bold">- Michael L.</p>
+            <p className="text-sm font-bold">- Michael Duc Long.</p>
           </motion.div>
           <motion.div
             className="flex-1 bg-white p-6 rounded shadow"
@@ -275,15 +275,13 @@ function Home() {
           >
             <div className="text-yellow-500 text-xl mb-2">★★★★★</div>
             <p className="mb-2">
-              "Our babysitter was wonderful with the kids. We'll definitely book
-              again!"
+              "Our babysitter was wonderful with the kids. We'll definitely book again!"
             </p>
-            <p className="text-sm font-bold">- Emily R.</p>
+            <p className="text-sm font-bold">- Harry M. Anh.</p>
           </motion.div>
         </div>
       </Section>
 
-      {/* CTA Section */}
       <Section className="py-16 text-center bg-blue-600 text-white" id="cta">
         <motion.h2
           className="text-4xl font-bold mb-4"
@@ -317,7 +315,6 @@ function Home() {
         </motion.button>
       </Section>
 
-      {/* Booking Popup */}
       <BookingPopup
         isOpen={showBookingPopup}
         onClose={() => setShowBookingPopup(false)}

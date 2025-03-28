@@ -30,7 +30,6 @@ function HomeScreen() {
       transition={{ duration: 0.5 }}
     >
       <Header />
-      {/* Add padding when header is fixed */}
       {isScrolled && <div style={{ height: "72px" }}></div>}
       <Home />
       <AppDownloadCTA />
