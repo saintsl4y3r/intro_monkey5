@@ -1,57 +1,110 @@
 import React from "react";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function Reports() {
-  const reports = [
-    {
-      id: 1,
-      reportId: "100231423",
-      customerId: "100231423",
-      customerName: "Hoàng Anh",
-      serviceName: "Cleaning",
-      sendDate: "16:00, 26/01/2025",
-      reportDetail: "Lê Đức Long làm hư đồ của nhà tôi",
-    },
-    {
-      id: 2,
-      reportId: "100231424",
-      customerId: "100231425",
-      customerName: "Mai Dương",
-      serviceName: "Cooking",
-      sendDate: "09:00, 27/01/2025",
-      reportDetail: "Món ăn chưa đạt yêu cầu",
-    },
+  const revenueData = [
+    { service: "Cleaning", revenue: 1000, users: 250 },
+    { service: "Cooking", revenue: 1500, users: 180 },
+    { service: "Laundry", revenue: 800, users: 300 },
+    { service: "Window Cleaning", revenue: 1200, users: 240 },
   ];
+
+  const chartData = {
+    labels: revenueData.map((item) => item.service),
+    datasets: [
+      {
+        label: "Revenue ($)",
+        data: revenueData.map((item) => item.revenue),
+        backgroundColor: "rgba(54, 162, 235, 0.6)",
+      },
+      {
+        label: "Users",
+        data: revenueData.map((item) => item.users),
+        backgroundColor: "rgba(255, 159, 64, 0.6)",
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+        labels: {
+          font: {
+            weight: "bold", 
+          },
+        },
+      },
+      title: {
+        display: true,
+        text: "Revenue and User Statistics by Service",
+        font: {
+          weight: "bold",
+          size: 16,
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          font: { weight: "bold" }, 
+        },
+      },
+      y: {
+        ticks: {
+          font: { weight: "bold" }, 
+        },
+      },
+    },
+  };
+
+  const handleExportPDF = () => {
+    const doc = new jsPDF();
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text("Report", 14, 20);
+    doc.setFontSize(12);
+    const tableColumn = ["Service", "Revenue ($)", "Users"];
+    const tableRows = revenueData.map((item) => [
+      item.service,
+      item.revenue,
+      item.users,
+    ]);
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+      startY: 30,
+    });
+    doc.save("report.pdf");
+  };
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Reports</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full border-collapse">
-          <thead>
-            <tr className="bg-orange-500 text-white">
-              <th className="p-2 text-left w-12">#</th>
-              <th className="p-2 text-left">ReportID</th>
-              <th className="p-2 text-left">Customer ID</th>
-              <th className="p-2 text-left">Customer Name</th>
-              <th className="p-2 text-left">Service Name</th>
-              <th className="p-2 text-left">Send date</th>
-              <th className="p-2 text-left">Report Detail</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white">
-            {reports.map((rep, index) => (
-              <tr key={rep.id} className="border-b hover:bg-gray-100">
-                <td className="p-2">{index + 1}</td>
-                <td className="p-2">{rep.reportId}</td>
-                <td className="p-2">{rep.customerId}</td>
-                <td className="p-2">{rep.customerName}</td>
-                <td className="p-2">{rep.serviceName}</td>
-                <td className="p-2">{rep.sendDate}</td>
-                <td className="p-2">{rep.reportDetail}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <h2 className="text-2xl font-bold mb-4">Reports</h2>
+      <div className="mb-4">
+        <Bar data={chartData} options={options} />
+      </div>
+      <div className="flex justify-center">
+        <button
+          onClick={handleExportPDF}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded font-bold"
+        >
+          Export as PDF
+        </button>
       </div>
     </div>
   );
