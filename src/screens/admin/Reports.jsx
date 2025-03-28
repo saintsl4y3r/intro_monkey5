@@ -24,27 +24,33 @@ ChartJS.register(
 );
 
 function Reports() {
-  const revenueData = [
-    { service: "Cleaning", revenue: 1000, users: 50 },
-    { service: "Cooking", revenue: 1500, users: 80 },
-    { service: "Laundry", revenue: 800, users: 30 },
-    { service: "Window Cleaning", revenue: 1200, users: 40 },
-  ];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const cleaningData = [1000, 1200, 1100, 1500, 1300, 1600, 1700, 1800, 1400, 1500, 1600, 1900];
+  const childCareData = [800, 900, 950, 1100, 1000, 1050, 1200, 1150, 1100, 1050, 1000, 950];
+  const cookingData = [1500, 1600, 1550, 1700, 1650, 1750, 1800, 1850, 1700, 1650, 1750, 1900];
 
   const chartData = {
-    labels: revenueData.map((item) => item.service),
+    labels: months,
     datasets: [
       {
-        label: "Revenue ($)",
-        data: revenueData.map((item) => item.revenue),
+        label: "Cleaning",
+        data: cleaningData,
         borderColor: "rgba(54, 162, 235, 1)",
         backgroundColor: "rgba(54, 162, 235, 0.4)",
         tension: 0.4,
         fill: true,
       },
       {
-        label: "Users",
-        data: revenueData.map((item) => item.users),
+        label: "Child Care",
+        data: childCareData,
+        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: "rgba(75, 192, 192, 0.4)",
+        tension: 0.4,
+        fill: true,
+      },
+      {
+        label: "Cooking",
+        data: cookingData,
         borderColor: "rgba(255, 159, 64, 1)",
         backgroundColor: "rgba(255, 159, 64, 0.4)",
         tension: 0.4,
@@ -59,33 +65,24 @@ function Reports() {
       legend: {
         position: "top",
         labels: {
-          font: {
-            weight: "bold",
-          },
+          font: { weight: "bold" },
         },
       },
       title: {
         display: true,
-        text: "Revenue and User Statistics by Service",
-        font: {
-          weight: "bold",
-          size: 16,
-        },
+        text: "Monthly Revenue by Service",
+        font: { weight: "bold", size: 16 },
       },
     },
     scales: {
       x: {
         ticks: {
-          font: {
-            weight: "bold",
-          },
+          font: { weight: "bold" },
         },
       },
       y: {
         ticks: {
-          font: {
-            weight: "bold",
-          },
+          font: { weight: "bold" },
         },
       },
     },
@@ -95,11 +92,16 @@ function Reports() {
     const doc = new jsPDF();
     doc.setFont("helvetica", "bold");
     doc.setFontSize(16);
-    doc.text("Report", 14, 20);
+    doc.text("Monthly Revenue Report", 14, 20);
     doc.setFontSize(12);
 
-    const tableColumn = ["Service", "Revenue ($)", "Users"];
-    const tableRows = revenueData.map((item) => [item.service, item.revenue, item.users]);
+    const tableColumn = ["Month", "Cleaning ($)", "Child Care ($)", "Cooking ($)"];
+    const tableRows = months.map((month, index) => [
+      month,
+      cleaningData[index],
+      childCareData[index],
+      cookingData[index],
+    ]);
 
     doc.autoTable({
       head: [tableColumn],
