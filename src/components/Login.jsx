@@ -6,6 +6,9 @@ import googleLogo from "../assets/google-logo.png";
 
 function Login() {
   const [role, setRole] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
   const fadeIn = {
@@ -13,14 +16,53 @@ function Login() {
     visible: { opacity: 1, transition: { duration: 0.8 } },
   };
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    if (role === "staff") {
-      navigate("/staff");
-    } else if (role === "admin") {
-      navigate("/admin");
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setErrorMsg("");
+  
+    if (!role) {
+      setErrorMsg("Please select a role.");
+      return;
     }
-  };
+  
+    let apiUrl = "";
+    if (role === "staff") {
+      apiUrl = "https://monkey5-backend.onrender.com/api/Staffs/login";
+    } else if (role === "admin") {
+      apiUrl = "https://monkey5-backend.onrender.com/api/Managers/login";
+    }
+  
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      if (!response.ok) {
+        if (response.status === 404) {
+          setErrorMsg("Account does not exist");
+        } else if (response.status === 401) {
+          setErrorMsg("Invalid email or password");
+        } else {
+          setErrorMsg("Login failed. Please check your email or password");
+        }
+        return;
+      }
+  
+      const data = await response.json();
+      localStorage.setItem("userName", data.fullName);
+      localStorage.setItem("userRole", role);
+      if (role === "staff") {
+        navigate("/staff");
+      } else {
+        navigate("/admin");
+      }
+    } catch (error) {
+      console.error(error);
+      setErrorMsg("Login failed. Please check your email or password");
+    }
+  };  
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
@@ -61,16 +103,19 @@ function Login() {
           <h1 className="text-2xl font-bold mb-4">
             {role === "staff" ? "Staff Login" : "Admin Login"}
           </h1>
-          <form className="space-y-4" onSubmit={handleLogin}>
+          <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-left mb-1" htmlFor="username">
-                Username
+              <label className="block text-left mb-1" htmlFor="email">
+                Email
               </label>
               <input
-                id="username"
-                type="text"
-                placeholder="Enter your username"
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full border p-2 rounded"
+                required
               />
             </div>
             <div>
@@ -81,9 +126,13 @@ function Login() {
                 id="password"
                 type="password"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full border p-2 rounded"
+                required
               />
             </div>
+            {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
             <div className="flex justify-between text-sm">
               <Link to="/forgot-password" className="text-blue-500 hover:underline">
                 Forgot password?

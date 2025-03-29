@@ -10,6 +10,7 @@ import {
 
 function Dashboard() {
   const navigate = useNavigate();
+  const userName = localStorage.getItem("userName") || "Admin";
 
   const cards = [
     {
@@ -21,9 +22,9 @@ function Dashboard() {
     },
     {
       id: 3,
-      color: "bg-green-500",
+      color: "bg-yellow-500",
       icon: <FaShoppingCart size={40} className="text-white" />,
-      title: "Service Management",
+      title: "3 New Service Orders!",
       route: "/admin/services",
     },
     {
@@ -35,7 +36,7 @@ function Dashboard() {
     },
     {
       id: 5,
-      color: "bg-cyan-500",
+      color: "bg-indigo-500",
       icon: <FaUserFriends size={40} className="text-white" />,
       title: "Employee Management",
       route: "/admin/employees",
@@ -55,7 +56,7 @@ function Dashboard() {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Hello, Admin 1!</h2>
+      <h2 className="text-2xl font-bold mb-4">Hello, {userName}!</h2>
       <div className="grid grid-cols-2 gap-4">
         {cards.map((card) => (
           <div

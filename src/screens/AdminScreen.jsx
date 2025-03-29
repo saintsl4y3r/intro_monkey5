@@ -27,8 +27,11 @@ function AdminScreen() {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const userName = localStorage.getItem("userName") || "Admin";
 
   const handleLogout = () => {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userRole");
     navigate("/");
   };
 
@@ -94,7 +97,7 @@ function AdminScreen() {
           <div className="right-section">
             <div className="profile" onClick={() => setDropdownOpen(!dropdownOpen)}>
               <FaUserCircle className="profile-icon" />
-              <span className="profile-name">Admin 1</span>
+              <span className="profile-name">{userName}</span>
               <FaChevronDown className="dropdown-icon" />
             </div>
             {dropdownOpen && (

@@ -11,7 +11,7 @@ import {
 import StaffDashboard from "./staff/StaffDashboard";
 import TaskManagement from "./staff/TaskManagement";
 import LeaveRequest from "./staff/LeaveRequest";
-import EditProfile from "./staff/EditProfile"; 
+import EditProfile from "./staff/EditProfile";
 import logo from "../assets/logo-monkey5.png";
 import "../styles/StaffLayout.css";
 
@@ -19,8 +19,11 @@ function StaffScreen() {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const userName = localStorage.getItem("userName") || "Staff";
 
   const handleLogout = () => {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userRole");
     navigate("/");
   };
 
@@ -68,7 +71,7 @@ function StaffScreen() {
           <div className="right-section">
             <div className="profile" onClick={() => setDropdownOpen(!dropdownOpen)}>
               <FaUserCircle className="profile-icon" />
-              <span className="profile-name">Staff 1</span>
+              <span className="profile-name">{userName}</span>
               <FaChevronDown className="dropdown-icon" />
             </div>
             {dropdownOpen && (
