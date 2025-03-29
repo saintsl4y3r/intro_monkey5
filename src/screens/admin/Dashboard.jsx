@@ -22,7 +22,7 @@ function Dashboard() {
     },
     {
       id: 3,
-      color: "bg-yellow-500",
+      color: "bg-green-500",
       icon: <FaShoppingCart size={40} className="text-white" />,
       title: "3 New Service Orders!",
       route: "/admin/services",
@@ -36,7 +36,7 @@ function Dashboard() {
     },
     {
       id: 5,
-      color: "bg-indigo-500",
+      color: "bg-cyan-500",
       icon: <FaUserFriends size={40} className="text-white" />,
       title: "Employee Management",
       route: "/admin/employees",
