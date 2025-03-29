@@ -135,20 +135,20 @@ function EmployeeManagement() {
                   <td className="p-2">{emp.email}</td>
                   <td className="p-2">{emp.phoneNumber}</td>
                   <td className="p-2">
-                    <span className={`inline-block px-2 py-1 rounded-full text-white ${getStatusColor(emp.status)}`}>
+                    <span className={`inline-block px-2 py-1 rounded-full text-white font-bold ${getStatusColor(emp.status)}`}>
                       {emp.status}
                     </span>
                   </td>
                   <td className="p-2 text-center">
                     <button
                       onClick={() => handleDetailEmployee(emp)}
-                      className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded mr-1 text-sm"
+                      className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-2 py-1 rounded mr-1 text-sm"
                     >
                       Detail
                     </button>
                     <button
                       onClick={() => handleDeleteEmployee(emp.userId)}
-                      className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm"
+                      className="bg-red-500 hover:bg-red-600 text-white font-bold px-2 py-1 rounded text-sm"
                     >
                       Delete
                     </button>

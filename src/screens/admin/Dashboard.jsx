@@ -24,14 +24,14 @@ function Dashboard() {
       id: 3,
       color: "bg-green-500",
       icon: <FaShoppingCart size={40} className="text-white" />,
-      title: "3 New Service Orders!",
+      title: "Service Management",
       route: "/admin/services",
     },
     {
       id: 4,
       color: "bg-red-500",
       icon: <FaChartBar size={40} className="text-white" />,
-      title: "14 New Reports!",
+      title: "Reports",
       route: "/admin/reports",
     },
     {
