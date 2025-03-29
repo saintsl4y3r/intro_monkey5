@@ -5,13 +5,16 @@ function EmployeeManagement() {
   const [showPopup, setShowPopup] = useState(false);
   const [showDetailPopup, setShowDetailPopup] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-
   const [newEmployee, setNewEmployee] = useState({
-    id: "",
+    userId: "",
     fullName: "",
-    phone: "",
     email: "",
-    availability: "Available",
+    phoneNumber: "",
+    dateOfBirth: "1990-01-01T00:00:00Z",
+    gender: "Female",
+    idNumber: "",
+    role: "Staff",
+    status: "Available",
   });
 
   const fetchEmployees = async () => {
@@ -21,16 +24,14 @@ function EmployeeManagement() {
         throw new Error(`Failed to fetch employees, status: ${response.status}`);
       }
       const data = await response.json();
-      if (Array.isArray(data)) {
-        setEmployees(data);
-      }
-      else if (data && Array.isArray(data.data)) {
-        setEmployees(data.data);
+      if (data && Array.isArray(data.$values)) {
+        setEmployees(data.$values);
       } else {
         setEmployees([]);
       }
     } catch (error) {
       console.error("Error fetching employees:", error);
+      setEmployees([]);
     }
   };
 
@@ -59,21 +60,32 @@ function EmployeeManagement() {
         body: JSON.stringify(newEmployee),
       });
       if (!response.ok) {
-        throw new Error("Failed to add employee");
+        const errMsg = await response.text();
+        throw new Error(`Failed to add employee: ${errMsg}`);
       }
       await fetchEmployees();
       setShowPopup(false);
-      setNewEmployee({ id: "", fullName: "", phone: "", email: "", availability: "Available" });
+      setNewEmployee({
+        userId: "",
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+        dateOfBirth: "1990-01-01T00:00:00Z",
+        gender: "Female",
+        idNumber: "",
+        role: "Staff",
+        status: "Available",
+      });
     } catch (error) {
       console.error("Error adding employee:", error);
-      alert("Error adding employee. Please try again.");
+      alert(`Error adding employee. ${error}`);
     }
   };
 
-  const handleDeleteEmployee = async (id) => {
-    if (!window.confirm(`Are you sure you want to delete employee ${id}?`)) return;
+  const handleDeleteEmployee = async (userId) => {
+    if (!window.confirm(`Are you sure you want to delete employee ${userId}?`)) return;
     try {
-      const response = await fetch(`https://monkey5-backend.onrender.com/api/Staffs/${id}`, {
+      const response = await fetch(`https://monkey5-backend.onrender.com/api/Staffs/${userId}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -107,26 +119,24 @@ function EmployeeManagement() {
           <thead>
             <tr className="bg-orange-500 text-white">
               <th className="p-2 text-left w-12">#</th>
-              <th className="p-2 text-left">Staff ID</th>
               <th className="p-2 text-left">Full Name</th>
-              <th className="p-2 text-left">Phone</th>
               <th className="p-2 text-left">Email</th>
-              <th className="p-2 text-left">Availability</th>
+              <th className="p-2 text-left">Phone</th>
+              <th className="p-2 text-left">Status</th>
               <th className="p-2 text-center">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white">
             {employees && employees.length > 0 ? (
               employees.map((emp, index) => (
-                <tr key={emp.id || index} className="border-b hover:bg-gray-100">
+                <tr key={emp.userId || index} className="border-b hover:bg-gray-100">
                   <td className="p-2">{index + 1}</td>
-                  <td className="p-2">{emp.id}</td>
                   <td className="p-2">{emp.fullName}</td>
-                  <td className="p-2">{emp.phone}</td>
                   <td className="p-2">{emp.email}</td>
+                  <td className="p-2">{emp.phoneNumber}</td>
                   <td className="p-2">
-                    <span className={`inline-block px-2 py-1 rounded-full text-white ${getStatusColor(emp.availability)}`}>
-                      {emp.availability}
+                    <span className={`inline-block px-2 py-1 rounded-full text-white ${getStatusColor(emp.status)}`}>
+                      {emp.status}
                     </span>
                   </td>
                   <td className="p-2 text-center">
@@ -137,7 +147,7 @@ function EmployeeManagement() {
                       Detail
                     </button>
                     <button
-                      onClick={() => handleDeleteEmployee(emp.id)}
+                      onClick={() => handleDeleteEmployee(emp.userId)}
                       className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm"
                     >
                       Delete
@@ -147,7 +157,9 @@ function EmployeeManagement() {
               ))
             ) : (
               <tr>
-                <td className="p-2" colSpan="7">No employees found</td>
+                <td className="p-2" colSpan="6">
+                  No employees found
+                </td>
               </tr>
             )}
           </tbody>
@@ -160,9 +172,9 @@ function EmployeeManagement() {
             <h2 className="text-xl font-bold mb-4">Add Employee</h2>
             <input
               type="text"
-              placeholder="Staff ID"
-              value={newEmployee.id}
-              onChange={(e) => setNewEmployee({ ...newEmployee, id: e.target.value })}
+              placeholder="User ID"
+              value={newEmployee.userId}
+              onChange={(e) => setNewEmployee({ ...newEmployee, userId: e.target.value })}
               className="border p-2 w-full mb-2"
             />
             <input
@@ -173,17 +185,41 @@ function EmployeeManagement() {
               className="border p-2 w-full mb-2"
             />
             <input
-              type="text"
-              placeholder="Phone"
-              value={newEmployee.phone}
-              onChange={(e) => setNewEmployee({ ...newEmployee, phone: e.target.value })}
-              className="border p-2 w-full mb-2"
-            />
-            <input
               type="email"
               placeholder="Email"
               value={newEmployee.email}
               onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
+              className="border p-2 w-full mb-2"
+            />
+            <input
+              type="text"
+              placeholder="Phone Number"
+              value={newEmployee.phoneNumber}
+              onChange={(e) => setNewEmployee({ ...newEmployee, phoneNumber: e.target.value })}
+              className="border p-2 w-full mb-2"
+            />
+            <input
+              type="date"
+              placeholder="Date of Birth"
+              value={newEmployee.dateOfBirth.split("T")[0]}
+              onChange={(e) =>
+                setNewEmployee({ ...newEmployee, dateOfBirth: e.target.value + "T00:00:00Z" })
+              }
+              className="border p-2 w-full mb-2"
+            />
+            <select
+              value={newEmployee.gender}
+              onChange={(e) => setNewEmployee({ ...newEmployee, gender: e.target.value })}
+              className="border p-2 w-full mb-2"
+            >
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+            </select>
+            <input
+              type="text"
+              placeholder="ID Number"
+              value={newEmployee.idNumber}
+              onChange={(e) => setNewEmployee({ ...newEmployee, idNumber: e.target.value })}
               className="border p-2 w-full mb-2"
             />
             <div className="flex justify-end">
@@ -209,7 +245,7 @@ function EmployeeManagement() {
           <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
             <h2 className="text-xl font-bold mb-4">Employee Detail</h2>
             <p className="mb-2">
-              <strong>Staff ID:</strong> {selectedEmployee.id}
+              <strong>User ID:</strong> {selectedEmployee.userId}
             </p>
             <p className="mb-2">
               <strong>Full Name:</strong> {selectedEmployee.fullName}
@@ -218,7 +254,10 @@ function EmployeeManagement() {
               <strong>Email:</strong> {selectedEmployee.email}
             </p>
             <p className="mb-2">
-              <strong>Phone:</strong> {selectedEmployee.phone}
+              <strong>Phone:</strong> {selectedEmployee.phoneNumber}
+            </p>
+            <p className="mb-2">
+              <strong>Status:</strong> {selectedEmployee.status}
             </p>
             <div className="flex justify-end mt-4">
               <button
