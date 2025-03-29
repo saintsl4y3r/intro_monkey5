@@ -1,31 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function EmployeeManagement() {
-  const [employees, setEmployees] = useState([
-    {
-      id: "ST001",
-      fullName: "John Doe",
-      phone: "0909123456",
-      email: "john.doe@example.com",
-      availability: "Available",
-    },
-    {
-      id: "ST002",
-      fullName: "Jane Smith",
-      phone: "0909765432",
-      email: "jane.smith@example.com",
-      availability: "Busy",
-    },
-    {
-      id: "ST003",
-      fullName: "Michael Johnson",
-      phone: "0911222333",
-      email: "michael.j@example.com",
-      availability: "Onbreak",
-    },
-  ]);
-
+  const [employees, setEmployees] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
+  const [showDetailPopup, setShowDetailPopup] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+
   const [newEmployee, setNewEmployee] = useState({
     id: "",
     fullName: "",
@@ -33,6 +13,30 @@ function EmployeeManagement() {
     email: "",
     availability: "Available",
   });
+
+  const fetchEmployees = async () => {
+    try {
+      const response = await fetch("https://monkey5-backend.onrender.com/api/Staffs");
+      if (!response.ok) {
+        throw new Error(`Failed to fetch employees, status: ${response.status}`);
+      }
+      const data = await response.json();
+      if (Array.isArray(data)) {
+        setEmployees(data);
+      }
+      else if (data && Array.isArray(data.data)) {
+        setEmployees(data.data);
+      } else {
+        setEmployees([]);
+      }
+    } catch (error) {
+      console.error("Error fetching employees:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -47,20 +51,44 @@ function EmployeeManagement() {
     }
   };
 
-  const handleAddEmployee = () => {
-    setEmployees([...employees, newEmployee]);
-    setShowPopup(false);
-    setNewEmployee({ id: "", fullName: "", phone: "", email: "", availability: "Available" });
-  };
-
-  const handleDeleteEmployee = (id) => {
-    if (window.confirm(`Are you sure you want to delete employee ${id}?`)) {
-      setEmployees(employees.filter((emp) => emp.id !== id));
+  const handleAddEmployee = async () => {
+    try {
+      const response = await fetch("https://monkey5-backend.onrender.com/api/Staffs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newEmployee),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add employee");
+      }
+      await fetchEmployees();
+      setShowPopup(false);
+      setNewEmployee({ id: "", fullName: "", phone: "", email: "", availability: "Available" });
+    } catch (error) {
+      console.error("Error adding employee:", error);
+      alert("Error adding employee. Please try again.");
     }
   };
 
-  const handleDetailEmployee = (id) => {
-    alert(`Detail for employee ${id} clicked!`);
+  const handleDeleteEmployee = async (id) => {
+    if (!window.confirm(`Are you sure you want to delete employee ${id}?`)) return;
+    try {
+      const response = await fetch(`https://monkey5-backend.onrender.com/api/Staffs/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Failed to delete employee");
+      }
+      await fetchEmployees();
+    } catch (error) {
+      console.error("Error deleting employee:", error);
+      alert("Error deleting employee. Please try again.");
+    }
+  };
+
+  const handleDetailEmployee = (emp) => {
+    setSelectedEmployee(emp);
+    setShowDetailPopup(true);
   };
 
   return (
@@ -88,36 +116,40 @@ function EmployeeManagement() {
             </tr>
           </thead>
           <tbody className="bg-white">
-            {employees.map((emp, index) => (
-              <tr key={emp.id} className="border-b hover:bg-gray-100">
-                <td className="p-2">{index + 1}</td>
-                <td className="p-2">{emp.id}</td>
-                <td className="p-2">{emp.fullName}</td>
-                <td className="p-2">{emp.phone}</td>
-                <td className="p-2">{emp.email}</td>
-                <td className="p-2">
-                  <span
-                    className={`inline-block px-2 py-1 rounded-full text-white ${getStatusColor(emp.availability)}`}
-                  >
-                    {emp.availability}
-                  </span>
-                </td>
-                <td className="p-2 text-center">
-                  <button
-                    onClick={() => handleDetailEmployee(emp.id)}
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded mr-1 text-sm"
-                  >
-                    Detail
-                  </button>
-                  <button
-                    onClick={() => handleDeleteEmployee(emp.id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm"
-                  >
-                    Delete
-                  </button>
-                </td>
+            {employees && employees.length > 0 ? (
+              employees.map((emp, index) => (
+                <tr key={emp.id || index} className="border-b hover:bg-gray-100">
+                  <td className="p-2">{index + 1}</td>
+                  <td className="p-2">{emp.id}</td>
+                  <td className="p-2">{emp.fullName}</td>
+                  <td className="p-2">{emp.phone}</td>
+                  <td className="p-2">{emp.email}</td>
+                  <td className="p-2">
+                    <span className={`inline-block px-2 py-1 rounded-full text-white ${getStatusColor(emp.availability)}`}>
+                      {emp.availability}
+                    </span>
+                  </td>
+                  <td className="p-2 text-center">
+                    <button
+                      onClick={() => handleDetailEmployee(emp)}
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded mr-1 text-sm"
+                    >
+                      Detail
+                    </button>
+                    <button
+                      onClick={() => handleDeleteEmployee(emp.id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-sm"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td className="p-2" colSpan="7">No employees found</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
@@ -166,6 +198,37 @@ function EmployeeManagement() {
                 className="bg-gray-500 text-white px-4 py-2 rounded"
               >
                 Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showDetailPopup && selectedEmployee && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
+          <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
+            <h2 className="text-xl font-bold mb-4">Employee Detail</h2>
+            <p className="mb-2">
+              <strong>Staff ID:</strong> {selectedEmployee.id}
+            </p>
+            <p className="mb-2">
+              <strong>Full Name:</strong> {selectedEmployee.fullName}
+            </p>
+            <p className="mb-2">
+              <strong>Email:</strong> {selectedEmployee.email}
+            </p>
+            <p className="mb-2">
+              <strong>Phone:</strong> {selectedEmployee.phone}
+            </p>
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={() => {
+                  setShowDetailPopup(false);
+                  setSelectedEmployee(null);
+                }}
+                className="bg-gray-500 text-white px-4 py-2 rounded"
+              >
+                Close
               </button>
             </div>
           </div>
