@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { motion, useInView } from "framer-motion";
 import BookingPopup from "../components/BookingPopup";
@@ -748,13 +749,15 @@ function ChildCareServiceScreen() {
             >
               Book Now
             </motion.button>
-            <motion.button
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Contact Us
-            </motion.button>
+            <Link to="/about">
+              <motion.button
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Contact Us
+              </motion.button>
+            </Link>
           </div>
         </div>
       </AnimatedSection>

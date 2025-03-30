@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import googlePlayIcon from "../assets/google-play.svg"; 
-import mobileAppImage from "../assets/mobile-app.png"; 
+import appStoreIcon from "../assets/apple.png";
+import mobileAppImage from "../assets/mobile-app.png";
 
 function AppDownloadCTA() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +13,7 @@ function AppDownloadCTA() {
           <div className="md:w-1/2">
             <h2 className="text-3xl font-bold mb-4">Get the MONKEY5 App</h2>
             <p className="mb-6">
-              Download our Android mobile app for a seamless booking experience.
+              Download our iOS mobile app for a seamless booking experience.
               Manage your appointments, track your service provider's arrival,
               and pay securely - all from your smartphone.
             </p>
@@ -89,21 +89,21 @@ function AppDownloadPopup({ isOpen, onClose }) {
               </div>
 
               <p className="text-gray-600 mb-6">
-                Get the full MONKEY5 experience by downloading our Android app.
-                Book services, track your provider's arrival, and manage
-                payments - all in one place.
+                Get the full MONKEY5 experience by downloading our iOS app. Book
+                services, track your provider's arrival, and manage payments -
+                all in one place.
               </p>
 
               <div className="flex flex-col gap-4 mb-6">
                 <div className="flex items-center gap-4 p-3 border border-gray-200 rounded-lg">
                   <img
-                    src={googlePlayIcon}
+                    src={appStoreIcon}
                     alt="Google Play"
                     className="w-10 h-10"
                   />
                   <div>
                     <p className="text-sm text-gray-500">Get it on</p>
-                    <p className="font-bold">Google Play</p>
+                    <p className="font-bold">App Store</p>
                   </div>
                   <motion.button
                     className="ml-auto bg-blue-600 text-white py-2 px-4 rounded-lg text-sm font-bold"
@@ -113,13 +113,6 @@ function AppDownloadPopup({ isOpen, onClose }) {
                     Download
                   </motion.button>
                 </div>
-              </div>
-
-              <div className="text-center text-gray-500 text-sm">
-                <p>
-                  Don't have an Android device? You can still book our services
-                  through our website.
-                </p>
               </div>
             </motion.div>
           </motion.div>
