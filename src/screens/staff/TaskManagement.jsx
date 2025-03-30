@@ -37,6 +37,7 @@ function TaskManagement() {
     if (staffId) {
       fetchBookings();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [staffId]);
 
   const handleConfirm = async () => {
