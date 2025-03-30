@@ -2,7 +2,7 @@
 
 ## 1. Clone dự án
 ```sh
-git clone git@github.com:saintsl4y3r/intro_monkey5.git
+git clone https://github.com/saintsl4y3r/intro_monkey5.git
 ```
 
 ## 2. Cài đặt thư viện cần thiết
