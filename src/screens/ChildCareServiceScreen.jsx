@@ -11,7 +11,6 @@ import childCareIcon from "../assets/childcare-icon.png";
 function ChildCareServiceScreen() {
   const [showBookingPopup, setShowBookingPopup] = useState(false);
 
-  // Animation variants
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: {

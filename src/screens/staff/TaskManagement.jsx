@@ -1,74 +1,114 @@
-import React from "react";
-import { FaDownload } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
 
 function TaskManagement() {
-  const tasks = [
-    {
-      id: 1,
-      bookingId: "100231423",
-      customer: "Hoàng Anh",
-      serviceName: "Cleaning",
-      startTime: "16:00, 26/01/2025",
-      location: "3, Tô Vĩnh Diện, Thủ Đức",
-    },
-    {
-      id: 2,
-      bookingId: "100231424",
-      customer: "Ngọc Anh",
-      serviceName: "Cleaning",
-      startTime: "18:00, 26/01/2025",
-      location: "1, Phan Văn Trị, Gò Vấp",
-    },
-  ];
+  const [bookings, setBookings] = useState([]);
+  const [error, setError] = useState("");
+  const staffId = localStorage.getItem("userId");
+  const fetchBookings = async () => {
+    try {
+      setError("");
+      if (!staffId) {
+        setError("No staffId found in localStorage");
+        setBookings([]);
+        return;
+      }
 
-  const handleDownload = (bookingId) => {
-    const fileUrl = "/booking.pdf";
-    const link = document.createElement("a");
-    link.href = fileUrl;
-    link.download = `Booking_${bookingId}.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      const response = await fetch(
+        `https://monkey5-backend.onrender.com/api/Bookings/staff/${staffId}`
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.errors?.staffId?.join(", ") || "Failed to fetch tasks");
+        setBookings([]);
+        return;
+      }
+
+      const data = await response.json();
+      setBookings(Array.isArray(data.$values) ? data.$values : data);
+    } catch (err) {
+      console.error("Error fetching bookings:", err);
+      setError("Error fetching tasks");
+      setBookings([]);
+    }
+  };
+
+  useEffect(() => {
+    if (staffId) {
+      fetchBookings();
+    }
+  }, [staffId]);
+
+  const handleConfirm = async () => {
+    try {
+      if (!staffId) {
+        alert("No staffId found in localStorage");
+        return;
+      }
+
+      const response = await fetch(
+        `https://monkey5-backend.onrender.com/api/Staffs/${staffId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: "Busy" }),
+        }
+      );
+
+      if (!response.ok) {
+        const errMsg = await response.text();
+        throw new Error(`Failed to update staff status: ${errMsg}`);
+      }
+
+      alert("Status updated to 'Busy'");
+    } catch (err) {
+      console.error("Error updating staff status:", err);
+      alert("Error updating staff status");
+    }
   };
 
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Task Management</h2>
-      <div className="overflow-x-auto">
+      {error && <p className="text-red-500 mb-4">{error}</p>}
+
+      {bookings.length > 0 ? (
         <table className="min-w-full border-collapse">
           <thead>
             <tr className="bg-orange-500 text-white">
-              <th className="p-2 text-left w-12">#</th>
-              <th className="p-2 text-left">Booking ID</th>
-              <th className="p-2 text-left">Customer</th>
-              <th className="p-2 text-left">Service Name</th>
-              <th className="p-2 text-left">Start Time</th>
-              <th className="p-2 text-left">Location</th>
-              <th className="p-2 text-center w-16"></th>
+              <th className="p-2">#</th>
+              <th className="p-2">Booking ID</th>
+              <th className="p-2">Customer Name</th>
+              <th className="p-2">Service Name</th>
+              <th className="p-2">Start Time</th>
+              <th className="p-2">Location</th>
+              <th className="p-2 text-center">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white">
-            {tasks.map((task, index) => (
-              <tr key={task.id} className="border-b hover:bg-gray-100">
+            {bookings.map((task, index) => (
+              <tr key={task.bookingId || index} className="border-b hover:bg-gray-100">
                 <td className="p-2">{index + 1}</td>
                 <td className="p-2">{task.bookingId}</td>
-                <td className="p-2">{task.customer}</td>
+                <td className="p-2">{task.customerName}</td>
                 <td className="p-2">{task.serviceName}</td>
                 <td className="p-2">{task.startTime}</td>
                 <td className="p-2">{task.location}</td>
                 <td className="p-2 text-center">
                   <button
-                    className="text-gray-600 hover:text-black"
-                    onClick={() => handleDownload(task.bookingId)}
+                    onClick={handleConfirm}
+                    className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded mr-2 text-sm"
                   >
-                    <FaDownload size={18} />
+                    Confirm
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
+      ) : (
+        !error && <p>No tasks available</p>
+      )}
     </div>
   );
 }

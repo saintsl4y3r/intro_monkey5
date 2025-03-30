@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "../assets/logo-monkey5.png";
-import googleLogo from "../assets/google-logo.png";
 
 function Login() {
   const [role, setRole] = useState(null);
@@ -145,18 +144,6 @@ function Login() {
               Sign In
             </button>
           </form>
-
-          <div className="my-4 text-center">
-            <span className="text-gray-500">or sign in with</span>
-          </div>
-
-          <div className="flex justify-center gap-4">
-            <button className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded font-bold">
-              <img src={googleLogo} alt="Google" className="w-5 h-5" />
-              Google
-            </button>
-          </div>
-
           <div className="mt-6 text-center">
             <button
               onClick={() => setRole(null)}
