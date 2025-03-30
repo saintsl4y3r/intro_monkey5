@@ -425,14 +425,14 @@ function ChildCareServiceScreen() {
             time you need.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <motion.div
               className="bg-white p-8 rounded-lg shadow-md"
               whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
             >
-              <h3 className="text-2xl font-bold text-center mb-4">Basic</h3>
+              <h3 className="text-2xl font-bold text-center mb-4">One Child</h3>
               <div className="text-center text-4xl font-bold text-orange-500 mb-4">
-                $20<span className="text-lg text-gray-500">/hour</span>
+                150,000₫<span className="text-lg text-gray-500">/hour</span>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center">
@@ -447,7 +447,7 @@ function ChildCareServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  One child
+                  2-8 hours of service
                 </li>
                 <li className="flex items-center">
                   <svg
@@ -461,7 +461,7 @@ function ChildCareServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Basic childcare
+                  Personalized care for one child
                 </li>
                 <li className="flex items-center">
                   <svg
@@ -475,7 +475,21 @@ function ChildCareServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  2-hour minimum
+                  Age-appropriate activities
+                </li>
+                <li className="flex items-center">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Meal preparation included
                 </li>
               </ul>
               <motion.button
@@ -495,9 +509,11 @@ function ChildCareServiceScreen() {
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold">
                 Most Popular
               </div>
-              <h3 className="text-2xl font-bold text-center mb-4">Standard</h3>
+              <h3 className="text-2xl font-bold text-center mb-4">
+                Two Children
+              </h3>
               <div className="text-center text-4xl font-bold text-orange-500 mb-4">
-                $25<span className="text-lg text-gray-500">/hour</span>
+                200,000₫<span className="text-lg text-gray-500">/hour</span>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center">
@@ -512,7 +528,7 @@ function ChildCareServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Up to 2 children
+                  2-8 hours of service
                 </li>
                 <li className="flex items-center">
                   <svg
@@ -526,7 +542,7 @@ function ChildCareServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Meal preparation
+                  Care for two children
                 </li>
                 <li className="flex items-center">
                   <svg
@@ -540,7 +556,7 @@ function ChildCareServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Educational activities
+                  Customized activities for each child
                 </li>
                 <li className="flex items-center">
                   <svg
@@ -554,7 +570,21 @@ function ChildCareServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Real-time updates
+                  Meal preparation included
+                </li>
+                <li className="flex items-center">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Educational activities & games
                 </li>
               </ul>
               <motion.button
@@ -566,82 +596,17 @@ function ChildCareServiceScreen() {
                 Book Now
               </motion.button>
             </motion.div>
+          </div>
 
-            <motion.div
-              className="bg-white p-8 rounded-lg shadow-md"
-              whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
-            >
-              <h3 className="text-2xl font-bold text-center mb-4">Premium</h3>
-              <div className="text-center text-4xl font-bold text-orange-500 mb-4">
-                $35<span className="text-lg text-gray-500">/hour</span>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Up to 3 children
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  All Standard features
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Homework assistance
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Light housekeeping
-                </li>
-              </ul>
-              <motion.button
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowBookingPopup(true)}
-              >
-                Book Now
-              </motion.button>
-            </motion.div>
+          <div className="mt-8 text-center text-gray-600">
+            <p>
+              * Minimum booking of 2 hours required. Maximum of 8 hours per
+              session.
+            </p>
+            <p>
+              * Additional charges may apply for special needs or late-night
+              services.
+            </p>
           </div>
         </div>
       </AnimatedSection>

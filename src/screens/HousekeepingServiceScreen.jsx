@@ -426,87 +426,23 @@ function HousekeepingServiceScreen() {
             Simple, Transparent Pricing
           </h2>
           <p className="text-center text-gray-700 mb-12 max-w-3xl mx-auto">
-            Choose the cleaning plan that best fits your needs and budget. All
-            prices include equipment and cleaning supplies.
+            Choose the cleaning plan that best fits your needs. All prices
+            include equipment and cleaning supplies.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex justify-center">
             <motion.div
-              className="bg-white p-8 rounded-lg shadow-md"
-              whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
-            >
-              <h3 className="text-2xl font-bold text-center mb-4">
-                Standard Clean
-              </h3>
-              <div className="text-center text-4xl font-bold text-orange-500 mb-4">
-                $90<span className="text-lg text-gray-500">/visit</span>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Up to 2 bedrooms
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  General cleaning
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  2-hour service
-                </li>
-              </ul>
-              <motion.button
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowBookingPopup(true)}
-              >
-                Book Now
-              </motion.button>
-            </motion.div>
-
-            <motion.div
-              className="bg-white p-8 rounded-lg shadow-md border-2 border-orange-500 transform scale-105"
+              className="bg-white p-8 rounded-lg shadow-md border-2 border-orange-500 max-w-xl w-full"
               whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
             >
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold">
                 Most Popular
               </div>
               <h3 className="text-2xl font-bold text-center mb-4">
-                Deep Clean
+                Hourly Cleaning
               </h3>
               <div className="text-center text-4xl font-bold text-orange-500 mb-4">
-                $150<span className="text-lg text-gray-500">/visit</span>
+                90,000₫<span className="text-lg text-gray-500">/hour</span>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center">
@@ -521,7 +457,7 @@ function HousekeepingServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Up to 3 bedrooms
+                  2-5 hours of service
                 </li>
                 <li className="flex items-center">
                   <svg
@@ -535,7 +471,7 @@ function HousekeepingServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Thorough deep cleaning
+                  Professional cleaning supplies
                 </li>
                 <li className="flex items-center">
                   <svg
@@ -549,7 +485,7 @@ function HousekeepingServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Inside appliances
+                  Customized cleaning focus
                 </li>
                 <li className="flex items-center">
                   <svg
@@ -563,96 +499,42 @@ function HousekeepingServiceScreen() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  4-hour service
+                  Trained professional cleaners
+                </li>
+                <li className="flex items-center">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Eco-friendly options available
                 </li>
               </ul>
               <motion.button
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setShowBookingPopup(true)}
               >
                 Book Now
               </motion.button>
             </motion.div>
+          </div>
 
-            <motion.div
-              className="bg-white p-8 rounded-lg shadow-md"
-              whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
-            >
-              <h3 className="text-2xl font-bold text-center mb-4">
-                Move In/Out
-              </h3>
-              <div className="text-center text-4xl font-bold text-orange-500 mb-4">
-                $250<span className="text-lg text-gray-500">/visit</span>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Any size home
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Complete deep cleaning
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Cabinet interiors
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  6+ hour service
-                </li>
-              </ul>
-              <motion.button
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowBookingPopup(true)}
-              >
-                Book Now
-              </motion.button>
-            </motion.div>
+          <div className="mt-8 text-center text-gray-600">
+            <p>
+              * Minimum booking of 2 hours required. Maximum of 5 hours per
+              session.
+            </p>
+            <p>
+              * Additional charges may apply for deep cleaning or specialized
+              services.
+            </p>
           </div>
         </div>
       </AnimatedSection>
