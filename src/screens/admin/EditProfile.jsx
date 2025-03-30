@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 
 function EditProfile() {
-  const [adminId, setAdminId] = useState("100231423");
   const [name, setName] = useState("Hoàng Anh");
-  const [birthday, setBirthday] = useState("2004-04-26"); 
+  const [birthday, setBirthday] = useState("2004-04-26");
   const [phoneNumber, setPhoneNumber] = useState("0939939993");
-  const [address, setAddress] = useState("3, Tô Vĩnh Diện, Thủ Đức, Hồ Chí Minh");
+  const [address, setAddress] = useState(
+    "3, Tô Vĩnh Diện, Thủ Đức, Hồ Chí Minh"
+  );
   const [email, setEmail] = useState("sayhoang.work@gmail.com");
 
   const handleAddAvatar = () => {
@@ -15,9 +16,20 @@ function EditProfile() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    alert("Profile saved!\n" + JSON.stringify({
-      adminId, name, birthday, phoneNumber, address, email
-    }, null, 2));
+    alert(
+      "Profile saved!\n" +
+        JSON.stringify(
+          {
+            name,
+            birthday,
+            phoneNumber,
+            address,
+            email,
+          },
+          null,
+          2
+        )
+    );
   };
 
   return (
@@ -37,16 +49,6 @@ function EditProfile() {
         </button>
 
         <div className="space-y-4 w-full max-w-sm">
-          <div>
-            <label className="block font-semibold mb-1">ID</label>
-            <input
-              type="text"
-              className="w-full p-2 border rounded"
-              value={adminId}
-              onChange={(e) => setAdminId(e.target.value)}
-            />
-          </div>
-
           <div>
             <label className="block font-semibold mb-1">Name</label>
             <input
