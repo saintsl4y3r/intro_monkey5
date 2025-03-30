@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FaDownload } from "react-icons/fa";
 
 function TaskManagement() {
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState("");
   const staffId = localStorage.getItem("userId");
-
   const fetchTasks = async () => {
     try {
       setError("");
@@ -16,7 +14,6 @@ function TaskManagement() {
       }
       const response = await fetch("https://monkey5-backend.onrender.com/api/Bookings");
       if (!response.ok) {
-        const errorData = await response.json();
         setError("Failed to fetch tasks");
         setTasks([]);
         return;
@@ -29,7 +26,7 @@ function TaskManagement() {
         allTasks = data;
       }
       const filteredTasks = allTasks.filter(
-        (task) => task.status === "Available" && !task.staff
+        (task) => task.status === "Available" && task.staffId === staffId
       );
       setTasks(filteredTasks);
     } catch (err) {
@@ -58,8 +55,7 @@ function TaskManagement() {
         body: JSON.stringify({ status }),
       });
       if (!response.ok) {
-        const errMsg = await response.text();
-        throw new Error(`Failed to update staff status: ${errMsg}`);
+        throw new Error(`Failed to update staff status`);
       }
       alert(`Staff status updated to ${status}`);
     } catch (err) {
@@ -76,15 +72,8 @@ function TaskManagement() {
     updateStaffStatus("Available");
   };
 
-  const formatDate = (isoString) => {
-    const date = new Date(isoString);
-    return date.toLocaleDateString();
-  };
-
-  const formatTime = (isoString) => {
-    const date = new Date(isoString);
-    return date.toLocaleTimeString();
-  };
+  const formatDate = (isoString) => new Date(isoString).toLocaleDateString();
+  const formatTime = (isoString) => new Date(isoString).toLocaleTimeString();
 
   return (
     <div className="p-4">

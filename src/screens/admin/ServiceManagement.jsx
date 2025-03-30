@@ -5,9 +5,7 @@ function ServiceManagement() {
   const [showPopup, setShowPopup] = useState(false);
   const [showDetailPopup, setShowDetailPopup] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
-
   const [newService, setNewService] = useState({
-    serviceId: "",
     serviceName: "",
     description: "",
     unitPrice: "",
@@ -50,7 +48,6 @@ function ServiceManagement() {
       await fetchServices();
       setShowPopup(false);
       setNewService({
-        serviceId: "",
         serviceName: "",
         description: "",
         unitPrice: "",
@@ -98,7 +95,6 @@ function ServiceManagement() {
         <table className="min-w-full border-collapse">
           <thead>
             <tr className="bg-orange-500 text-white">
-              <th className="p-2 text-left">Service ID</th>
               <th className="p-2 text-left">Name</th>
               <th className="p-2 text-left">Unit Price</th>
               <th className="p-2 text-left">Unit Type</th>
@@ -109,7 +105,6 @@ function ServiceManagement() {
             {services && services.length > 0 ? (
               services.map((svc, index) => (
                 <tr key={svc.serviceId || index} className="border-b hover:bg-gray-100">
-                  <td className="p-2">{svc.serviceId}</td>
                   <td className="p-2">{svc.serviceName}</td>
                   <td className="p-2">{svc.unitPrice}</td>
                   <td className="p-2">{svc.unitType}</td>
@@ -131,7 +126,7 @@ function ServiceManagement() {
               ))
             ) : (
               <tr>
-                <td className="p-2" colSpan="5">
+                <td className="p-2" colSpan="4">
                   No services found
                 </td>
               </tr>
@@ -144,13 +139,6 @@ function ServiceManagement() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
           <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
             <h2 className="text-xl font-bold mb-4">Add Service</h2>
-            <input
-              type="text"
-              placeholder="Service ID"
-              value={newService.serviceId}
-              onChange={(e) => setNewService({ ...newService, serviceId: e.target.value })}
-              className="border p-2 w-full mb-2"
-            />
             <input
               type="text"
               placeholder="Name"
@@ -201,9 +189,6 @@ function ServiceManagement() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
           <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
             <h2 className="text-xl font-bold mb-4">Service Detail</h2>
-            <p className="mb-2">
-              <strong>Service ID:</strong> {selectedService.serviceId}
-            </p>
             <p className="mb-2">
               <strong>Name:</strong> {selectedService.serviceName}
             </p>

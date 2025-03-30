@@ -19,7 +19,7 @@ function EmployeeManagement() {
 
   const fetchEmployees = async () => {
     try {
-      const response = await fetch("https://monkey5-backend.onrender.com/api/Staffs");
+      const response = await fetch("/api/Staffs");
       if (!response.ok) {
         throw new Error(`Failed to fetch employees, status: ${response.status}`);
       }
@@ -54,7 +54,7 @@ function EmployeeManagement() {
 
   const handleAddEmployee = async () => {
     try {
-      const response = await fetch("https://monkey5-backend.onrender.com/api/Staffs", {
+      const response = await fetch("/api/Staffs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newEmployee),
@@ -85,16 +85,19 @@ function EmployeeManagement() {
   const handleDeleteEmployee = async (userId) => {
     if (!window.confirm(`Are you sure you want to delete employee ${userId}?`)) return;
     try {
-      const response = await fetch(`https://monkey5-backend.onrender.com/api/Staffs/${userId}`, {
+      console.log(`Deleting employee with userId: ${userId}`);
+      const response = await fetch(`/api/Staffs/${userId}`, {
         method: "DELETE",
       });
       if (!response.ok) {
-        throw new Error("Failed to delete employee");
+        const errMsg = await response.text();
+        console.error("Delete error:", response.status, errMsg);
+        throw new Error(`Failed to delete employee: ${errMsg}`);
       }
       await fetchEmployees();
     } catch (error) {
       console.error("Error deleting employee:", error);
-      alert("Error deleting employee. Please try again.");
+      alert(`Error deleting employee. ${error.message}`);
     }
   };
 
@@ -170,13 +173,6 @@ function EmployeeManagement() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
           <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
             <h2 className="text-xl font-bold mb-4">Add Employee</h2>
-            <input
-              type="text"
-              placeholder="User ID"
-              value={newEmployee.userId}
-              onChange={(e) => setNewEmployee({ ...newEmployee, userId: e.target.value })}
-              className="border p-2 w-full mb-2"
-            />
             <input
               type="text"
               placeholder="Full Name"

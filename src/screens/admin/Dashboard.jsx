@@ -17,7 +17,7 @@ function Dashboard() {
       id: 1,
       color: "bg-blue-500",
       icon: <FaComments size={40} className="text-white" />,
-      title: "10 New Feedbacks!",
+      title: "Feedbacks Management",
       route: "/admin/feedback",
     },
     {
