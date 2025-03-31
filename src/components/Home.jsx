@@ -52,7 +52,7 @@ function Home() {
   return (
     <div className="text-foreground">
       {/* HERO */}
-      <Section className="bg-secondary text-primary-foreground py-24 text-center px-4">
+      <Section className="bg-primary text-primary-foreground py-24 text-center px-4">
         <motion.h1
           className="text-5xl font-bold mb-4"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -70,7 +70,7 @@ function Home() {
           Book trusted professionals for all your home needs in just a few clicks
         </motion.p>
         <motion.button
-          className="bg-primary hover:bg-primary text-secondary-foreground font-bold py-3 px-6 rounded"
+          className="bg-secondary hover:bg-accent text-secondary-foreground font-bold py-3 px-6 rounded"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0 }}
