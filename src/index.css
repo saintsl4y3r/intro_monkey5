@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body, html, #root {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  background-color: #f9f9f9;
-}
-
-
-
 @layer base {
   :root {
     --background: 17 57% 88%; /* #F4D6CC */
@@ -43,6 +34,14 @@ body, html, #root {
 
     --radius: 0.5rem; /* Bạn có thể giữ hoặc thay đổi giá trị này */
   }
+
+  .dark {
+    /* ... */
+  }
+
+  * {
+    @apply border-border; /* Áp dụng biến --border làm màu border mặc định */
+  }
 }
 
 
@@ -53,6 +52,7 @@ body, html, #root {
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Montserrat', sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
