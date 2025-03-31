@@ -7,26 +7,33 @@ function WorkManagement() {
   const [error, setError] = useState(null);
   const [selectedStaff, setSelectedStaff] = useState({});
   const [updatingBooking, setUpdatingBooking] = useState(null);
+  const [viewMode, setViewMode] = useState("pending"); // "pending" or "all"
 
   useEffect(() => {
     fetchBookings();
     fetchAvailableStaff();
-  }, []);
+  }, [viewMode]); // Re-fetch when view mode changes
 
   const fetchBookings = async () => {
     try {
       setLoading(true);
-      const response = await fetch("/api/Bookings");
+      // Fetch based on view mode
+      const url =
+        viewMode === "pending"
+          ? "/api/Bookings/status/Pending"
+          : "/api/Bookings";
+
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Failed to fetch bookings, status: ${response.status}`);
       }
       const data = await response.json();
-      if (data && Array.isArray(data.$values)) {
-        setBookings(data.$values);
+      if (data && Array.isArray(data)) {
+        setBookings(data);
 
         // Initialize selected staff map with existing assignments
         const staffSelections = {};
-        data.$values.forEach((booking) => {
+        data.forEach((booking) => {
           if (booking.staffId) {
             staffSelections[booking.bookingId] = booking.staffId;
           }
@@ -52,8 +59,8 @@ function WorkManagement() {
         );
       }
       const data = await response.json();
-      if (data && Array.isArray(data.$values)) {
-        setAvailableStaff(data.$values);
+      if (data && Array.isArray(data)) {
+        setAvailableStaff(data);
       } else {
         setAvailableStaff([]);
       }
@@ -117,7 +124,7 @@ function WorkManagement() {
         serviceStartTime: booking.serviceStartTime,
         serviceEndTime: booking.serviceEndTime,
         serviceUnitAmount: booking.serviceUnitAmount,
-        status: booking.status,
+        status: booking.status, // Keep status as Pending
         note: booking.note || "",
       };
 
@@ -145,6 +152,10 @@ function WorkManagement() {
     }
   };
 
+  const toggleViewMode = () => {
+    setViewMode(viewMode === "pending" ? "all" : "pending");
+  };
+
   if (loading)
     return <div className="p-4 text-center">Loading bookings...</div>;
   if (error) return <div className="p-4 text-center text-red-500">{error}</div>;
@@ -152,6 +163,34 @@ function WorkManagement() {
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Work Management</h2>
+
+      <div className="mb-4">
+        <button
+          onClick={toggleViewMode}
+          className={`px-4 py-2 rounded font-bold ${
+            viewMode === "pending"
+              ? "bg-blue-500 hover:bg-blue-600 text-white"
+              : "bg-gray-300 hover:bg-gray-400 text-gray-800"
+          } mr-2`}
+        >
+          {viewMode === "pending"
+            ? "Currently Viewing: Pending Only"
+            : "View Pending Only"}
+        </button>
+        <button
+          onClick={toggleViewMode}
+          className={`px-4 py-2 rounded font-bold ${
+            viewMode === "all"
+              ? "bg-blue-500 hover:bg-blue-600 text-white"
+              : "bg-gray-300 hover:bg-gray-400 text-gray-800"
+          }`}
+        >
+          {viewMode === "all"
+            ? "Currently Viewing: All Bookings"
+            : "View All Bookings"}
+        </button>
+      </div>
+
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse">
           <thead>
@@ -205,10 +244,7 @@ function WorkManagement() {
                       onChange={(e) =>
                         handleStaffSelection(booking.bookingId, e.target.value)
                       }
-                      disabled={
-                        booking.status === "Completed" ||
-                        booking.status === "Cancelled"
-                      }
+                      disabled={booking.status !== "Pending"}
                     >
                       <option value="">-- Select Staff --</option>
                       {availableStaff.map((staff) => (
@@ -232,16 +268,14 @@ function WorkManagement() {
                       disabled={
                         updatingBooking === booking.bookingId ||
                         !selectedStaff[booking.bookingId] ||
-                        booking.status === "Completed" ||
-                        booking.status === "Cancelled" ||
+                        booking.status !== "Pending" ||
                         booking.staffId === selectedStaff[booking.bookingId]
                       }
                       className={`px-3 py-1 rounded text-white font-medium text-sm ${
                         updatingBooking === booking.bookingId
                           ? "bg-gray-400"
                           : !selectedStaff[booking.bookingId] ||
-                            booking.status === "Completed" ||
-                            booking.status === "Cancelled" ||
+                            booking.status !== "Pending" ||
                             booking.staffId === selectedStaff[booking.bookingId]
                           ? "bg-gray-400 cursor-not-allowed"
                           : "bg-green-500 hover:bg-green-600"

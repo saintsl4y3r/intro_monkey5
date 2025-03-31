@@ -20,8 +20,8 @@ function ServiceManagement() {
         throw new Error(`Failed to fetch services, status: ${response.status}`);
       }
       const data = await response.json();
-      if (data && Array.isArray(data.$values)) {
-        setServices(data.$values);
+      if (data && Array.isArray(data)) {
+        setServices(data);
       } else {
         setServices([]);
       }

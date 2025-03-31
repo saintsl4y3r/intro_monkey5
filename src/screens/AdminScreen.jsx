@@ -10,6 +10,7 @@ import {
   FaBriefcase,
   FaCommentDots,
   FaChartBar,
+  FaClipboardCheck,
 } from "react-icons/fa";
 
 import Dashboard from "./admin/Dashboard";
@@ -19,6 +20,7 @@ import WorkManagement from "./admin/WorkManagement";
 import FeedbackManagement from "./admin/FeedbackManagement";
 import Reports from "./admin/Reports";
 import EditProfile from "./admin/EditProfile";
+import CompletionReports from "./admin/CompletionReports";
 
 import logo from "../assets/logo.svg";
 import "../styles/AdminLayout.css";
@@ -32,6 +34,7 @@ function AdminScreen() {
   const handleLogout = () => {
     localStorage.removeItem("userName");
     localStorage.removeItem("userRole");
+    localStorage.removeItem("userId"); // Also remove userId
     navigate("/");
   };
 
@@ -46,7 +49,10 @@ function AdminScreen() {
           <div className="logo-area">
             <img src={logo} alt="Logo" className="logo" />
           </div>
-          <button className="toggle-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
+          <button
+            className="toggle-btn"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+          >
             <FaBars />
           </button>
         </div>
@@ -61,25 +67,41 @@ function AdminScreen() {
             <li>
               <Link to="/admin/services">
                 <FaServicestack className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Service Management</span>}
+                {sidebarOpen && (
+                  <span className="menu-text">Service Management</span>
+                )}
               </Link>
             </li>
             <li>
               <Link to="/admin/employees">
                 <FaUserFriends className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Employee Management</span>}
+                {sidebarOpen && (
+                  <span className="menu-text">Employee Management</span>
+                )}
               </Link>
             </li>
             <li>
               <Link to="/admin/work">
                 <FaBriefcase className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Work Management</span>}
+                {sidebarOpen && (
+                  <span className="menu-text">Work Management</span>
+                )}
+              </Link>
+            </li>
+            <li>
+              <Link to="/admin/completion-reports">
+                <FaClipboardCheck className="menu-icon" />
+                {sidebarOpen && (
+                  <span className="menu-text">Completion Reports</span>
+                )}
               </Link>
             </li>
             <li>
               <Link to="/admin/feedback">
                 <FaCommentDots className="menu-icon" />
-                {sidebarOpen && <span className="menu-text">Feedback Management</span>}
+                {sidebarOpen && (
+                  <span className="menu-text">Feedback Management</span>
+                )}
               </Link>
             </li>
             <li>
@@ -95,7 +117,10 @@ function AdminScreen() {
       <div className="main-area">
         <header className="topbar">
           <div className="right-section">
-            <div className="profile" onClick={() => setDropdownOpen(!dropdownOpen)}>
+            <div
+              className="profile"
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            >
               <FaUserCircle className="profile-icon" />
               <span className="profile-name">{userName}</span>
               <FaChevronDown className="dropdown-icon" />
@@ -119,6 +144,8 @@ function AdminScreen() {
             <Route path="feedback" element={<FeedbackManagement />} />
             <Route path="reports" element={<Reports />} />
             <Route path="profile" element={<EditProfile />} />
+            <Route path="/completion-reports" element={<CompletionReports />} />
+            <Route path="*" element={<Dashboard />} />
           </Routes>
         </main>
 

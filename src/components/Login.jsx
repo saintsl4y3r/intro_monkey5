@@ -18,26 +18,26 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setErrorMsg("");
-  
+
     if (!role) {
       setErrorMsg("Please select a role.");
       return;
     }
-  
+
     let apiUrl = "";
     if (role === "staff") {
       apiUrl = "https://monkey5-backend.onrender.com/api/Staffs/login";
     } else if (role === "admin") {
       apiUrl = "https://monkey5-backend.onrender.com/api/Managers/login";
     }
-  
+
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-  
+
       if (!response.ok) {
         if (response.status === 404) {
           setErrorMsg("Account does not exist");
@@ -48,10 +48,11 @@ function Login() {
         }
         return;
       }
-  
+
       const data = await response.json();
       localStorage.setItem("userName", data.fullName);
       localStorage.setItem("userRole", role);
+      localStorage.setItem("userId", data.userId);
       if (role === "staff") {
         navigate("/staff");
       } else {
@@ -61,7 +62,7 @@ function Login() {
       console.error(error);
       setErrorMsg("Login failed. Please check your email or password");
     }
-  };  
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
@@ -133,7 +134,10 @@ function Login() {
             </div>
             {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
             <div className="flex justify-between text-sm">
-              <Link to="/forgot-password" className="text-blue-500 hover:underline">
+              <Link
+                to="/forgot-password"
+                className="text-blue-500 hover:underline"
+              >
                 Forgot password?
               </Link>
             </div>

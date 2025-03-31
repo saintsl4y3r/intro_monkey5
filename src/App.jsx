@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import AboutUsScreen from "./screens/AboutUsScreen";
@@ -36,9 +41,15 @@ function App() {
         <Route path="/about" element={<AboutUsScreen />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/services/childcare" element={<ChildCareServiceScreen />} />
+        <Route
+          path="/services/childcare"
+          element={<ChildCareServiceScreen />}
+        />
         <Route path="/services/cooking" element={<CookingServiceScreen />} />
-        <Route path="/services/housekeeping" element={<HousekeepingServiceScreen />} />
+        <Route
+          path="/services/housekeeping"
+          element={<HousekeepingServiceScreen />}
+        />
         <Route path="/staff/*" element={<StaffScreen />} />
         <Route path="/admin/*" element={<AdminScreen />} />
       </Routes>

@@ -27,8 +27,8 @@ function EmployeeManagement() {
         );
       }
       const data = await response.json();
-      if (data && Array.isArray(data.$values)) {
-        setEmployees(data.$values);
+      if (data && Array.isArray(data)) {
+        setEmployees(data);
       } else {
         setEmployees([]);
       }
