@@ -10,7 +10,7 @@ function LeaveRequest() {
     e.preventDefault();
     setError("");
     try {
-      const response = await fetch("https://monkey5-backend.onrender.com/api/LeaveRequests", {
+      const response = await fetch("/api/LeaveRequests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -38,7 +38,9 @@ function LeaveRequest() {
       <h2 className="text-2xl font-bold mb-6">Leave Request</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
-        <label className="text-right font-semibold self-center">Leave Start:</label>
+        <label className="text-right font-semibold self-center">
+          Leave Start:
+        </label>
         <input
           type="date"
           className="p-2 border rounded"
@@ -47,7 +49,9 @@ function LeaveRequest() {
           required
         />
 
-        <label className="text-right font-semibold self-center">Leave End:</label>
+        <label className="text-right font-semibold self-center">
+          Leave End:
+        </label>
         <input
           type="date"
           className="p-2 border rounded"
@@ -56,7 +60,9 @@ function LeaveRequest() {
           required
         />
 
-        <label className="text-right font-semibold self-start">Reasons For Leave:</label>
+        <label className="text-right font-semibold self-start">
+          Reasons For Leave:
+        </label>
         <textarea
           className="p-2 border rounded h-24"
           value={reasons}

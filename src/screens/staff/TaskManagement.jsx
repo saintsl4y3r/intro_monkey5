@@ -28,9 +28,7 @@ function TaskManagement() {
       }
 
       // Get all tasks assigned to this staff
-      const response = await fetch(
-        `https://monkey5-backend.onrender.com/api/Bookings/staff/${staffId}`
-      );
+      const response = await fetch(`/api/Bookings/staff/${staffId}`);
       if (!response.ok) {
         setError("Failed to fetch tasks");
         setTasks([]);
@@ -91,14 +89,11 @@ function TaskManagement() {
         note: task.note || "",
       };
 
-      const response = await fetch(
-        `https://monkey5-backend.onrender.com/api/Bookings/${task.bookingId}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedBooking),
-        }
-      );
+      const response = await fetch(`/api/Bookings/${task.bookingId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedBooking),
+      });
 
       if (!response.ok) {
         throw new Error(`Failed to confirm task`);
@@ -143,14 +138,11 @@ function TaskManagement() {
         note: task.note || "",
       };
 
-      const response = await fetch(
-        `https://monkey5-backend.onrender.com/api/Bookings/${task.bookingId}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedBooking),
-        }
-      );
+      const response = await fetch(`/api/Bookings/${task.bookingId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedBooking),
+      });
 
       if (!response.ok) {
         throw new Error(`Failed to cancel task`);
@@ -192,17 +184,14 @@ function TaskManagement() {
       return;
     }
     try {
-      const response = await fetch(
-        `https://monkey5-backend.onrender.com/api/Staffs/${staffId}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            userId: staffId, // Add the userId field
-            status: status,
-          }),
-        }
-      );
+      const response = await fetch(`/api/Staffs/${staffId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: staffId, // Add the userId field
+          status: status,
+        }),
+      });
       if (!response.ok) {
         throw new Error(`Failed to update staff status`);
       }
@@ -230,18 +219,15 @@ function TaskManagement() {
 
     try {
       // Step 1: Create completion report
-      const reportResponse = await fetch(
-        "https://monkey5-backend.onrender.com/api/CompletionReports",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            bookingId: selectedTask.bookingId,
-            reportText: reportText,
-            reportImages: [],
-          }),
-        }
-      );
+      const reportResponse = await fetch("/api/CompletionReports", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          bookingId: selectedTask.bookingId,
+          reportText: reportText,
+          reportImages: [],
+        }),
+      });
 
       if (!reportResponse.ok) {
         throw new Error("Failed to create completion report");
@@ -259,13 +245,10 @@ function TaskManagement() {
           formData.append("file", image);
           formData.append("reportId", reportId);
 
-          const uploadResponse = await fetch(
-            "https://monkey5-backend.onrender.com/api/ReportImages/upload",
-            {
-              method: "POST",
-              body: formData,
-            }
-          );
+          const uploadResponse = await fetch("/api/ReportImages/upload", {
+            method: "POST",
+            body: formData,
+          });
 
           if (!uploadResponse.ok) {
             console.error("Failed to upload image:", image.name);
@@ -280,7 +263,7 @@ function TaskManagement() {
       // Step 3: Update report with uploaded images if needed
       if (uploadedImagesList.length > 0) {
         const updateReportResponse = await fetch(
-          `https://monkey5-backend.onrender.com/api/CompletionReports/${reportId}`,
+          `/api/CompletionReports/${reportId}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -313,7 +296,7 @@ function TaskManagement() {
       };
 
       const bookingResponse = await fetch(
-        `https://monkey5-backend.onrender.com/api/Bookings/${selectedTask.bookingId}`,
+        `/api/Bookings/${selectedTask.bookingId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

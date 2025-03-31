@@ -20,8 +20,8 @@ function WorkManagement() {
       // Fetch based on view mode
       const url =
         viewMode === "pending"
-          ? "https://monkey5-backend.onrender.com/api/Bookings/status/Pending"
-          : "https://monkey5-backend.onrender.com/api/Bookings";
+          ? "/api/Bookings/status/Pending"
+          : "/api/Bookings";
 
       const response = await fetch(url);
       if (!response.ok) {
@@ -52,9 +52,7 @@ function WorkManagement() {
 
   const fetchAvailableStaff = async () => {
     try {
-      const response = await fetch(
-        "https://monkey5-backend.onrender.com/api/Staffs/available"
-      );
+      const response = await fetch("/api/Staffs/available");
       if (!response.ok) {
         throw new Error(
           `Failed to fetch available staff, status: ${response.status}`
@@ -130,16 +128,13 @@ function WorkManagement() {
         note: booking.note || "",
       };
 
-      const response = await fetch(
-        `https://monkey5-backend.onrender.com/api/Bookings/${booking.bookingId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedBooking),
-        }
-      );
+      const response = await fetch(`/api/Bookings/${booking.bookingId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedBooking),
+      });
 
       if (!response.ok) {
         const errorData = await response.text();

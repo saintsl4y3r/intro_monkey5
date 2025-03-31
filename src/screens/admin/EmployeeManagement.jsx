@@ -20,9 +20,7 @@ function EmployeeManagement() {
 
   const fetchEmployees = async () => {
     try {
-      const response = await fetch(
-        "https://monkey5-backend.onrender.com/api/Staffs"
-      );
+      const response = await fetch("/api/Staffs");
       if (!response.ok) {
         throw new Error(
           `Failed to fetch employees, status: ${response.status}`
@@ -74,14 +72,11 @@ function EmployeeManagement() {
     if (!validateForm()) return;
 
     try {
-      const response = await fetch(
-        "https://monkey5-backend.onrender.com/api/Staffs",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newEmployee),
-        }
-      );
+      const response = await fetch("/api/Staffs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newEmployee),
+      });
 
       if (!response.ok) {
         const errData = await response.json();
@@ -116,12 +111,9 @@ function EmployeeManagement() {
       return;
     try {
       console.log(`Deleting employee with userId: ${userId}`);
-      const response = await fetch(
-        `https://monkey5-backend.onrender.com/api/Staffs/${userId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`/api/Staffs/${userId}`, {
+        method: "DELETE",
+      });
       if (!response.ok) {
         const errMsg = await response.text();
         console.error("Delete error:", response.status, errMsg);

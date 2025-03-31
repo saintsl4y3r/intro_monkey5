@@ -8,7 +8,7 @@ function FeedbackManagement() {
   const fetchFeedbacks = async () => {
     try {
       setError("");
-      const response = await fetch("https://monkey5-backend.onrender.com/api/Reviews");
+      const response = await fetch("/api/Reviews");
       if (!response.ok) {
         throw new Error(`Failed to fetch reviews, status: ${response.status}`);
       }
@@ -59,7 +59,10 @@ function FeedbackManagement() {
           <tbody className="bg-white">
             {feedbacks.length > 0 ? (
               feedbacks.map((fb, index) => (
-                <tr key={fb.reviewId || index} className="border-b hover:bg-gray-100">
+                <tr
+                  key={fb.reviewId || index}
+                  className="border-b hover:bg-gray-100"
+                >
                   <td className="p-2">{index + 1}</td>
                   <td className="p-2">
                     {fb.booking && fb.booking.customer
@@ -102,12 +105,14 @@ function FeedbackManagement() {
             </p>
             {selectedFeedback.booking && selectedFeedback.booking.service && (
               <p className="mb-2">
-                <strong>Service:</strong> {selectedFeedback.booking.service.serviceName}
+                <strong>Service:</strong>{" "}
+                {selectedFeedback.booking.service.serviceName}
               </p>
             )}
             {selectedFeedback.booking && selectedFeedback.booking.customer && (
               <p className="mb-2">
-                <strong>Customer:</strong> {selectedFeedback.booking.customer.fullName}
+                <strong>Customer:</strong>{" "}
+                {selectedFeedback.booking.customer.fullName}
               </p>
             )}
             <p className="mb-2">
@@ -117,7 +122,8 @@ function FeedbackManagement() {
               <strong>Comment:</strong> {selectedFeedback.comment}
             </p>
             <p className="mb-2">
-              <strong>Review Date:</strong> {formatDateTime(selectedFeedback.reviewDateTime)}
+              <strong>Review Date:</strong>{" "}
+              {formatDateTime(selectedFeedback.reviewDateTime)}
             </p>
             {selectedFeedback.booking && selectedFeedback.booking.note && (
               <p className="mb-2">
