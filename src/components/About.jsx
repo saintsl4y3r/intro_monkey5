@@ -112,7 +112,7 @@ function About() {
           id="meaning"
           variants={fadeInUp}
         >
-          <div className="flex-1">
+          <div>
             <motion.h2
               className="text-3xl font-bold font-bold text-orange-500 mb-4"
               variants={fadeInUp}
@@ -120,12 +120,8 @@ function About() {
               We are MONKEY5
             </motion.h2>
             <motion.p className="mb-2" variants={fadeInUp}>
-              MONKEY5 Co., Ltd was founded on January 14, 2025 by CEO – Founder
-              Hoàng Anh.
-            </motion.p>
-            <motion.p variants={fadeInUp}>
-              We are pioneers in leveraging technology to revolutionize the home
-              service industry in Vietnam.
+            MONKEY5 Co., Ltd was founded on January 14, 2025 by CEO and Founder Hoàng Anh. The company is pioneering in leveraging technology to revolutionize the home service industry in Vietnam. 
+            With a strong focus on core values including Quality, Dedication, Convenience, and Innovation, MONKEY5 ensures the highest service quality through investments in recruitment, training, and quality assurance.
             </motion.p>
           </div>
           <motion.div
@@ -150,8 +146,7 @@ function About() {
               The Meaning of MONKEY5
             </motion.h2>
             <motion.p variants={fadeInRight}>
-              Our name is inspired by agile, playful monkeys that symbolize our
-              hardworking, innovative team.
+            The name MONKEY5 is inspired by the characteristics of agile and playful monkeys, which reflect the core values of our team. Monkeys are known for their adaptability, creativity, and teamwork—qualities that resonate deeply with the hardworking and innovative spirit of MONKEY5.
             </motion.p>
           </div>
             <img
@@ -238,7 +233,7 @@ function About() {
               className="max-w-md w-full rounded"
             />
         </AnimatedSection>
-
+        
         <AnimatedSection
           className="flex flex-col md:flex-row-reverse items-center justify-between gap-4"
           id="mission"

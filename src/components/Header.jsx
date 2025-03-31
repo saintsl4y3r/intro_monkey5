@@ -109,6 +109,13 @@ function Header() {
                     transition={{ duration: 0.2 }}
                   >
                     <Link
+                      to="/services/housekeeping"
+                      className="block px-4 py-2 text-gray-800 hover:bg-orange-100"
+                      onClick={() => setShowServicesDropdown(false)}
+                    >
+                      Cleanning
+                    </Link>
+                    <Link
                       to="/services/childcare"
                       className="block px-4 py-2 text-gray-800 hover:bg-orange-100"
                       onClick={() => setShowServicesDropdown(false)}
@@ -121,13 +128,6 @@ function Header() {
                       onClick={() => setShowServicesDropdown(false)}
                     >
                       Cooking
-                    </Link>
-                    <Link
-                      to="/services/housekeeping"
-                      className="block px-4 py-2 text-gray-800 hover:bg-orange-100"
-                      onClick={() => setShowServicesDropdown(false)}
-                    >
-                      Housekeeping
                     </Link>
                   </motion.div>
                 )}
