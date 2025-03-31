@@ -50,37 +50,52 @@ function Home() {
   };
 
   return (
-    <div className="text-foreground">
+    <div className="text-gray-800">
       {/* HERO */}
-      <Section className="bg-primary text-primary-foreground py-24 text-center px-4">
-        <motion.h1
-          className="text-5xl font-bold mb-4"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          Professional Home Services, On-Demand
-        </motion.h1>
-        <motion.p
-          className="text-lg max-w-2xl mx-auto mb-8"
+      <section
+        id="hero"
+        className="relative w-full h-[40vh] overflow-hidden scroll-mt-24"
+        style={{
+          backgroundColor: "linear-gradient(to right, #FF7E5F, #FF6B6B)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <motion.div
+          className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
+          transition={{ duration: 1 }}
         >
-          Book trusted professionals for all your home needs in just a few clicks
-        </motion.p>
-        <motion.button
-          className="bg-secondary hover:bg-accent text-secondary-foreground font-bold py-3 px-6 rounded"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          onClick={() => setShowBookingPopup(true)}
-        >
-          Book a Service
-        </motion.button>
-      </Section>
+          <motion.h1
+            className="text-5xl font-bold mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            Professional Home Services, On-Demand
+          </motion.h1>
+          <motion.p
+            className="text-lg max-w-2xl mx-auto mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            Book trusted professionals for all your home needs in just a few clicks
+          </motion.p>
+          <motion.button
+            className="bg-secondary hover:bg-accent text-secondary-foreground font-bold py-3 px-6 rounded"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            onClick={() => setShowBookingPopup(true)}
+          >
+            Book a Service
+          </motion.button>
+        </motion.div>
+      </section>
 
       <Section className="py-16 text-center" id="benefits">
         <h2 className="text-4xl font-bold text-secondary mb-8">
@@ -95,7 +110,7 @@ function Home() {
             viewport={{ once: false, amount: 0.5 }}
           >
             <div className="relative mb-4">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-md"></div>
+              <div className="absolute -inset-1 from-primary/20 to-secondary/20 rounded-full"></div>
               <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
                 <Clock size={36} strokeWidth={2} />
               </div>
@@ -113,7 +128,7 @@ function Home() {
             viewport={{ once: false, amount: 0.5 }}
           >
             <div className="relative mb-4">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-md"></div>
+              <div className="absolute -inset-1 from-primary/20 to-secondary/20 rounded-full blur-md"></div>
               <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
                 <UserCheck size={36} strokeWidth={2} />
               </div>
@@ -131,7 +146,7 @@ function Home() {
             viewport={{ once: false, amount: 0.5 }}
           >
             <div className="relative mb-4">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-md"></div>
+              <div className="absolute -inset-1 from-primary/20 to-secondary/20 rounded-full blur-md"></div>
               <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
                 <Shield size={36} strokeWidth={2} />
               </div>
@@ -159,7 +174,7 @@ function Home() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <div className="relative mb-4">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-md"></div>
+              <div className="absolute -inset-1 from-primary/20 to-secondary/20 rounded-full"></div>
               <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
                 <Sparkles size={36} strokeWidth={2} />
               </div>
@@ -187,7 +202,7 @@ function Home() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <div className="relative mb-4">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-md"></div>
+              <div className="absolute -inset-1 from-primary/20 to-secondary/20 rounded-full"></div>
               <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
                 <Baby size={36} strokeWidth={2} />
               </div>
@@ -215,7 +230,7 @@ function Home() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <div className="relative mb-4">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-md"></div>
+              <div className="absolute -inset-1 from-primary/20 to-secondary/20 rounded-full"></div>
               <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
                 <ChefHat size={36} strokeWidth={2} />
               </div>
@@ -249,7 +264,7 @@ function Home() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <div className="relative mb-4">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-md"></div>
+              <div className="absolute -inset-1 from-primary/20 to-secondary/20 rounded-full"></div>
               <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
                 <FileCheck size={36} strokeWidth={2} />
               </div>
@@ -265,7 +280,7 @@ function Home() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <div className="relative mb-4">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-md"></div>
+              <div className="absolute -inset-1 from-primary/20 to-secondary/20 rounded-full"></div>
               <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
                 <CalendarClock size={36} strokeWidth={2} />
               </div>
@@ -281,7 +296,7 @@ function Home() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <div className="relative mb-4">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-md"></div>
+              <div className="absolute -inset-1 from-primary/20 to-secondary/20 rounded-full"></div>
               <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
                 <SmilePlus size={36} strokeWidth={2} />
               </div>

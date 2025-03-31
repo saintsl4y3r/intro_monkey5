@@ -72,9 +72,9 @@ function About() {
     <div className="text-gray-800">
       <section
         id="hero"
-        className="relative w-full h-[60vh] overflow-hidden scroll-mt-24"
+        className="relative w-full h-[40vh] overflow-hidden scroll-mt-24"
         style={{
-          backgroundImage: `url(${heroImage})`,
+          backgroundColor: "linear-gradient(to right, #FF7E5F, #FF6B6B)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
