@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import heroImage from "../assets/hero.jpg";
 import about1 from "../assets/logo.svg";
-import about2 from "../assets/about2.png";
-import about3 from "../assets/about3.png";
+import about3 from "../assets/about3.svg";
 import about4 from "../assets/about4.png";
 import about5 from "../assets/about5.png";
 import about6 from "../assets/about6.png";
+import tamnhin from "../assets/home-page-an-tam-voi-lua-chon-cua-ban.png"
 import coreValueImage from "../assets/core-value-1.jpg";
 import Partners from "./Partners";
 import Support from "./Support";
@@ -114,7 +114,7 @@ function About() {
         >
           <div className="flex-1">
             <motion.h2
-              className="text-3xl text-orange-500 mb-4"
+              className="text-3xl font-bold font-bold text-orange-500 mb-4"
               variants={fadeInUp}
             >
               We are MONKEY5
@@ -134,11 +134,6 @@ function About() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <img
-              src={about1}
-              alt="We are MONKEY5"
-              className="max-w-md w-full rounded"
-            />
           </motion.div>
         </AnimatedSection>
 
@@ -149,7 +144,7 @@ function About() {
         >
           <div className="flex-1">
             <motion.h2
-              className="text-3xl text-orange-500 mb-4"
+              className="text-3xl font-bold font-bold text-orange-500 mb-4"
               variants={fadeInRight}
             >
               The Meaning of MONKEY5
@@ -159,18 +154,11 @@ function About() {
               hardworking, innovative team.
             </motion.p>
           </div>
-          <motion.div
-            className="flex-1"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
             <img
-              src={about2}
+              src={about1}
               alt="The Meaning of MONKEY5"
               className="max-w-md w-full rounded"
             />
-          </motion.div>
         </AnimatedSection>
 
         <AnimatedSection
@@ -180,28 +168,20 @@ function About() {
         >
           <div className="flex-1">
             <motion.h2
-              className="text-3xl text-orange-500 mb-4"
+              className="text-3xl font-bold font-bold text-orange-500 mb-4"
               variants={fadeInLeft}
             >
               Areas of Operation
             </motion.h2>
             <motion.p variants={fadeInLeft}>
-              We serve households in over 20 major cities and provinces across
-              Vietnam.
+              Currently, MONKEY5 provides home services to many households in 20 major cities and provinces in Vietnam: Hanoi, Hai Phong, Da Nang, Hoi An, Nha Trang, Da Lat, Binh Duong, Bien Hoa, HCMC and Can Tho. In addition, bTaskee is expanding to overseas markets with the main service of Hourly Home Cleaning in Thailand and Indonesia.
             </motion.p>
           </div>
-          <motion.div
-            className="flex-1"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
             <img
               src={about3}
               alt="Areas of Operation"
               className="max-w-md w-full rounded"
             />
-          </motion.div>
         </AnimatedSection>
 
         <AnimatedSection
@@ -211,30 +191,29 @@ function About() {
         >
           <div className="flex-1">
             <motion.h2
-              className="text-3xl text-orange-500 mb-4"
+              className="text-3xl font-bold text-orange-500 mb-4"
               variants={fadeInRight}
             >
               Further Development
             </motion.h2>
             <motion.p variants={fadeInRight}>
-              With a commitment to excellence, MONKEY5 continuously improves
-              service quality and empowers over 1,000,000 domestic workers.
+              With an unwavering commitment to excellence, MONKEY5 continuously strives to improve service quality and empower over 1,000,000 domestic workers worldwide. 
+              By providing professional cleaning services tailored to meet the needs of modern households, MONKEY5 ensures that every customer experiences unparalleled satisfaction and comfort. 
             </motion.p>
           </div>
-          <motion.div
-            className="flex-1"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
             <img
               src={about4}
               alt="Further Development"
               className="max-w-md w-full rounded"
             />
-          </motion.div>
         </AnimatedSection>
 
+        <img
+          width="2400" height="600"
+          src={tamnhin}
+          alt="Further Development"
+          className="attachment-full size-full lazyloaded"
+        />
         <AnimatedSection
           className="flex flex-col md:flex-row items-center justify-between gap-4"
           id="vision"
@@ -242,29 +221,22 @@ function About() {
         >
           <div className="flex-1">
             <motion.h2
-              className="text-3xl text-orange-500 mb-4"
+              className="text-3xl font-bold font-boldext-3xl text-orange-500 mb-4"
               variants={fadeInLeft}
             >
               Vision
             </motion.h2>
             <motion.p variants={fadeInLeft}>
-              We aim to integrate innovative solutions for home convenience
-              services, ensuring modern and reliable support for every
-              household.
+            MONKEY5 aims to become a leading company in Vietnam and reaching out to Southeast Asia, 
+            providing convenient home services integrated on mobile apps besides taking care of your family with Home Cleaning, 
+            Air-conditioning, Laundry services,...
             </motion.p>
           </div>
-          <motion.div
-            className="flex-1"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
             <img
               src={about5}
               alt="Vision"
               className="max-w-md w-full rounded"
             />
-          </motion.div>
         </AnimatedSection>
 
         <AnimatedSection
@@ -274,15 +246,14 @@ function About() {
         >
           <div className="flex-1">
             <motion.h2
-              className="text-3xl text-orange-500 mb-4"
+              className="text-3xl font-bold font-bold text-orange-500 mb-4"
               variants={fadeInRight}
             >
               Mission
             </motion.h2>
             <motion.p variants={fadeInRight}>
-              Our mission is to simplify home management by delivering
-              efficient, professional, and technology-driven services.
-            </motion.p>
+            MONKEY5 was started with a mission to meet the needs of urban residents solving the house chores. We also hope to enhance the value of domestic works by building a professional, dedicated and professional resource of taskers. 
+            Customers' lives will be free of household chores burden and taskers' income will be improved for the better. Those are the objectives bTaskee is striving for.</motion.p>
           </div>
           <motion.div
             className="flex-1"
@@ -304,76 +275,41 @@ function About() {
           variants={staggerContainer}
         >
           <motion.h2
-            className="text-3xl text-center text-orange-500 mb-6"
+            className="text-3xl font-bold font-bold text-left text-orange-500 mb-6"
             variants={fadeInUp}
           >
             Core Values
           </motion.h2>
-          <motion.div
-            className="text-center mb-6"
-            variants={imageAnimation}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img
-              src={coreValueImage}
-              alt="Core Values"
-              className="mx-auto max-w-lg w-full rounded"
-            />
-          </motion.div>
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-            variants={staggerContainer}
-          >
-            <motion.div
-              className="text-center p-4 border rounded-lg shadow-lg"
-              variants={fadeInUp}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h3 className="text-xl font-bold mb-2">Quality</h3>
-              <p>
-                We ensure the highest service quality by investing in
-                recruitment, training, and quality assurance.
-              </p>
-            </motion.div>
-            <motion.div
-              className="text-center p-4 border rounded-lg shadow-lg"
-              variants={fadeInUp}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h3 className="text-xl font-bold mb-2">Dedication</h3>
-              <p>
-                Our dedicated team puts customer satisfaction first, ensuring
-                every task is completed with care.
-              </p>
-            </motion.div>
-            <motion.div
-              className="text-center p-4 border rounded-lg shadow-lg"
-              variants={fadeInUp}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h3 className="text-xl font-bold mb-2">Convenience</h3>
-              <p>
-                Our user-friendly app enables quick and efficient booking of
-                home services, saving you time.
-              </p>
-            </motion.div>
-            <motion.div
-              className="text-center p-4 border rounded-lg shadow-lg"
-              variants={fadeInUp}
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h3 className="text-xl font-bold mb-2">Innovation</h3>
-              <p>
-                We continuously innovate by listening to feedback and adapting
-                to meet the evolving needs of our customers.
-              </p>
-            </motion.div>
-          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div className="text-center p-4 border rounded-lg shadow-lg">
+    <h3 className="text-2xl font-bold mb-2">Quality</h3>
+    <p>
+      We ensure the highest service quality by investing in recruitment,
+      training, and quality assurance.
+    </p>
+  </div>
+  <div className="text-center p-4 border rounded-lg shadow-lg">
+    <h3 className="text-2xl font-bold mb-2">Dedication</h3>
+    <p>
+      Our dedicated team puts customer satisfaction first, ensuring every
+      task is completed with care.
+    </p>
+  </div>
+  <div className="text-center p-4 border rounded-lg shadow-lg">
+    <h3 className="text-2xl font-bold mb-2">Convenience</h3>
+    <p>
+      Our user-friendly app enables quick and efficient booking of home
+      services, saving you time.
+    </p>
+  </div>
+  <div className="text-center p-4 border rounded-lg shadow-lg">
+    <h3 className="text-2xl font-bold mb-2">Innovation</h3>
+    <p>
+      We continuously innovate by listening to feedback and adapting to meet
+      the evolving needs of our customers.
+    </p>
+  </div>
+</div>
         </AnimatedSection>
       </div>
 
