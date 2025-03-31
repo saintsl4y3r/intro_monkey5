@@ -8,7 +8,9 @@ function FeedbackManagement() {
   const fetchFeedbacks = async () => {
     try {
       setError("");
-      const response = await fetch("/api/Reviews");
+      const response = await fetch(
+        "https://monkey5-backend.onrender.com/api/Reviews"
+      );
       if (!response.ok) {
         throw new Error(`Failed to fetch reviews, status: ${response.status}`);
       }

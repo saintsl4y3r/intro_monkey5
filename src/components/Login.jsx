@@ -26,9 +26,9 @@ function Login() {
 
     let apiUrl = "";
     if (role === "staff") {
-      apiUrl = "/api/Staffs/login";
+      apiUrl = "https://monkey5-backend.onrender.com/api/Staffs/login";
     } else if (role === "admin") {
-      apiUrl = "/api/Managers/login";
+      apiUrl = "https://monkey5-backend.onrender.com/api/Managers/login";
     }
 
     try {

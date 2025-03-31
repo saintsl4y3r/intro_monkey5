@@ -15,7 +15,9 @@ function ServiceManagement() {
 
   const fetchServices = async () => {
     try {
-      const response = await fetch("/api/Services");
+      const response = await fetch(
+        "https://monkey5-backend.onrender.com/api/Services"
+      );
       if (!response.ok) {
         throw new Error(`Failed to fetch services, status: ${response.status}`);
       }
@@ -58,11 +60,14 @@ function ServiceManagement() {
         unitPrice: Number(newService.unitPrice),
       };
 
-      const response = await fetch("/api/Services", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(serviceData),
-      });
+      const response = await fetch(
+        "https://monkey5-backend.onrender.com/api/Services",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(serviceData),
+        }
+      );
 
       if (!response.ok) {
         const errData = await response.json();
@@ -93,9 +98,12 @@ function ServiceManagement() {
     )
       return;
     try {
-      const response = await fetch(`/api/Services/${serviceId}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://monkey5-backend.onrender.com/api/Services/${serviceId}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (!response.ok) {
         const errData = await response.text();
         console.error("Delete error:", response.status, errData);

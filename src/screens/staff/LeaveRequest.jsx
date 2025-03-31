@@ -10,15 +10,18 @@ function LeaveRequest() {
     e.preventDefault();
     setError("");
     try {
-      const response = await fetch("/api/LeaveRequests", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          leaveStart,
-          leaveEnd,
-          reasons,
-        }),
-      });
+      const response = await fetch(
+        "https://monkey5-backend.onrender.com/api/LeaveRequests",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            leaveStart,
+            leaveEnd,
+            reasons,
+          }),
+        }
+      );
       if (!response.ok) {
         const errMsg = await response.text();
         throw new Error(errMsg || "Failed to submit leave request");
