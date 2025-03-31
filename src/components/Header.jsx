@@ -113,7 +113,7 @@ function Header() {
                       className="block px-4 py-2 text-gray-800 hover:bg-orange-100"
                       onClick={() => setShowServicesDropdown(false)}
                     >
-                      Cleanning
+                      Cleaning
                     </Link>
                     <Link
                       to="/services/childcare"
