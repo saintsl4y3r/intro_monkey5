@@ -4,10 +4,20 @@ import Header from "../components/Header";
 import { motion, useInView } from "framer-motion";
 import BookingPopup from "../components/BookingPopup";
 import AppDownloadCTA from "../components/AppDownloadCTA";
-import housekeepingHero from "../assets/housekeeping-hero.jpg"; // You'll need to add this image
-import housekeeper1 from "../assets/housekeeper1.jpg"; // You'll need to add this image
-import housekeeper2 from "../assets/housekeeper2.jpg"; // You'll need to add this image
-import housekeepingIcon from "../assets/housekeeping-icon.svg"; // You'll need to add this image
+import housekeepingHero from "../assets/housekeeping-hero.jpg";
+import housekeeper1 from "../assets/housekeeper1.jpg";
+import housekeeper2 from "../assets/housekeeper2.jpg";
+import housekeepingIcon from "../assets/housekeeping-icon.svg";
+import { 
+  Sparkles, 
+  Users, 
+  Leaf, 
+  Shield, 
+  Clock, 
+  CheckSquare, 
+  Star,
+  Check
+} from 'lucide-react';
 
 function HousekeepingServiceScreen() {
   const [showBookingPopup, setShowBookingPopup] = useState(false);
@@ -56,6 +66,7 @@ function HousekeepingServiceScreen() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
+      className="text-foreground"
     >
       <Header />
 
@@ -81,7 +92,7 @@ function HousekeepingServiceScreen() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
-            Professional Housekeeping Services
+            Professional Cleanning Services
           </motion.h1>
           <motion.p
             className="text-xl max-w-2xl mx-auto text-center"
@@ -93,7 +104,7 @@ function HousekeepingServiceScreen() {
             professionals
           </motion.p>
           <motion.button
-            className="mt-8 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full text-lg"
+            className="mt-8 bg-primary hover:bg-accent text-secondary-foreground font-bold py-3 px-8 rounded text-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, y: 30 }}
@@ -107,46 +118,43 @@ function HousekeepingServiceScreen() {
       </section>
 
       {/* Service Overview */}
-      <AnimatedSection className="py-16 bg-white">
+      <AnimatedSection className="py-16 bg-background">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex flex-col items-start gap-8">
+            <div className="">
+              <h2 className="text-3xl font-bold font-bold text-orange-500 mb-4">
+                Our Housekeeping Service
+              </h2>
+              <div className="text-left">
+                <p className="mb-4">
+                  At MONKEY5, we understand that a clean home is essential for
+                  your comfort and well-being. Our professional housekeeping
+                  services are designed to give you a spotless, organized living
+                  space without the stress and time commitment of doing it yourself.
+                </p>
+                <p>
+                  Whether you need regular cleaning, a one-time deep clean, or
+                  specialized services like move-in/move-out cleaning, our
+                  experienced team delivers consistent, high-quality results that
+                  exceed expectations.
+                </p>
+              </div>
+            </div>
             <motion.div
               className="md:w-1/3 flex justify-center"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <img
-                src={housekeepingIcon}
-                alt="Housekeeping Service"
-                className="w-48 h-48 object-contain"
-              />
             </motion.div>
-            <div className="md:w-2/3">
-              <h2 className="text-3xl font-bold text-orange-500 mb-4">
-                Our Housekeeping Service
-              </h2>
-              <p className="text-gray-700 mb-4">
-                At MONKEY5, we understand that a clean home is essential for
-                your comfort and well-being. Our professional housekeeping
-                services are designed to give you a spotless, organized living
-                space without the stress and time commitment of doing it
-                yourself.
-              </p>
-              <p className="text-gray-700">
-                Whether you need regular cleaning, a one-time deep clean, or
-                specialized services like move-in/move-out cleaning, our
-                experienced team delivers consistent, high-quality results that
-                exceed expectations.
-              </p>
-            </div>
           </div>
         </div>
       </AnimatedSection>
 
+
       {/* Service Features */}
-      <AnimatedSection className="py-16 bg-gray-100">
+      <AnimatedSection className="py-16 bg-muted">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-500 mb-12">
+          <h2 className="text-3xl font-bold font-bold text-orange-500 mb-4">
             Why Choose Our Housekeeping Service?
           </h2>
 
@@ -158,78 +166,102 @@ function HousekeepingServiceScreen() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">🧹</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Sparkles size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">Thorough Cleaning</h3>
-              <p className="text-gray-700">
+              <p>
                 Our detailed cleaning process ensures no corner is left
                 untouched, from baseboards to ceiling fans.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">👥</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Users size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">Trained Professionals</h3>
-              <p className="text-gray-700">
+              <p>
                 Our housekeepers undergo extensive training in cleaning
                 techniques, safety protocols, and customer service.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">🌿</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Leaf size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">Eco-Friendly Options</h3>
-              <p className="text-gray-700">
+              <p>
                 We offer green cleaning solutions that are effective yet safe
                 for your family, pets, and the environment.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">🔒</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Shield size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">Security & Trust</h3>
-              <p className="text-gray-700">
+              <p>
                 All our housekeepers are background-checked, bonded, and insured
                 for your peace of mind.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">⏰</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Clock size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">Consistent Scheduling</h3>
-              <p className="text-gray-700">
+              <p>
                 Rely on our punctual service with flexible scheduling options to
                 fit your busy lifestyle.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">✅</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <CheckSquare size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">Customized Cleaning</h3>
-              <p className="text-gray-700">
+              <p>
                 We tailor our services to your specific needs and preferences,
                 focusing on the areas that matter most to you.
               </p>
@@ -239,9 +271,9 @@ function HousekeepingServiceScreen() {
       </AnimatedSection>
 
       {/* Our Housekeepers */}
-      <AnimatedSection className="py-16 bg-white">
+      <AnimatedSection className="py-16 bg-background">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-500 mb-12">
+          <h2 className="text-3xl font-bold font-bold text-orange-500 mb-4">
             Meet Our Professional Housekeepers
           </h2>
 
@@ -262,19 +294,19 @@ function HousekeepingServiceScreen() {
               <h3 className="text-2xl font-bold mb-3">
                 Experienced & Reliable
               </h3>
-              <p className="text-gray-700 mb-4">
+              <p className="mb-4">
                 Our housekeeping team consists of experienced professionals who
                 take pride in their attention to detail and commitment to
                 excellence. Many have years of experience in both residential
                 and commercial cleaning.
               </p>
-              <p className="text-gray-700 mb-4">
+              <p className="mb-4">
                 We carefully screen all our housekeepers, ensuring they have the
                 skills, experience, and positive attitude needed to deliver
                 exceptional service in your home.
               </p>
               <motion.button
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded"
+                className="bg-primary hover:bg-accent text-primary-foreground font-bold py-2 px-6 rounded"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -286,9 +318,9 @@ function HousekeepingServiceScreen() {
       </AnimatedSection>
 
       {/* How It Works */}
-      <AnimatedSection className="py-16 bg-gray-100">
+      <AnimatedSection className="py-16 bg-muted">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-500 mb-12">
+          <h2 className="text-3xl font-bold font-bold text-orange-500 mb-4">
             How It Works
           </h2>
 
@@ -298,11 +330,11 @@ function HousekeepingServiceScreen() {
               variants={fadeIn}
               whileHover={{ y: -5 }}
             >
-              <div className="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+              <div className="bg-secondary text-secondary-foreground rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 1
               </div>
               <h3 className="text-xl font-bold mb-2">Book Online</h3>
-              <p className="text-gray-700">
+              <p>
                 Schedule your cleaning service through our easy-to-use app or
                 website.
               </p>
@@ -313,11 +345,11 @@ function HousekeepingServiceScreen() {
               variants={fadeIn}
               whileHover={{ y: -5 }}
             >
-              <div className="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+              <div className="bg-secondary text-secondary-foreground rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 2
               </div>
               <h3 className="text-xl font-bold mb-2">Customize Service</h3>
-              <p className="text-gray-700">
+              <p>
                 Tell us about your home and any special cleaning requirements
                 you have.
               </p>
@@ -328,11 +360,11 @@ function HousekeepingServiceScreen() {
               variants={fadeIn}
               whileHover={{ y: -5 }}
             >
-              <div className="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+              <div className="bg-secondary text-secondary-foreground rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 3
               </div>
               <h3 className="text-xl font-bold mb-2">Professional Cleaning</h3>
-              <p className="text-gray-700">
+              <p>
                 Our housekeepers arrive on time and clean your home to
                 perfection.
               </p>
@@ -343,11 +375,11 @@ function HousekeepingServiceScreen() {
               variants={fadeIn}
               whileHover={{ y: -5 }}
             >
-              <div className="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+              <div className="bg-secondary text-secondary-foreground rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 4
               </div>
               <h3 className="text-xl font-bold mb-2">Enjoy Your Clean Home</h3>
-              <p className="text-gray-700">
+              <p>
                 Return to a spotless, fresh-smelling home and provide feedback
                 on your experience.
               </p>
@@ -357,19 +389,23 @@ function HousekeepingServiceScreen() {
       </AnimatedSection>
 
       {/* Testimonials */}
-      <AnimatedSection className="py-16 bg-white">
+      <AnimatedSection className="py-16 bg-background">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-500 mb-12">
+          <h2 className="text-3xl font-bold font-bold text-orange-500 mb-4">
             What Our Customers Say
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <motion.div
-              className="bg-gray-50 p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-yellow-500 text-xl mb-4">★★★★★</div>
-              <p className="text-gray-700 italic mb-4">
+              <div className="flex text-yellow-500 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={20} fill="currentColor" />
+                ))}
+              </div>
+              <p className="italic mb-4">
                 "I've tried several cleaning services in the past, but MONKEY5
                 is by far the best. Their attention to detail is impressive -
                 they clean areas I didn't even think about! My home has never
@@ -383,7 +419,7 @@ function HousekeepingServiceScreen() {
                 />
                 <div>
                   <p className="font-bold">Rebecca Wilson</p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Weekly cleaning client
                   </p>
                 </div>
@@ -391,11 +427,15 @@ function HousekeepingServiceScreen() {
             </motion.div>
 
             <motion.div
-              className="bg-gray-50 p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-yellow-500 text-xl mb-4">★★★★★</div>
-              <p className="text-gray-700 italic mb-4">
+              <div className="flex text-yellow-500 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={20} fill="currentColor" />
+                ))}
+              </div>
+              <p className="italic mb-4">
                 "As a busy professional, I don't have time to keep my apartment
                 clean. MONKEY5's housekeeping service has been a lifesaver.
                 They're reliable, thorough, and I trust them completely in my
@@ -409,7 +449,7 @@ function HousekeepingServiceScreen() {
                 />
                 <div>
                   <p className="font-bold">James Thompson</p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Bi-weekly cleaning client
                   </p>
                 </div>
@@ -419,125 +459,78 @@ function HousekeepingServiceScreen() {
         </div>
       </AnimatedSection>
 
-      {/* Pricing */}
-      <AnimatedSection className="py-16 bg-gray-100">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-500 mb-4">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-center text-gray-700 mb-12 max-w-3xl mx-auto">
-            Choose the cleaning plan that best fits your needs. All prices
-            include equipment and cleaning supplies.
-          </p>
+      {/* Pricing Section */}
+      <AnimatedSection className="py-16 bg-background"> {/* Đổi nền thành background */}
+         <div className="max-w-5xl mx-auto px-4">
+           <h2 className="text-3xl font-semibold text-center text-orange-500 mb-4"> {/* Đổi màu */}
+             Simple, Transparent Pricing
+           </h2>
+           <p className="text-center text-foreground mb-12 max-w-3xl mx-auto leading-relaxed"> {/* Đổi màu text, thêm leading */}
+             Choose the cleaning plan that best fits your needs. All prices
+             include equipment and cleaning supplies.
+           </p>
 
-          <div className="flex justify-center">
-            <motion.div
-              className="bg-white p-8 rounded-lg shadow-md border-2 border-orange-500 max-w-xl w-full"
-              whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
-            >
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold">
-                Most Popular
-              </div>
-              <h3 className="text-2xl font-bold text-center mb-4">
-                Hourly Cleaning
-              </h3>
-              <div className="text-center text-4xl font-bold text-orange-500 mb-4">
-                90,000₫<span className="text-lg text-gray-500">/hour</span>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  2-5 hours of service
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Professional cleaning supplies
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Customized cleaning focus
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Trained professional cleaners
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Eco-friendly options available
-                </li>
-              </ul>
-              <motion.button
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Book Now
-              </motion.button>
-            </motion.div>
-          </div>
+           <div className="flex justify-center">
+             {/* Pricing Card - Áp dụng style chuẩn */}
+             <motion.div
+               className="relative bg-card p-8 rounded-xl shadow-lg border-2 border-primary max-w-md w-full" // Đổi border-orange-500 thành border-primary, tăng max-w, giảm shadow
+               whileHover={{ y: -5, scale: 1.02 }} // Giảm scale
+               transition={{ type: 'spring', stiffness: 300 }}
+             >
+               {/* Tag "Most Popular" - Dùng màu primary */}
+               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                 Most Popular
+               </div>
+               <h3 className="text-2xl font-semibold text-center mb-4 text-card-foreground">
+                 Hourly Cleaning
+               </h3>
+               <div className="text-center text-4xl font-bold text-primary mb-4"> {/* Đổi màu */}
+                 90,000₫<span className="text-lg text-muted-foreground font-medium">/hour</span> {/* Đổi màu */}
+               </div>
+               <ul className="space-y-3 mb-8 text-card-foreground"> {/* Đổi màu text */}
+                 <li className="flex items-center">
+                   <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" /> {/* Thay SVG bằng Lucide Icon */}
+                   2-5 hours of service
+                 </li>
+                 <li className="flex items-center">
+                   <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                   Professional cleaning supplies
+                 </li>
+                 <li className="flex items-center">
+                   <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                   Customized cleaning focus
+                 </li>
+                 <li className="flex items-center">
+                   <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                   Trained professional cleaners
+                 </li>
+                 <li className="flex items-center">
+                   <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                   Eco-friendly options available
+                 </li>
+               </ul>
+               {/* Nút bấm - Dùng màu primary */}
+               <motion.button
+                 className="w-full bg-primary hover:opacity-90 text-primary-foreground font-semibold py-2.5 px-4 rounded-lg" // Tăng py, dùng font-semibold
+                 whileHover={{ scale: 1.03 }} // Giảm scale
+                 whileTap={{ scale: 0.98 }}
+                 onClick={() => setShowBookingPopup(true)} // Thêm onClick
+               >
+                 Book Now
+               </motion.button>
+             </motion.div>
+           </div>
 
-          <div className="mt-8 text-center text-gray-600">
-            <p>
-              * Minimum booking of 2 hours required. Maximum of 5 hours per
-              session.
-            </p>
-            <p>
-              * Additional charges may apply for deep cleaning or specialized
-              services.
-            </p>
-          </div>
-        </div>
-      </AnimatedSection>
+           <div className="mt-8 text-center text-muted-foreground text-sm">
+             <p>
+               * Minimum booking of 2 hours required. Maximum of 5 hours per session.
+             </p>
+             <p>
+               * Additional charges may apply for deep cleaning or specialized services.
+             </p>
+           </div>
+         </div>
+       </AnimatedSection>
 
       {/* FAQ Section */}
       <AnimatedSection className="py-16 bg-white">
@@ -624,29 +617,27 @@ function HousekeepingServiceScreen() {
       </AnimatedSection>
 
       {/* CTA Section */}
-      <AnimatedSection className="py-16 bg-orange-500 text-white">
+      <AnimatedSection className="py-16 bg-popover text-popover-foreground">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Enjoy a Spotless Home?
           </h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Experience the luxury of coming home to a perfectly clean space.
-            Book your first cleaning service today and reclaim your time.
+          <p className="text-lg mb-8 max-w-3xl mx-auto"> {/* Tăng text size */}
+            Experience the luxury of coming home to a perfectly clean space. Book your first cleaning service today and reclaim your time.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* Nút chính - Nổi bật hơn */}
             <motion.button
-              className="bg-white text-orange-500 hover:bg-gray-100 font-bold py-3 px-8 rounded-full text-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="bg-secondary hover:opacity-90 text-secondary-foreground font-bold py-3 px-8 rounded-lg text-lg" // Đổi rounded-full, màu chữ
+              // ... animation props ...
               onClick={() => setShowBookingPopup(true)}
             >
               Book Now
             </motion.button>
+            {/* Nút phụ - Dùng màu primary? Hoặc border? */}
             <Link to="/about">
               <motion.button
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="bg-primary hover:opacity-90 text-primary-foreground font-bold py-3 px-8 rounded-lg text-lg" // Đổi màu, rounded-full
               >
                 Contact Us
               </motion.button>
@@ -654,16 +645,6 @@ function HousekeepingServiceScreen() {
           </div>
         </div>
       </AnimatedSection>
-
-      {/* App Download CTA */}
-      <AppDownloadCTA />
-
-      {/* Booking Popup */}
-      <BookingPopup
-        isOpen={showBookingPopup}
-        onClose={() => setShowBookingPopup(false)}
-        service="Child Care"
-      />
     </motion.div>
   );
 }

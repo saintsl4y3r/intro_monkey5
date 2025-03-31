@@ -84,7 +84,7 @@ function Home() {
             Book trusted professionals for all your home needs in just a few clicks
           </motion.p>
           <motion.button
-            className="bg-secondary hover:bg-accent text-secondary-foreground font-bold py-3 px-6 rounded"
+            className="bg-primary hover:bg-accent text-secondary-foreground font-bold py-3 px-6 rounded"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0 }}
@@ -98,7 +98,7 @@ function Home() {
       </section>
 
       <Section className="py-16 text-center" id="benefits">
-        <h2 className="text-4xl font-bold text-secondary mb-8">
+        <h2 className="text-4xl font-bold text-orange-500 mb-8">
           Benefits of Using MONKEY5
         </h2>
         <div className="flex flex-col md:flex-row justify-center items-start gap-8 max-w-5xl mx-auto">
@@ -160,7 +160,7 @@ function Home() {
       </Section>
 
       <Section className="py-16 text-center bg-muted" id="services">
-        <h2 className="text-4xl font-bold text-secondary mb-8">
+        <h2 className="text-4xl font-bold text-orange-500 mb-8">
           Our Services
         </h2>
         <div className="flex flex-col md:flex-row justify-center items-start gap-8 max-w-5xl mx-auto">
@@ -252,7 +252,7 @@ function Home() {
       </Section>
 
       <Section className="py-16 text-center" id="how-it-works">
-        <h2 className="text-4xl font-bold text-secondary mb-8">
+        <h2 className="text-4xl font-bold text-orange-500 mb-8">
           How It Works
         </h2>
         <div className="flex flex-col md:flex-row justify-center items-start gap-8 max-w-5xl mx-auto">
@@ -308,7 +308,7 @@ function Home() {
       </Section>
 
       <Section className="py-16 text-center bg-muted" id="testimonials">
-        <h2 className="text-4xl font-bold text-secondary mb-8">
+        <h2 className="text-4xl font-bold text-orange-500 mb-8">
           What Our Customers Say
         </h2>
         <div className="flex flex-col md:flex-row justify-center items-start gap-8 max-w-5xl mx-auto">

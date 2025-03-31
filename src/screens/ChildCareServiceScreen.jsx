@@ -8,6 +8,18 @@ import childCareHero from "../assets/childcare-hero.jpg";
 import babysitter1 from "../assets/babysitter1.jpg";
 import babysitter2 from "../assets/babysitter2.jpg";
 import childCareIcon from "../assets/childcare-icon.png";
+import { 
+  Baby, 
+  Brain, 
+  Clock, 
+  Shield, 
+  Smartphone, 
+  Heart,
+  Check,
+  Star,
+  Calendar,
+  BookOpen
+} from 'lucide-react';
 
 function ChildCareServiceScreen() {
   const [showBookingPopup, setShowBookingPopup] = useState(false);
@@ -55,6 +67,7 @@ function ChildCareServiceScreen() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
+      className="text-foreground"
     >
       <Header />
 
@@ -65,7 +78,7 @@ function ChildCareServiceScreen() {
           backgroundImage: `url(${childCareHero})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          zIndex: 1, // Lower z-index
+          zIndex: 1,
         }}
       >
         <motion.div
@@ -91,7 +104,7 @@ function ChildCareServiceScreen() {
             Trusted, experienced babysitters for your precious little ones
           </motion.p>
           <motion.button
-            className="mt-8 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full text-lg"
+            className="mt-8 bg-primary hover:bg-accent text-primary-foreground font-bold py-3 px-8 rounded text-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, y: 30 }}
@@ -105,45 +118,36 @@ function ChildCareServiceScreen() {
       </section>
 
       {/* Service Overview */}
-      <AnimatedSection className="py-16 bg-white">
+      <AnimatedSection className="py-16 bg-background">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <motion.div
-              className="md:w-1/3 flex justify-center"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <img
-                src={childCareIcon}
-                alt="Child Care"
-                className="w-48 h-48 object-contain"
-              />
-            </motion.div>
-            <div className="md:w-2/3">
-              <h2 className="text-3xl font-bold text-orange-500 mb-4">
+          <div className="flex flex-col items-start gap-8">
+            <div className="">
+              <h2 className="text-3xl font-bold text-orange-500 mb-4 text-left">
                 Our Child Care Service
               </h2>
-              <p className="text-gray-700 mb-4">
-                At MONKEY5, we understand that finding reliable childcare is one
-                of the most important decisions you'll make for your family. Our
-                professional babysitters are carefully selected, thoroughly
-                vetted, and expertly trained to provide the highest quality care
-                for children of all ages.
-              </p>
-              <p className="text-gray-700">
-                Whether you need regular childcare, occasional babysitting, or
-                emergency care, our team is ready to help with flexible
-                scheduling options to meet your family's unique needs.
-              </p>
+              <div className="text-left">
+                <p className="mb-4">
+                  At MONKEY5, we understand that finding reliable childcare is one
+                  of the most important decisions you'll make for your family. Our
+                  professional babysitters are carefully selected, thoroughly
+                  vetted, and expertly trained to provide the highest quality care
+                  for children of all ages.
+                </p>
+                <p>
+                  Whether you need regular childcare, occasional babysitting, or
+                  emergency care, our team is ready to help with flexible
+                  scheduling options to meet your family's unique needs.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </AnimatedSection>
 
       {/* Service Features */}
-      <AnimatedSection className="py-16 bg-gray-100">
+      <AnimatedSection className="py-16 bg-muted">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-500 mb-12">
+          <h2 className="text-3xl font-bold font-bold text-orange-500 mb-4">
             Why Choose Our Child Care Service?
           </h2>
 
@@ -155,80 +159,104 @@ function ChildCareServiceScreen() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">👩‍👧</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Baby size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">Experienced Caregivers</h3>
-              <p className="text-gray-700">
+              <p>
                 Our babysitters have years of experience and undergo rigorous
                 background checks and training.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">🎮</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Brain size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">
                 Age-Appropriate Activities
               </h3>
-              <p className="text-gray-700">
+              <p>
                 We provide engaging, educational activities tailored to your
                 child's developmental stage.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">⏰</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Clock size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">Flexible Scheduling</h3>
-              <p className="text-gray-700">
+              <p>
                 Book services for as little as 2 hours or as long as you need,
                 any day of the week.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">🏥</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Heart size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">First Aid Certified</h3>
-              <p className="text-gray-700">
+              <p>
                 All our babysitters are certified in pediatric first aid and CPR
                 for your peace of mind.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">📱</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Smartphone size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">Real-Time Updates</h3>
-              <p className="text-gray-700">
+              <p>
                 Receive updates and photos throughout the session via our secure
                 mobile app.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md"
+              className="bg-card p-6 rounded-lg shadow-md border border-border"
               variants={fadeIn}
               whileHover={{ y: -10, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
             >
-              <div className="text-5xl mb-4 text-orange-500">🔒</div>
+              <div className="relative mb-4">
+                <div className="relative bg-card rounded-full p-3 text-primary mx-auto w-16 h-16 flex items-center justify-center">
+                  <Shield size={36} strokeWidth={2} />
+                </div>
+              </div>
               <h3 className="text-xl font-bold mb-2">Safety First</h3>
-              <p className="text-gray-700">
+              <p>
                 Your child's safety is our top priority, with strict protocols
                 and regular safety training.
               </p>
@@ -238,9 +266,9 @@ function ChildCareServiceScreen() {
       </AnimatedSection>
 
       {/* Our Babysitters */}
-      <AnimatedSection className="py-16 bg-white">
+      <AnimatedSection className="py-16 bg-background">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-500 mb-12">
+          <h2 className="text-3xl font-bold font-bold text-orange-500 mb-4">
             Meet Our Professional Babysitters
           </h2>
 
@@ -259,354 +287,25 @@ function ChildCareServiceScreen() {
 
             <div className="md:w-1/2">
               <h3 className="text-2xl font-bold mb-3">Experienced & Caring</h3>
-              <p className="text-gray-700 mb-4">
+              <p className="mb-4">
                 Our babysitters are selected for their experience,
                 qualifications, and genuine love for children. Many have
                 backgrounds in early childhood education, pediatric nursing, or
                 child development.
               </p>
-              <p className="text-gray-700 mb-4">
+              <p className="mb-4">
                 We conduct thorough background checks, verify references, and
                 provide ongoing training to ensure your children receive the
                 best possible care.
               </p>
               <motion.button
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded"
+                className="bg-primary hover:bg-accent text-primary-foreground font-bold py-2 px-6 rounded"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 View All Babysitters
               </motion.button>
             </div>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* How It Works */}
-      <AnimatedSection className="py-16 bg-gray-100">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-500 mb-12">
-            How It Works
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <motion.div
-              className="text-center"
-              variants={fadeIn}
-              whileHover={{ y: -5 }}
-            >
-              <div className="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                1
-              </div>
-              <h3 className="text-xl font-bold mb-2">Book Online</h3>
-              <p className="text-gray-700">
-                Select your date, time, and service requirements through our
-                easy-to-use app.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="text-center"
-              variants={fadeIn}
-              whileHover={{ y: -5 }}
-            >
-              <div className="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                2
-              </div>
-              <h3 className="text-xl font-bold mb-2">Match with Sitter</h3>
-              <p className="text-gray-700">
-                We'll match you with the perfect babysitter based on your needs
-                and preferences.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="text-center"
-              variants={fadeIn}
-              whileHover={{ y: -5 }}
-            >
-              <div className="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                3
-              </div>
-              <h3 className="text-xl font-bold mb-2">Receive Care</h3>
-              <p className="text-gray-700">
-                Your babysitter arrives on time and provides excellent care for
-                your children.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="text-center"
-              variants={fadeIn}
-              whileHover={{ y: -5 }}
-            >
-              <div className="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                4
-              </div>
-              <h3 className="text-xl font-bold mb-2">Rate & Review</h3>
-              <p className="text-gray-700">
-                After the service, rate your experience and provide feedback to
-                help us improve.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* Testimonials */}
-      <AnimatedSection className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-500 mb-12">
-            What Parents Say
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              className="bg-gray-50 p-6 rounded-lg shadow-md"
-              whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
-            >
-              <div className="text-yellow-500 text-xl mb-4">★★★★★</div>
-              <p className="text-gray-700 italic mb-4">
-                "Our babysitter from MONKEY5 was absolutely amazing with our
-                twins. She was punctual, professional, and the kids adored her.
-                We've booked her three times already and plan to continue using
-                this service regularly."
-              </p>
-              <div className="flex items-center">
-                <img
-                  src="https://i.pravatar.cc/48?img=44"
-                  alt="Sarah Johnson"
-                  className="w-12 h-12 rounded-full mr-4"
-                />
-                <div>
-                  <p className="font-bold">Sarah Johnson</p>
-                  <p className="text-sm text-gray-500">
-                    Mother of twins, age 4
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="bg-gray-50 p-6 rounded-lg shadow-md"
-              whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
-            >
-              <div className="text-yellow-500 text-xl mb-4">★★★★★</div>
-              <p className="text-gray-700 italic mb-4">
-                "As a single dad, finding reliable childcare has always been a
-                challenge. MONKEY5 has been a game-changer for me. Their
-                babysitters are professional, engaging, and my daughter looks
-                forward to their visits."
-              </p>
-              <div className="flex items-center">
-                <img
-                  src="https://i.pravatar.cc/48?img=68"
-                  alt="Michael Tran"
-                  className="w-12 h-12 rounded-full mr-4"
-                />
-                <div>
-                  <p className="font-bold">Michael Tran</p>
-                  <p className="text-sm text-gray-500">Father of one, age 6</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* Pricing */}
-      <AnimatedSection className="py-16 bg-gray-100">
-        <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-500 mb-4">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-center text-gray-700 mb-12 max-w-3xl mx-auto">
-            We offer competitive rates with no hidden fees. Pay only for the
-            time you need.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              className="bg-white p-8 rounded-lg shadow-md"
-              whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
-            >
-              <h3 className="text-2xl font-bold text-center mb-4">One Child</h3>
-              <div className="text-center text-4xl font-bold text-orange-500 mb-4">
-                150,000₫<span className="text-lg text-gray-500">/hour</span>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  2-8 hours of service
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Personalized care for one child
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Age-appropriate activities
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Meal preparation included
-                </li>
-              </ul>
-              <motion.button
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowBookingPopup(true)}
-              >
-                Book Now
-              </motion.button>
-            </motion.div>
-
-            <motion.div
-              className="bg-white p-8 rounded-lg shadow-md border-2 border-orange-500 transform scale-105"
-              whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
-            >
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold">
-                Most Popular
-              </div>
-              <h3 className="text-2xl font-bold text-center mb-4">
-                Two Children
-              </h3>
-              <div className="text-center text-4xl font-bold text-orange-500 mb-4">
-                200,000₫<span className="text-lg text-gray-500">/hour</span>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  2-8 hours of service
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Care for two children
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Customized activities for each child
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Meal preparation included
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Educational activities & games
-                </li>
-              </ul>
-              <motion.button
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowBookingPopup(true)}
-              >
-                Book Now
-              </motion.button>
-            </motion.div>
-          </div>
-
-          <div className="mt-8 text-center text-gray-600">
-            <p>
-              * Minimum booking of 2 hours required. Maximum of 8 hours per
-              session.
-            </p>
-            <p>
-              * Additional charges may apply for special needs or late-night
-              services.
-            </p>
           </div>
         </div>
       </AnimatedSection>
@@ -695,7 +394,7 @@ function ChildCareServiceScreen() {
       </AnimatedSection>
 
       {/* CTA Section */}
-      <AnimatedSection className="py-16 bg-orange-500 text-white">
+      <AnimatedSection className="py-16 bg-popover text-popover-foreground">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Book Your Childcare Service?
@@ -707,16 +406,16 @@ function ChildCareServiceScreen() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button
-              className="bg-white text-orange-500 hover:bg-gray-100 font-bold py-3 px-8 rounded-full text-lg"
+              className="bg-secondary hover:bg-accent text-secondary-foreground font-bold py-3 px-8 rounded-lg text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowBookingPopup(true)}
             >
-              Book Now
+                Book Now
             </motion.button>
             <Link to="/about">
               <motion.button
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg"
+                className="bg-primary hover:opacity-90 text-primary-foreground font-bold py-3 px-8 rounded-lg text-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -726,16 +425,6 @@ function ChildCareServiceScreen() {
           </div>
         </div>
       </AnimatedSection>
-
-      {/* App Download CTA */}
-      <AppDownloadCTA />
-
-      {/* Booking Popup */}
-      <BookingPopup
-        isOpen={showBookingPopup}
-        onClose={() => setShowBookingPopup(false)}
-        service="Child Care"
-      />
     </motion.div>
   );
 }
