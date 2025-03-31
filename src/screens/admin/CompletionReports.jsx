@@ -42,7 +42,9 @@ function CompletionReports() {
   const fetchReports = async () => {
     try {
       setLoading(true);
-      const response = await fetch("/api/CompletionReports");
+      const response = await fetch(
+        "https://monkey5-backend.onrender.com/api/CompletionReports"
+      );
       if (!response.ok) {
         throw new Error(`Failed to fetch reports, status: ${response.status}`);
       }
@@ -294,13 +296,13 @@ function CompletionReports() {
                     {selectedReport.reportImages.map((image, index) => (
                       <div key={image.reportImageId} className="relative">
                         <a
-                          href={`/api/ReportImages/file/${image.imagePath}`}
+                          href={`https://monkey5-backend.onrender.com/api/ReportImages/file/${image.imagePath}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="block"
                         >
                           <img
-                            src={`/api/ReportImages/file/${image.imagePath}`}
+                            src={`https://monkey5-backend.onrender.com/api/ReportImages/file/${image.imagePath}`}
                             alt={`Report image ${index + 1}`}
                             className="w-full h-40 object-cover rounded border hover:opacity-90 transition-opacity"
                           />
