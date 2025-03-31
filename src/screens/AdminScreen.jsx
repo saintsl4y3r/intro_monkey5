@@ -11,6 +11,7 @@ import {
   FaCommentDots,
   FaChartBar,
   FaClipboardCheck,
+  FaCalendarAlt,
 } from "react-icons/fa";
 
 import Dashboard from "./admin/Dashboard";
@@ -21,6 +22,7 @@ import FeedbackManagement from "./admin/FeedbackManagement";
 import Reports from "./admin/Reports";
 import EditProfile from "./admin/EditProfile";
 import CompletionReports from "./admin/CompletionReports";
+import LeaveRequests from "./admin/LeaveRequests";
 
 import logo from "../assets/logo.svg";
 import "../styles/AdminLayout.css";
@@ -110,6 +112,14 @@ function AdminScreen() {
                 {sidebarOpen && <span className="menu-text">Reports</span>}
               </Link>
             </li>
+            <li>
+              <Link to="/admin/leave-requests">
+                <FaCalendarAlt className="menu-icon" />
+                {sidebarOpen && (
+                  <span className="menu-text">Leave Requests</span>
+                )}
+              </Link>
+            </li>
           </ul>
         </nav>
       </aside>
@@ -145,6 +155,7 @@ function AdminScreen() {
             <Route path="reports" element={<Reports />} />
             <Route path="profile" element={<EditProfile />} />
             <Route path="/completion-reports" element={<CompletionReports />} />
+            <Route path="/leave-requests" element={<LeaveRequests />} />
             <Route path="*" element={<Dashboard />} />
           </Routes>
         </main>
