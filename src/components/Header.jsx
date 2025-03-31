@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Header.css";
-import logo from "../assets/logo-monkey5.png";
+import logo from "../assets/logo.svg";
 import { motion, AnimatePresence } from "framer-motion";
 
 function Header() {

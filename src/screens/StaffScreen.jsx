@@ -12,7 +12,7 @@ import StaffDashboard from "./staff/StaffDashboard";
 import TaskManagement from "./staff/TaskManagement";
 import LeaveRequest from "./staff/LeaveRequest";
 import EditProfile from "./staff/EditProfile";
-import logo from "../assets/logo-monkey5.png";
+import logo from "../assets/logo.svg";
 import "../styles/StaffLayout.css";
 
 function StaffScreen() {

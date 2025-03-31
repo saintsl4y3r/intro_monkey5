@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import heroImage from "../assets/hero.jpg";
-import about1 from "../assets/logo-monkey5.png";
+import about1 from "../assets/logo.svg";
 import about2 from "../assets/about2.png";
 import about3 from "../assets/about3.png";
 import about4 from "../assets/about4.png";

@@ -20,7 +20,7 @@ import FeedbackManagement from "./admin/FeedbackManagement";
 import Reports from "./admin/Reports";
 import EditProfile from "./admin/EditProfile";
 
-import logo from "../assets/logo-monkey5.png";
+import logo from "../assets/logo.svg";
 import "../styles/AdminLayout.css";
 
 function AdminScreen() {
