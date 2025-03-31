@@ -1,40 +1,93 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function WorkManagement() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      serviceId: "S001",
-      customerName: "Nguyễn Văn A",
-      serviceName: "Cleaning",
-      startTime: "16:00, 26/01/2025",
-      location: "3, Tô Vĩnh Diện, Thủ Đức",
-      status: "Pending",
-      assignedEmployee: "",
-    },
-    {
-      id: 2,
-      serviceId: "S002",
-      customerName: "Trần Thị B",
-      serviceName: "Cooking",
-      startTime: "10:00, 27/01/2025",
-      location: "12, Phan Văn Trị, Gò Vấp",
-      status: "In-progress",
-      assignedEmployee: "ST001",
-    },
-  ]);
+  const [bookings, setBookings] = useState([]);
+  const [availableStaff, setAvailableStaff] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedStaff, setSelectedStaff] = useState({});
+  const [updatingBooking, setUpdatingBooking] = useState(null);
 
-  const employees = [
-    { id: "ST001", name: "John Doe", availability: "Available" },
-    { id: "ST002", name: "Jane Smith", availability: "Busy" },
-    { id: "ST003", name: "Michael Johnson", availability: "Available" },
-  ];
+  useEffect(() => {
+    fetchBookings();
+    fetchAvailableStaff();
+  }, []);
+
+  const fetchBookings = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch("/api/Bookings");
+      if (!response.ok) {
+        throw new Error(`Failed to fetch bookings, status: ${response.status}`);
+      }
+      const data = await response.json();
+      if (data && Array.isArray(data.$values)) {
+        setBookings(data.$values);
+
+        // Initialize selected staff map with existing assignments
+        const staffSelections = {};
+        data.$values.forEach((booking) => {
+          if (booking.staffId) {
+            staffSelections[booking.bookingId] = booking.staffId;
+          }
+        });
+        setSelectedStaff(staffSelections);
+      } else {
+        setBookings([]);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+      setError("Failed to load bookings. Please try again later.");
+      setLoading(false);
+    }
+  };
+
+  const fetchAvailableStaff = async () => {
+    try {
+      const response = await fetch("/api/Staffs/available");
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch available staff, status: ${response.status}`
+        );
+      }
+      const data = await response.json();
+      if (data && Array.isArray(data.$values)) {
+        setAvailableStaff(data.$values);
+      } else {
+        setAvailableStaff([]);
+      }
+    } catch (error) {
+      console.error("Error fetching available staff:", error);
+      setError("Failed to load available staff. Please try again later.");
+    }
+  };
+
+  const handleStaffSelection = (bookingId, staffId) => {
+    setSelectedStaff((prev) => ({
+      ...prev,
+      [bookingId]: staffId,
+    }));
+  };
+
+  const formatDateTime = (dateTimeString) => {
+    if (!dateTimeString) return "N/A";
+    const date = new Date(dateTimeString);
+    return date.toLocaleString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
 
   const getStatusClass = (status) => {
     switch (status) {
       case "Pending":
         return "bg-yellow-100 text-yellow-800 border border-yellow-300";
-      case "In-progress":
+      case "Confirmed":
         return "bg-blue-100 text-blue-800 border border-blue-300";
       case "Completed":
         return "bg-green-100 text-green-800 border border-green-300";
@@ -45,21 +98,56 @@ function WorkManagement() {
     }
   };
 
-  const handleAssign = (taskId, employeeId) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, assignedEmployee: employeeId } : task
-    );
-    setTasks(updatedTasks);
+  const assignStaffToBooking = async (booking) => {
+    const staffId = selectedStaff[booking.bookingId];
+    if (!staffId) {
+      alert("Please select a staff member to assign");
+      return;
+    }
+
+    setUpdatingBooking(booking.bookingId);
+
+    try {
+      // Create the updated booking object
+      const updatedBooking = {
+        bookingId: booking.bookingId,
+        customerId: booking.customerId,
+        serviceId: booking.serviceId,
+        staffId: staffId,
+        serviceStartTime: booking.serviceStartTime,
+        serviceEndTime: booking.serviceEndTime,
+        serviceUnitAmount: booking.serviceUnitAmount,
+        status: booking.status,
+        note: booking.note || "",
+      };
+
+      const response = await fetch(`/api/Bookings/${booking.bookingId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedBooking),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(`Failed to update booking: ${errorData}`);
+      }
+
+      // Refresh the bookings list
+      await fetchBookings();
+      alert("Staff assigned successfully!");
+    } catch (error) {
+      console.error("Error assigning staff:", error);
+      alert(`Failed to assign staff: ${error.message}`);
+    } finally {
+      setUpdatingBooking(null);
+    }
   };
 
-  const getEmployeeStyle = (availability) => {
-    if (availability === "Available") {
-      return { color: "green" };
-    } else if (availability === "Busy") {
-      return { color: "red" };
-    }
-    return {};
-  };
+  if (loading)
+    return <div className="p-4 text-center">Loading bookings...</div>;
+  if (error) return <div className="p-4 text-center text-red-500">{error}</div>;
 
   return (
     <div className="p-4">
@@ -69,50 +157,110 @@ function WorkManagement() {
           <thead>
             <tr className="bg-orange-500 text-white">
               <th className="p-2 text-left w-12">#</th>
-              <th className="p-2 text-left">Service ID</th>
-              <th className="p-2 text-left">Customer Name</th>
-              <th className="p-2 text-left">Service Name</th>
+              <th className="p-2 text-left">Customer</th>
+              <th className="p-2 text-left">Service</th>
               <th className="p-2 text-left">Start Time</th>
+              <th className="p-2 text-left">End Time</th>
               <th className="p-2 text-left">Location</th>
               <th className="p-2 text-left">Status</th>
               <th className="p-2 text-left">Assign Employee</th>
+              <th className="p-2 text-center">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white">
-            {tasks.map((task, index) => (
-              <tr key={task.id} className="border-b hover:bg-gray-100">
-                <td className="p-2">{index + 1}</td>
-                <td className="p-2">{task.serviceId}</td>
-                <td className="p-2">{task.customerName}</td>
-                <td className="p-2">{task.serviceName}</td>
-                <td className="p-2">{task.startTime}</td>
-                <td className="p-2">{task.location}</td>
-                <td className="p-2">
-                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-sm font-medium ${getStatusClass(task.status)}`}>
-                    {task.status}
-                  </span>
-                </td>
-                <td className="p-2">
-                  <select
-                    className="border p-1 rounded font-medium"
-                    value={task.assignedEmployee}
-                    onChange={(e) => handleAssign(task.id, e.target.value)}
-                  >
-                    <option value="">-- Assign --</option>
-                    {employees.map((emp) => (
-                      <option
-                        key={emp.id}
-                        value={emp.id}
-                        disabled={emp.availability !== "Available"}
-                        style={getEmployeeStyle(emp.availability)}
-                      >
-                        {emp.name} ({emp.availability})
-                      </option>
-                    ))}
-                  </select>
+            {bookings.length > 0 ? (
+              bookings.map((booking, index) => (
+                <tr
+                  key={booking.bookingId}
+                  className="border-b hover:bg-gray-100"
+                >
+                  <td className="p-2">{index + 1}</td>
+                  <td className="p-2">{booking.customer?.fullName || "N/A"}</td>
+                  <td className="p-2">
+                    {booking.service?.serviceName || "N/A"}
+                  </td>
+                  <td className="p-2">
+                    {formatDateTime(booking.serviceStartTime)}
+                  </td>
+                  <td className="p-2">
+                    {formatDateTime(booking.serviceEndTime)}
+                  </td>
+                  <td className="p-2">
+                    {booking.customer?.location?.address ||
+                      "Address not available"}
+                  </td>
+                  <td className="p-2">
+                    <span
+                      className={`inline-flex items-center px-2 py-1 rounded-full text-sm font-medium ${getStatusClass(
+                        booking.status
+                      )}`}
+                    >
+                      {booking.status}
+                    </span>
+                  </td>
+                  <td className="p-2">
+                    <select
+                      className="border p-1 rounded font-medium w-full"
+                      value={selectedStaff[booking.bookingId] || ""}
+                      onChange={(e) =>
+                        handleStaffSelection(booking.bookingId, e.target.value)
+                      }
+                      disabled={
+                        booking.status === "Completed" ||
+                        booking.status === "Cancelled"
+                      }
+                    >
+                      <option value="">-- Select Staff --</option>
+                      {availableStaff.map((staff) => (
+                        <option key={staff.userId} value={staff.userId}>
+                          {staff.fullName} ({staff.status})
+                        </option>
+                      ))}
+                      {booking.staff &&
+                        !availableStaff.some(
+                          (s) => s.userId === booking.staffId
+                        ) && (
+                          <option value={booking.staffId}>
+                            {booking.staff.fullName} (Currently Assigned)
+                          </option>
+                        )}
+                    </select>
+                  </td>
+                  <td className="p-2 text-center">
+                    <button
+                      onClick={() => assignStaffToBooking(booking)}
+                      disabled={
+                        updatingBooking === booking.bookingId ||
+                        !selectedStaff[booking.bookingId] ||
+                        booking.status === "Completed" ||
+                        booking.status === "Cancelled" ||
+                        booking.staffId === selectedStaff[booking.bookingId]
+                      }
+                      className={`px-3 py-1 rounded text-white font-medium text-sm ${
+                        updatingBooking === booking.bookingId
+                          ? "bg-gray-400"
+                          : !selectedStaff[booking.bookingId] ||
+                            booking.status === "Completed" ||
+                            booking.status === "Cancelled" ||
+                            booking.staffId === selectedStaff[booking.bookingId]
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-green-500 hover:bg-green-600"
+                      }`}
+                    >
+                      {updatingBooking === booking.bookingId
+                        ? "Saving..."
+                        : "Confirm"}
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td className="p-2 text-center" colSpan="9">
+                  No bookings found
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
