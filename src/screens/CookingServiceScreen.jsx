@@ -273,7 +273,7 @@ function CookingServiceScreen() {
 
           <div className="flex flex-col md:flex-row gap-8 items-center">
             <motion.div
-              className="md:w-1/2"
+              className="md:w-1/3"
               whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.3 }}
             >
@@ -284,20 +284,18 @@ function CookingServiceScreen() {
               />
             </motion.div>
 
-            <div className="md:w-1/2">
+            <div className="md:w-2/3 max-w-prose">
               <h3 className="text-2xl font-bold mb-3">
                 Culinary Expertise
               </h3>
               <p className="mb-4">
-                Our chefs bring years of experience from top restaurants,
-                catering companies, and culinary schools. They are passionate
-                about creating exceptional dining experiences in the comfort of
-                your home.
+                Our chefs bring years of experience from top restaurants, catering companies, and culinary schools. They are passionate about creating exceptional dining experiences in the comfort of your home.
               </p>
               <p className="mb-4">
-                Each chef specializes in different cuisines and cooking
-                techniques, allowing us to match you with the perfect culinary
-                professional for your specific preferences and requirements.
+                Each chef specializes in different cuisines and cooking techniques, allowing us to match you with the perfect culinary professional for your specific preferences and requirements. Whether you are looking for exquisite fine dining, authentic regional dishes, or creative fusion cuisine, our chefs are dedicated to delivering a memorable culinary journey tailored to your taste.
+              </p>
+              <p className="mb-4">
+                With a commitment to excellence and innovation, we ensure that every meal prepared by our chefs not only satisfies your palate but also elevates your overall dining experience. Explore our diverse team of culinary experts and discover how they can transform your meals into extraordinary moments.
               </p>
               <motion.button
                 className="bg-primary hover:bg-accent text-primary-foreground font-bold py-2 px-6 rounded"

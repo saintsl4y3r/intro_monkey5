@@ -310,6 +310,99 @@ function ChildCareServiceScreen() {
         </div>
       </AnimatedSection>
 
+      <AnimatedSection className="py-16 bg-background">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-3xl font-semibold text-center text-orange-500 mb-4">
+            Simple, Transparent Pricing
+          </h2>
+          <p className="text-center text-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+            Affordable and flexible childcare services tailored to your family's needs.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Child Care for 1 Child */}
+            <motion.div
+              className="relative bg-card p-8 rounded-lg shadow-md border border-primary"
+              whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
+            >
+              <h3 className="text-2xl font-bold text-center mb-4">Child Care (1 child)</h3>
+              <div className="text-center text-4xl font-bold text-primary mb-4">
+                150,000₫<span className="text-lg text-muted-foreground">/hour</span>
+              </div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center">
+                  <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                  Personalized care for one child
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                  Age-specific activities and games
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                  Meal preparation included
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                  Flexible scheduling options
+                </li>
+              </ul>
+              <motion.button
+                className="w-full bg-secondary hover:bg-accent text-secondary-foreground font-bold py-2 px-4 rounded"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowBookingPopup(true)}
+              >
+                Book Now
+              </motion.button>
+            </motion.div>
+
+            {/* Child Care for 2 Children */}
+            <motion.div
+              className="relative bg-card p-8 rounded-lg shadow-md border border-primary"
+              whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
+            >
+              <h3 className="text-2xl font-bold text-center mb-4">Child Care (2 children)</h3>
+              <div className="text-center text-4xl font-bold text-primary mb-4">
+                200,000₫<span className="text-lg text-muted-foreground">/hour</span>
+              </div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center">
+                  <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                  Care for two children simultaneously
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                  Customized activities for each child
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                  Meal preparation included
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-5 h-5 text-primary mr-2 flex-shrink-0" />
+                  First aid certified babysitters
+                </li>
+              </ul>
+              <motion.button
+                className="w-full bg-secondary hover:bg-accent text-secondary-foreground font-bold py-2 px-4 rounded"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowBookingPopup(true)}
+              >
+                Book Now
+              </motion.button>
+            </motion.div>
+          </div>
+
+          {/* Additional Notes */}
+          <div className="mt-8 text-center text-muted-foreground text-sm">
+            <p>* Minimum booking of 2 hours required.</p>
+            <p>* Additional charges may apply for late-night services or special needs.</p>
+          </div>
+        </div>
+      </AnimatedSection>
+
       {/* FAQ Section */}
       <AnimatedSection className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4">
