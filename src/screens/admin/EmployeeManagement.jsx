@@ -4,7 +4,9 @@ function EmployeeManagement() {
   const [employees, setEmployees] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [showDetailPopup, setShowDetailPopup] = useState(false);
+  const [showEditPopup, setShowEditPopup] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [editEmployee, setEditEmployee] = useState(null);
   const [formErrors, setFormErrors] = useState({});
   const [newEmployee, setNewEmployee] = useState({
     fullName: "",
@@ -123,20 +125,84 @@ function EmployeeManagement() {
         }
       );
       if (!response.ok) {
-        const errMsg = await response.text();
-        console.error("Delete error:", response.status, errMsg);
-        throw new Error(`Failed to delete employee: ${errMsg}`);
+        // Try to parse error as JSON, fallback to text
+        let errorMsg = "Failed to delete employee.";
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          const errJson = await response.json();
+          if (errJson && (errJson.message || errJson.error)) {
+            errorMsg = errJson.message || errJson.error;
+          } else {
+            errorMsg = JSON.stringify(errJson);
+          }
+        } else {
+          const errText = await response.text();
+          errorMsg = errText || errorMsg;
+        }
+        console.error("Delete error:", response.status, errorMsg);
+        alert(`Error deleting employee. ${errorMsg}`);
+        return;
       }
       await fetchEmployees();
     } catch (error) {
       console.error("Error deleting employee:", error);
-      alert(`Error deleting employee. ${error.message}`);
+      alert(`Error deleting employee. ${error.message || error}`);
     }
   };
 
   const handleDetailEmployee = (emp) => {
     setSelectedEmployee(emp);
     setShowDetailPopup(true);
+  };
+
+  const handleEditEmployee = (emp) => {
+    setEditEmployee({
+      ...emp,
+      dateOfBirth: emp.dateOfBirth
+        ? emp.dateOfBirth.split("T")[0] + "T00:00:00Z"
+        : "1990-01-01T00:00:00Z",
+    });
+    setFormErrors({});
+    setShowEditPopup(true);
+  };
+
+  const validateEditForm = () => {
+    const errors = {};
+    if (!editEmployee.fullName) errors.fullName = "Full name is required";
+    if (!editEmployee.email) errors.email = "Email is required";
+    if (!editEmployee.phoneNumber)
+      errors.phoneNumber = "Phone number is required";
+    if (!editEmployee.idNumber) errors.idNumber = "ID number is required";
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleUpdateEmployee = async () => {
+    if (!validateEditForm()) return;
+    try {
+      const response = await fetch(
+        `https://monkey5-backend.onrender.com/api/Staffs/${editEmployee.userId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(editEmployee),
+        }
+      );
+      if (!response.ok) {
+        const errData = await response.json();
+        console.error("API Error Response:", errData);
+        throw new Error(
+          `Failed to update employee: ${JSON.stringify(errData)}`
+        );
+      }
+      await fetchEmployees();
+      setShowEditPopup(false);
+      setEditEmployee(null);
+      setFormErrors({});
+    } catch (error) {
+      console.error("Error updating employee:", error);
+      alert(`Error updating employee. ${error}`);
+    }
   };
 
   return (
@@ -188,6 +254,12 @@ function EmployeeManagement() {
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-2 py-1 rounded mr-1 text-sm"
                     >
                       Detail
+                    </button>
+                    <button
+                      onClick={() => handleEditEmployee(emp)}
+                      className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-2 py-1 rounded mr-1 text-sm"
+                    >
+                      Edit
                     </button>
                     <button
                       onClick={() =>
@@ -409,6 +481,170 @@ function EmployeeManagement() {
                 className="bg-gray-500 text-white px-4 py-2 rounded"
               >
                 Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showEditPopup && editEmployee && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
+          <div className="bg-white p-6 rounded shadow-lg max-w-md w-full">
+            <h2 className="text-xl font-bold mb-4">Edit Employee</h2>
+
+            <div className="mb-3">
+              <label className="block text-sm font-medium mb-1">
+                Full Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Full Name"
+                value={editEmployee.fullName}
+                onChange={(e) =>
+                  setEditEmployee({ ...editEmployee, fullName: e.target.value })
+                }
+                className={`border p-2 w-full ${
+                  formErrors.fullName ? "border-red-500" : ""
+                }`}
+              />
+              {formErrors.fullName && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formErrors.fullName}
+                </p>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label className="block text-sm font-medium mb-1">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                placeholder="Email"
+                value={editEmployee.email}
+                onChange={(e) =>
+                  setEditEmployee({ ...editEmployee, email: e.target.value })
+                }
+                className={`border p-2 w-full ${
+                  formErrors.email ? "border-red-500" : ""
+                }`}
+              />
+              {formErrors.email && (
+                <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label className="block text-sm font-medium mb-1">
+                Phone Number <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Phone Number"
+                value={editEmployee.phoneNumber}
+                onChange={(e) =>
+                  setEditEmployee({
+                    ...editEmployee,
+                    phoneNumber: e.target.value,
+                  })
+                }
+                className={`border p-2 w-full ${
+                  formErrors.phoneNumber ? "border-red-500" : ""
+                }`}
+              />
+              {formErrors.phoneNumber && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formErrors.phoneNumber}
+                </p>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label className="block text-sm font-medium mb-1">
+                Date of Birth
+              </label>
+              <input
+                type="date"
+                placeholder="Date of Birth"
+                value={editEmployee.dateOfBirth.split("T")[0]}
+                onChange={(e) =>
+                  setEditEmployee({
+                    ...editEmployee,
+                    dateOfBirth: e.target.value + "T00:00:00Z",
+                  })
+                }
+                className="border p-2 w-full"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="block text-sm font-medium mb-1">Gender</label>
+              <select
+                value={editEmployee.gender}
+                onChange={(e) =>
+                  setEditEmployee({ ...editEmployee, gender: e.target.value })
+                }
+                className="border p-2 w-full"
+              >
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div className="mb-3">
+              <label className="block text-sm font-medium mb-1">
+                ID Number <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="ID Number"
+                value={editEmployee.idNumber}
+                onChange={(e) =>
+                  setEditEmployee({ ...editEmployee, idNumber: e.target.value })
+                }
+                className={`border p-2 w-full ${
+                  formErrors.idNumber ? "border-red-500" : ""
+                }`}
+              />
+              {formErrors.idNumber && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formErrors.idNumber}
+                </p>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label className="block text-sm font-medium mb-1">Status</label>
+              <select
+                value={editEmployee.status || "Available"}
+                onChange={(e) =>
+                  setEditEmployee({ ...editEmployee, status: e.target.value })
+                }
+                className="border p-2 w-full"
+              >
+                <option value="Available">Available</option>
+                <option value="Busy">Busy</option>
+                <option value="OnBreak">OnBreak</option>
+                <option value="Disabled">Disabled</option>
+              </select>
+            </div>
+
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={handleUpdateEmployee}
+                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded mr-2"
+              >
+                Save
+              </button>
+              <button
+                onClick={() => {
+                  setShowEditPopup(false);
+                  setEditEmployee(null);
+                  setFormErrors({});
+                }}
+                className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+              >
+                Cancel
               </button>
             </div>
           </div>

@@ -25,6 +25,28 @@ function LeaveRequests() {
     }
   }, [searchTerm, requests]);
 
+  const updateLeaveStatus = async (requestId, newStatus) => {
+    try {
+      const response = await fetch(
+        `https://monkey5-backend.onrender.com/api/LeaveRequests/${requestId}/status`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newStatus), // Send just the status string
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update status");
+      }
+
+      fetchLeaveRequests(); // Refresh the list
+    } catch (err) {
+      console.error("Error updating leave status:", err);
+      setError("Failed to update status");
+    }
+  };
+
   const fetchLeaveRequests = async () => {
     try {
       setLoading(true);
@@ -135,10 +157,39 @@ function LeaveRequests() {
                     {request.leaveReasons}
                   </td>
                   <td className="p-2 text-center">
-                    <span className="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                      Pending
-                    </span>
-                    {/* Future implementation for Accept/Decline buttons would go here */}
+                    <div className="flex flex-col items-center space-y-2">
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          request.status === "Approved"
+                            ? "bg-green-100 text-green-800"
+                            : request.status === "Rejected"
+                            ? "bg-red-100 text-red-800"
+                            : "bg-yellow-100 text-yellow-800"
+                        }`}
+                      >
+                        {request.status}
+                      </span>
+                      {request.status === "Pending" && (
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() =>
+                              updateLeaveStatus(request.requestId, "Approved")
+                            }
+                            className="text-xs bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"
+                          >
+                            Approve
+                          </button>
+                          <button
+                            onClick={() =>
+                              updateLeaveStatus(request.requestId, "Rejected")
+                            }
+                            className="text-xs bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+                          >
+                            Reject
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ))

@@ -50,8 +50,12 @@ function CompletionReports() {
       }
       const data = await response.json();
       if (data && Array.isArray(data)) {
-        setReports(data);
-        setFilteredReports(data);
+        // Sort reports by reportDateTime (newest first)
+        const sortedData = [...data].sort(
+          (a, b) => new Date(b.reportDateTime) - new Date(a.reportDateTime)
+        );
+        setReports(sortedData);
+        setFilteredReports(sortedData);
       } else {
         setReports([]);
         setFilteredReports([]);
@@ -203,10 +207,6 @@ function CompletionReports() {
                 <p>
                   <strong>Email:</strong>{" "}
                   {selectedReport.booking?.customer?.email || "N/A"}
-                </p>
-                <p>
-                  <strong>Address:</strong>{" "}
-                  {selectedReport.booking?.customer?.location?.address || "N/A"}
                 </p>
               </div>
 

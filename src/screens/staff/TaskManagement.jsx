@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 function TaskManagement() {
   const [tasks, setTasks] = useState([]);
   const [confirmedTasks, setConfirmedTasks] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [showReportForm, setShowReportForm] = useState(false);
@@ -35,6 +36,7 @@ function TaskManagement() {
         setError("Failed to fetch tasks");
         setTasks([]);
         setConfirmedTasks([]);
+        setCompletedTasks([]);
         setLoading(false);
         return;
       }
@@ -45,15 +47,22 @@ function TaskManagement() {
         allTasks = data;
       }
 
-      // Filter for Pending tasks (staff needs to confirm or cancel)
-      const pendingTasks = allTasks.filter((task) => task.status === "Pending");
+      // Filter for Assigned tasks (staff needs to confirm or cancel)
+      const assignedTasks = allTasks.filter(
+        (task) => task.status === "Assigned"
+      );
       // Filter for Confirmed tasks (staff needs to complete)
       const confirmedTasksList = allTasks.filter(
         (task) => task.status === "Confirmed"
       );
+      // Filter for Completed tasks
+      const completedTasksList = allTasks.filter(
+        (task) => task.status === "Completed"
+      );
 
-      setTasks(pendingTasks);
+      setTasks(assignedTasks);
       setConfirmedTasks(confirmedTasksList);
+      setCompletedTasks(completedTasksList);
       setLoading(false);
     } catch (err) {
       console.error("Error fetching tasks:", err);
@@ -78,25 +87,17 @@ function TaskManagement() {
     }
 
     try {
-      // Update booking status to Confirmed
-      const updatedBooking = {
-        bookingId: task.bookingId,
-        customerId: task.customerId,
-        serviceId: task.serviceId,
-        staffId: staffId,
-        serviceStartTime: task.serviceStartTime,
-        serviceEndTime: task.serviceEndTime,
-        serviceUnitAmount: task.serviceUnitAmount,
-        status: "Confirmed", // Change status to Confirmed
-        note: task.note || "",
-      };
-
+      // Send booking response
       const response = await fetch(
-        `https://monkey5-backend.onrender.com/api/Bookings/${task.bookingId}`,
+        "https://monkey5-backend.onrender.com/api/Bookings/response",
         {
-          method: "PUT",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedBooking),
+          body: JSON.stringify({
+            bookingId: task.bookingId,
+            staffId: staffId,
+            isAccepted: true,
+          }),
         }
       );
 
@@ -130,25 +131,17 @@ function TaskManagement() {
     }
 
     try {
-      // Update booking to remove staffId but keep status as Pending
-      const updatedBooking = {
-        bookingId: task.bookingId,
-        customerId: task.customerId,
-        serviceId: task.serviceId,
-        staffId: null, // Remove staff assignment
-        serviceStartTime: task.serviceStartTime,
-        serviceEndTime: task.serviceEndTime,
-        serviceUnitAmount: task.serviceUnitAmount,
-        status: "Pending", // Keep status as Pending for reassignment
-        note: task.note || "",
-      };
-
+      // Send booking response
       const response = await fetch(
-        `https://monkey5-backend.onrender.com/api/Bookings/${task.bookingId}`,
+        "https://monkey5-backend.onrender.com/api/Bookings/response",
         {
-          method: "PUT",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedBooking),
+          body: JSON.stringify({
+            bookingId: task.bookingId,
+            staffId: staffId,
+            isAccepted: false,
+          }),
         }
       );
 
@@ -349,8 +342,8 @@ function TaskManagement() {
       <h2 className="text-xl font-bold mb-4">Task Management</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
-      {/* Pending Tasks Section */}
-      <h3 className="text-lg font-semibold mb-2">Pending Tasks</h3>
+      {/* Assigned Tasks Section */}
+      <h3 className="text-lg font-semibold mb-2">Assigned Tasks</h3>
       {tasks.length > 0 ? (
         <table className="min-w-full border-collapse mb-8">
           <thead>
@@ -403,7 +396,7 @@ function TaskManagement() {
           </tbody>
         </table>
       ) : (
-        <p className="mb-8">No pending tasks available</p>
+        <p className="mb-8">No assigned tasks available</p>
       )}
 
       {/* Confirmed Tasks Section */}
@@ -456,6 +449,48 @@ function TaskManagement() {
         </table>
       ) : (
         <p>No confirmed tasks available</p>
+      )}
+
+      {/* Completed Tasks Section */}
+      <h3 className="text-lg font-semibold mb-2 mt-8">Completed Tasks</h3>
+      {completedTasks.length > 0 ? (
+        <table className="min-w-full border-collapse">
+          <thead>
+            <tr className="bg-green-500 text-white">
+              <th className="p-2">#</th>
+              <th className="p-2">Customer Name</th>
+              <th className="p-2">Service Name</th>
+              <th className="p-2">Booking Date</th>
+              <th className="p-2">Service Start</th>
+              <th className="p-2">Service End</th>
+              <th className="p-2">Unit Amount</th>
+              <th className="p-2">Total Price</th>
+              <th className="p-2">Note</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white">
+            {completedTasks.map((task, index) => (
+              <tr
+                key={task.bookingId || index}
+                className="border-b hover:bg-gray-100"
+              >
+                <td className="p-2">{index + 1}</td>
+                <td className="p-2">{task.customer?.fullName || "-"}</td>
+                <td className="p-2">{task.service?.serviceName || "-"}</td>
+                <td className="p-2">{formatDate(task.bookingDateTime)}</td>
+                <td className="p-2">{formatTime(task.serviceStartTime)}</td>
+                <td className="p-2">{formatTime(task.serviceEndTime)}</td>
+                <td className="p-2">{task.serviceUnitAmount}</td>
+                <td className="p-2">{task.totalPrice}</td>
+                <td className="p-2 max-w-xs truncate" title={task.note}>
+                  {task.note || "-"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>No completed tasks available</p>
       )}
 
       {/* Completion Report Form Modal */}
